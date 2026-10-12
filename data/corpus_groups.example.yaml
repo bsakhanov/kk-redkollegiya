@@ -1,0 +1,12 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Beibit Sakhanov
+# Пути — относительно этого файла; файлы заранее чистят kk_clean.py (русские строки двуязычных изданий отсеиваются).
+classic:
+  label: классика
+  files: [../corpus/Abay_kk_only.txt, ../corpus/Үш_анық.txt]
+soviet:
+  label: советская проза
+  files: [../corpus/Көшпенділер__1_кітап__Алмас_қылыш.txt, ../corpus/Әңгімелер.txt, ../corpus/Отырардан_жеткен_сый.txt]
+corporate:
+  label: корпоративный узус
+  files: [../corpus/tg_kk.txt, ../corpus/mm_kk.txt, ../corpus/nov_kk.txt]

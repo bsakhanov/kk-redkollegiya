@@ -1,0 +1,13 @@
+__pycache__/
+*.pyc
+.cache/
+data/hunspell/
+*.json.gz
+corpus/
+clean*/
+*.jsonl
+result.json
+journal*.json
+findings*.json
+.env
+.DS_Store

@@ -1,0 +1,745 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Beibit Sakhanov
+# Пример глоссария. Записи со статусом usage и contested выведены tools/kk_usage.py из корпоративного корпуса
+# (канал и газеты нефтегазовой компании, около 840 тыс. слов; сами тексты в репозиторий не входят).
+# Записи без status — решения автора проекта. Замените своими: kk_usage.py --merge сохраняет записи автора.
+version: 0.2
+entries:
+- key: author-pseudonym
+  ru: псевдоним автора
+  kk: Автордың псевдонимі
+  avoid:
+  - бүркеншік ат
+  note: решение автора — международный «псевдоним», а не новая калька
+- key: alias
+  ru: алиас
+  kk: алиас
+  avoid: []
+  note: международный термин остаётся
+- key: mail
+  ru: почта
+  kk: пошта
+  avoid:
+  - почта
+  note: «пошта» — казахская форма; русская «почта» в казахском тексте — дефект
+- key: object
+  ru: объект
+  kk: нысан
+  avoid:
+  - объект
+  avoid_action: suggest
+  status: usage
+  kk_re: нысан\w*
+  parity_ru: объект\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: объект
+      count: 146
+      per100k: 17.4
+      share: 0.16
+    b:
+      form: нысан
+      count: 753
+      per100k: 89.8
+      share: 0.84
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 252
+    ok: 229
+    other_form: 13
+    neither: 10
+    share: 0.91
+  parity_check: true
+- key: project
+  ru: проект
+  kk: жоба
+  avoid:
+  - проект
+  avoid_action: suggest
+  status: usage
+  kk_re: жоба\w*
+  parity_ru: проект\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: проект
+      count: 368
+      per100k: 43.9
+      share: 0.08
+    b:
+      form: жоба
+      count: 4193
+      per100k: 499.8
+      share: 0.92
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 745
+    ok: 737
+    other_form: 0
+    neither: 8
+    share: 0.99
+  parity_check: true
+- key: partner
+  ru: партнёр
+  kk: серіктес
+  avoid:
+  - партнёр
+  avoid_action: suggest
+  status: usage
+  kk_re: серіктес\w*
+  parity_ru: партн[её]р\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: партнёр
+      count: 56
+      per100k: 6.7
+      share: 0.09
+    b:
+      form: серіктес
+      count: 598
+      per100k: 71.3
+      share: 0.91
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 227
+    ok: 204
+    other_form: 0
+    neither: 23
+    share: 0.9
+  parity_check: true
+- key: concept
+  ru: концепция
+  kk: тұжырымдама
+  avoid:
+  - концепция
+  avoid_action: suggest
+  status: usage
+  kk_re: тұжырымдама\w*
+  parity_ru: концепци\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: концепция
+      count: 7
+      per100k: 0.8
+      share: 0.11
+    b:
+      form: тұжырымдама
+      count: 59
+      per100k: 7.0
+      share: 0.89
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 10
+    ok: 10
+    other_form: 0
+    neither: 0
+    share: 1.0
+  parity_check: false
+- key: digital
+  ru: цифровой
+  kk: цифрлық
+  avoid:
+  - сандық
+  avoid_action: suggest
+  status: usage
+  kk_re: цифрл[ыі]\w*|цифрлық\w*
+  parity_ru: цифров\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: цифрлық
+      count: 467
+      per100k: 55.7
+      share: 0.98
+    b:
+      form: сандық
+      count: 8
+      per100k: 1.0
+      share: 0.02
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 175
+    ok: 141
+    other_form: 0
+    neither: 34
+    share: 0.81
+  parity_check: false
+- key: ai
+  ru: искусственный интеллект
+  kk: жасанды интеллект
+  avoid:
+  - жасанды зерде
+  avoid_action: suggest
+  status: usage
+  kk_re: жасанды\s+интеллект\w*
+  parity_ru: искусственн\w+\s+интеллект\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: жасанды интеллект
+      count: 225
+      per100k: 26.8
+      share: 1.0
+    b:
+      form: жасанды зерде
+      count: 0
+      per100k: 0.0
+      share: 0.0
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 76
+    ok: 74
+    other_form: 0
+    neither: 2
+    share: 0.97
+  parity_check: true
+- key: well
+  ru: скважина
+  kk: ұңғыма
+  avoid:
+  - скважина
+  avoid_action: suggest
+  status: usage
+  kk_re: ұңғыма\w*
+  parity_ru: скважин\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: скважина
+      count: 124
+      per100k: 14.8
+      share: 0.13
+    b:
+      form: ұңғыма
+      count: 803
+      per100k: 95.7
+      share: 0.87
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 201
+    ok: 195
+    other_form: 3
+    neither: 3
+    share: 0.97
+  parity_check: true
+- key: field
+  ru: месторождение
+  kk: кен орны
+  avoid:
+  - месторождение
+  avoid_action: suggest
+  status: usage
+  kk_re: кен\s+орн\w*|кен\s+орын\w*
+  parity_ru: месторожден\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: месторождение
+      count: 201
+      per100k: 24.0
+      share: 0.1
+    b:
+      form: кен орны
+      count: 1866
+      per100k: 222.4
+      share: 0.9
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 372
+    ok: 359
+    other_form: 0
+    neither: 13
+    share: 0.97
+  parity_check: true
+- key: drilling
+  ru: бурение
+  kk: бұрғылау
+  avoid:
+  - бурение
+  avoid_action: suggest
+  status: usage
+  kk_re: бұрғыла\w*
+  parity_ru: бурени\w*|бурят\w*|буров\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: бурение
+      count: 34
+      per100k: 4.1
+      share: 0.05
+    b:
+      form: бұрғылау
+      count: 662
+      per100k: 78.9
+      share: 0.95
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 124
+    ok: 123
+    other_form: 0
+    neither: 1
+    share: 0.99
+  parity_check: true
+- key: refining
+  ru: нефтепереработка
+  kk: мұнай өңдеу
+  avoid:
+  - нефтепереработка
+  avoid_action: suggest
+  status: usage
+  kk_re: мұнай\s+өңдеу\w*
+  parity_ru: нефтепереработ\w*|нефтеперерабатыва\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: нефтепереработка
+      count: 18
+      per100k: 2.1
+      share: 0.01
+    b:
+      form: мұнай өңдеу
+      count: 2048
+      per100k: 244.1
+      share: 0.99
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 185
+    ok: 183
+    other_form: 0
+    neither: 2
+    share: 0.99
+  parity_check: true
+- key: petrochem
+  ru: нефтехимия
+  kk: мұнайхимия
+  avoid:
+  - нефтехимия
+  avoid_action: suggest
+  status: usage
+  kk_re: мұнай-?хими\w*
+  parity_ru: нефтехими\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: нефтехимия
+      count: 56
+      per100k: 6.7
+      share: 0.11
+    b:
+      form: мұнайхимия
+      count: 461
+      per100k: 55.0
+      share: 0.89
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 118
+    ok: 96
+    other_form: 0
+    neither: 22
+    share: 0.81
+  parity_check: false
+- key: enterprise
+  ru: предприятие
+  kk: кәсіпорын
+  avoid:
+  - предприятие
+  avoid_action: suggest
+  status: usage
+  kk_re: кәсіпорын\w*
+  parity_ru: предприяти\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: предприятие
+      count: 223
+      per100k: 26.6
+      share: 0.12
+    b:
+      form: кәсіпорын
+      count: 1575
+      per100k: 187.7
+      share: 0.88
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 428
+    ok: 331
+    other_form: 0
+    neither: 97
+    share: 0.77
+  parity_check: false
+- key: indicator
+  ru: показатель
+  kk: көрсеткіш
+  avoid:
+  - показатель
+  avoid_action: suggest
+  status: usage
+  kk_re: көрсеткіш\w*
+  parity_ru: показател\w*|индикатор\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: показатель
+      count: 77
+      per100k: 9.2
+      share: 0.08
+    b:
+      form: көрсеткіш
+      count: 891
+      per100k: 106.2
+      share: 0.92
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 195
+    ok: 189
+    other_form: 1
+    neither: 5
+    share: 0.97
+  parity_check: true
+- key: initiative
+  ru: инициатива
+  kk: бастама
+  avoid:
+  - инициатива
+  avoid_action: suggest
+  status: usage
+  kk_re: бастама\w*
+  parity_ru: инициатив\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: инициатива
+      count: 53
+      per100k: 6.3
+      share: 0.09
+    b:
+      form: бастама
+      count: 510
+      per100k: 60.8
+      share: 0.91
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 108
+    ok: 105
+    other_form: 0
+    neither: 3
+    share: 0.97
+  parity_check: true
+- key: modernization
+  ru: модернизация
+  kk: жаңғырту
+  avoid:
+  - модернизация
+  avoid_action: suggest
+  status: usage
+  kk_re: жаңғырт\w*
+  parity_ru: модернизаци\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: модернизация
+      count: 42
+      per100k: 5.0
+      share: 0.1
+    b:
+      form: жаңғырту
+      count: 372
+      per100k: 44.3
+      share: 0.9
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 118
+    ok: 105
+    other_form: 0
+    neither: 13
+    share: 0.89
+  parity_check: true
+- key: labor-safety
+  ru: охрана труда
+  kk: еңбекті қорғау
+  avoid:
+  - охрана труда
+  avoid_action: suggest
+  status: usage
+  kk_re: еңбекті\s+қорғау\w*
+  parity_ru: охран\w*\s+труд\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: охрана труда
+      count: 21
+      per100k: 2.5
+      share: 0.09
+    b:
+      form: еңбекті қорғау
+      count: 220
+      per100k: 26.2
+      share: 0.91
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 59
+    ok: 49
+    other_form: 0
+    neither: 10
+    share: 0.83
+  parity_check: false
+- key: equipment
+  ru: оборудование
+  kk: жабдық
+  avoid:
+  - оборудование
+  avoid_action: suggest
+  status: usage
+  kk_re: жабдық\w*
+  parity_ru: оборудовани\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: оборудование
+      count: 82
+      per100k: 9.8
+      share: 0.07
+    b:
+      form: жабдық
+      count: 1116
+      per100k: 133.0
+      share: 0.93
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 246
+    ok: 234
+    other_form: 0
+    neither: 12
+    share: 0.95
+  parity_check: true
+- key: capacity
+  ru: мощность
+  kk: қуат
+  avoid:
+  - мощность
+  avoid_action: suggest
+  status: usage
+  kk_re: қуат\w*
+  parity_ru: мощност\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: мощность
+      count: 88
+      per100k: 10.5
+      share: 0.1
+    b:
+      form: қуат
+      count: 771
+      per100k: 91.9
+      share: 0.9
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 240
+    ok: 197
+    other_form: 0
+    neither: 43
+    share: 0.82
+  parity_check: false
+- key: pipeline
+  ru: трубопровод
+  kk: құбыр
+  avoid:
+  - трубопровод
+  avoid_action: suggest
+  status: usage
+  kk_re: құбыр\w*
+  parity_ru: трубопровод\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: трубопровод
+      count: 43
+      per100k: 5.1
+      share: 0.04
+    b:
+      form: құбыр
+      count: 1143
+      per100k: 136.2
+      share: 0.96
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 117
+    ok: 116
+    other_form: 0
+    neither: 1
+    share: 0.99
+  parity_check: true
+- key: abbr-country
+  ru: РК
+  kk: ҚР
+  avoid:
+  - РК
+  avoid_action: suggest
+  status: usage
+  kk_re: қр
+  parity_ru: \bрк\b
+  evidence:
+    corpus_words: 838939
+    a:
+      form: РК
+      count: 145
+      per100k: 17.3
+      share: 0.22
+    b:
+      form: ҚР
+      count: 513
+      per100k: 61.1
+      share: 0.78
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 198
+    ok: 142
+    other_form: 1
+    neither: 55
+    share: 0.72
+  parity_check: false
+- key: abbr-ltd
+  ru: ТОО
+  kk: ЖШС
+  avoid:
+  - ТОО
+  avoid_action: suggest
+  status: usage
+  kk_re: жшс
+  parity_ru: \bтоо\b
+  evidence:
+    corpus_words: 838939
+    a:
+      form: ТОО
+      count: 336
+      per100k: 40.1
+      share: 0.12
+    b:
+      form: ЖШС
+      count: 2512
+      per100k: 299.4
+      share: 0.88
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 477
+    ok: 453
+    other_form: 0
+    neither: 24
+    share: 0.95
+  parity_check: true
+- key: abbr-refinery
+  ru: НПЗ
+  kk: МӨЗ
+  avoid:
+  - НПЗ
+  avoid_action: suggest
+  status: author
+  kk_re: мөз
+  parity_ru: \bнпз\b
+  evidence:
+    corpus_words: 838939
+    a:
+      form: НПЗ
+      count: 107
+      per100k: 12.8
+      share: 0.32
+    b:
+      form: МӨЗ
+      count: 224
+      per100k: 26.7
+      share: 0.68
+  decided: решение автора
+  note: спорный случай по узусу; закрыт решением автора
+- key: website
+  ru: сайт
+  kk: сайт
+  avoid:
+  - торап
+  avoid_action: suggest
+  status: usage
+  kk_re: сайт\w*
+  parity_ru: \bсайт\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: сайт
+      count: 296
+      per100k: 35.3
+      share: 0.92
+    b:
+      form: торап
+      count: 26
+      per100k: 3.1
+      share: 0.08
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 55
+    ok: 55
+    other_form: 0
+    neither: 0
+    share: 1.0
+  parity_check: true
+- key: application
+  ru: приложение
+  kk: қолданба
+  avoid:
+  - мобильді қосымша
+  avoid_action: suggest
+  status: author
+  kk_re: қолданба\w*
+  parity_ru: мобильн\w+\s+приложени\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: мобильді қосымша
+      count: 15
+      per100k: 1.8
+      share: 0.42
+    b:
+      form: қолданба
+      count: 21
+      per100k: 2.5
+      share: 0.58
+  decided: решение автора
+  note: спорный случай по узусу; закрыт решением автора
+- key: database
+  ru: база данных
+  kk: дерекқор
+  avoid:
+  - деректер базасы
+  avoid_action: suggest
+  status: usage
+  kk_re: дерекқор\w*
+  parity_ru: баз\w+\s+данных
+  evidence:
+    corpus_words: 838939
+    a:
+      form: деректер базасы
+      count: 3
+      per100k: 0.4
+      share: 0.3
+    b:
+      form: дерекқор
+      count: 7
+      per100k: 0.8
+      share: 0.7
+  decided: политика узуса корпуса
+abbreviations:
+- ru: РК
+  kk: ҚР
+- ru: ТОО
+  kk: ЖШС
+- ru: АО
+  kk: АҚ
+- ru: ИП
+  kk: ЖК
+policy:
+  rule: usage-first
+  text: узус корпуса заказчика; международное слово — только там, где узус молчит
+  corpus: корпоративный узус, 838939 слов
+  majority: 0.7
+  min_total: 10

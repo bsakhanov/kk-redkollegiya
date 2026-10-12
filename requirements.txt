@@ -1,0 +1,3 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+spylls>=0.1     # чистый Python-движок Hunspell; нужен для словарных проверок (kk_clean, kk_lint)
+pyyaml>=5.4     # глоссарий и списки в YAML (kk_lint, kk_attest, kk_usage, kk_parity, kk_pairs)
