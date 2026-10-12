@@ -2,6 +2,15 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.4.1] — 2026-10-12
+
+### Добавлено
+- README на английском (`README.en.md`) и казахском (`README.kk.md`); `README.md` теперь русский, с переключателем языков.
+- Руководство пользователя на трёх языках: `docs/USAGE.md`, `docs/USAGE.en.md`, `docs/USAGE.kk.md`.
+
+### Изменено
+- В примерах команд пути записаны латиницей (переносимее для оболочек).
+
 ## [0.4.0] — 2026-10-12
 
 Первая публичная версия.
@@ -26,4 +35,5 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.4.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/bsakhanov/kk-redkollegiya/releases/tag/v0.4.0
