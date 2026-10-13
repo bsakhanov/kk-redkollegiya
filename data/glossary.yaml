@@ -2,7 +2,7 @@
 # Copyright (C) 2026 Beibit Sakhanov
 # Пример глоссария. Записи со статусом usage и contested выведены tools/kk_usage.py из корпоративного корпуса
 # (канал и газеты нефтегазовой компании, около 840 тыс. слов; сами тексты в репозиторий не входят).
-# Записи без status — решения автора проекта. Замените своими: kk_usage.py --merge сохраняет записи автора.
+# Записи без status или со status: author — решения автора проекта. Замените своими: kk_usage.py --merge сохраняет записи автора.
 version: 0.2
 entries:
 - key: author-pseudonym
@@ -108,13 +108,12 @@ entries:
   parity_check: true
 - key: concept
   ru: концепция
-  kk: тұжырымдама
-  avoid:
-  - концепция
-  avoid_action: suggest
-  status: usage
-  kk_re: тұжырымдама\w*
-  parity_ru: концепци\w*
+  kk: концепция
+  avoid: []
+  status: author
+  decided: решение автора
+  note: международный термин; «тұжырымдама» допустимо как синоним; значение — основное понятие, то, что лежит в
+    основе; решение автора стоит поверх узуса корпуса («тұжырымдама» — 89%)
   evidence:
     corpus_words: 838939
     a:
@@ -127,14 +126,6 @@ entries:
       count: 59
       per100k: 7.0
       share: 0.89
-  decided: политика узуса корпуса
-  consistency:
-    pairs: 10
-    ok: 10
-    other_form: 0
-    neither: 0
-    share: 1.0
-  parity_check: false
 - key: digital
   ru: цифровой
   kk: цифрлық
