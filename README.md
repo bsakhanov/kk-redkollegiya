@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.4.1](https://img.shields.io/badge/version-0.4.1-green.svg)](CHANGELOG.md)
+[![Версия 0.4.2](https://img.shields.io/badge/version-0.4.2-green.svg)](CHANGELOG.md)
 
 **Русский** · [English](README.en.md) · [Қазақша](README.kk.md)
 
@@ -31,7 +31,7 @@
 | `tools/fetch_hunspell_kk.sh` | скачивает словарь hunspell-kk (в репозиторий не входит) |
 | `data/` | глоссарий-пример, пары терминов, списки оборотов, пример групп корпуса |
 | `docs/USAGE.md` | руководство пользователя: установка и пять типовых задач (есть также [English](docs/USAGE.en.md) и [Қазақша](docs/USAGE.kk.md)) |
-| `docs/RULES.md` | справочник правил детекторов (коды, уровни, действия) |
+| `docs/RULES.md` | справочник правил детекторов: коды, уровни, действия (есть также [English](docs/RULES.en.md) и [Қазақша](docs/RULES.kk.md)) |
 | `tests/` | самопроверки и образец текста с подсаженными дефектами |
 
 ## Как это устроено

@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.4.1](https://img.shields.io/badge/version-0.4.1-green.svg)](CHANGELOG.md)
+[![Версия 0.4.2](https://img.shields.io/badge/version-0.4.2-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
@@ -30,7 +30,7 @@
 | `tools/fetch_hunspell_kk.sh` | hunspell-kk сөздігін жүктейді (репозиторийге кірмейді) |
 | `data/` | мысал глоссарий, термин жұптары, сөз тіркестерінің тізімі, корпус топтарының мысалы |
 | `docs/USAGE.kk.md` | пайдалану нұсқаулығы |
-| `docs/RULES.md` | детектор ережелерінің анықтамасы (орысша; ереже кодтары тілге тәуелсіз) |
+| `docs/RULES.kk.md` | детектор ережелерінің анықтамасы |
 | `tests/` | тесттер және әдейі ақау қойылған мәтін үлгісі |
 
 ## Қалай жұмыс істейді
@@ -95,7 +95,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 ```
 
 `kk_lint.py` `blocker` деңгейіндегі ескерту болса (мысалы, Joomla жолында `%s` толтырғышы жоғалса), 2 кодымен аяқталады.
-Ереже кодтары — [docs/RULES.md](docs/RULES.md).
+Ереже кодтары — [docs/RULES.kk.md](docs/RULES.kk.md).
 
 ## Нені тексердік
 

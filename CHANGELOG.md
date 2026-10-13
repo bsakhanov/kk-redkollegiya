@@ -2,6 +2,15 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.4.2] — 2026-10-13
+
+### Добавлено
+- Справочник правил на английском и казахском: `docs/RULES.en.md`, `docs/RULES.kk.md`; в `docs/RULES.md` появился переключатель языков.
+
+### Исправлено
+- Справочник правил приведён в соответствие с кодом: уточнены условия правил S01 (порог подсказки, которой нет в словаре) и T02 (запись без `kk`, аффикс).
+- Английские и казахские README и руководства ссылаются на справочник на своём языке.
+
 ## [0.4.1] — 2026-10-12
 
 ### Добавлено
@@ -35,5 +44,6 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.4.2]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.1...v0.4.2
 [0.4.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.0...v0.4.1
 [0.4.0]: https://github.com/bsakhanov/kk-redkollegiya/releases/tag/v0.4.0

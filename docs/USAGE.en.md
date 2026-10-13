@@ -2,7 +2,7 @@
 
 [Русский](USAGE.md) · **English** · [Қазақша](USAGE.kk.md) · [← README](../README.en.md)
 
-The guide goes from installation to five typical tasks. Rule codes and glossary fields are in [RULES.md](RULES.md) (in Russian; the codes are language-neutral).
+The guide goes from installation to five typical tasks. Rule codes and glossary fields are in [RULES.en.md](RULES.en.md).
 
 ## 1. Requirements
 

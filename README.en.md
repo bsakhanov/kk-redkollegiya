@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.4.1](https://img.shields.io/badge/version-0.4.1-green.svg)](CHANGELOG.md)
+[![Version 0.4.2](https://img.shields.io/badge/version-0.4.2-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -26,7 +26,7 @@ severity); disputed cases are left to a reader of Kazakh.
 | `tools/kk_pairs.py` | builds a parallel corpus from a bilingual Telegram export; bilingual glossary candidates; translation consistency with the glossary |
 | `tools/kk_usage.py` | terminology policy: "corpus usage first; the international word only where usage is silent" |
 | `tools/kk_attest.py` | attestation: frequency per 100k words across corpus groups, with contexts |
-| `data/`, `docs/USAGE.en.md`, `docs/RULES.md`, `tests/` | example glossary and term pairs, user guide, rule reference (in Russian), self-tests |
+| `data/`, `docs/USAGE.en.md`, `docs/RULES.en.md`, `tests/` | example glossary and term pairs, user guide, rule reference, self-tests |
 
 ## How it works
 
@@ -70,7 +70,7 @@ python3 tools/kk_pairs.py build result.json -o pairs.jsonl
 ```
 
 `kk_lint.py` exits with code 2 when a `blocker` finding exists (for example, a lost `%s` placeholder in a Joomla string).
-Rule codes are listed in [docs/RULES.md](docs/RULES.md) (in Russian; the codes are language-neutral).
+Rule codes are listed in [docs/RULES.en.md](docs/RULES.en.md).
 
 ## Measured results
 
