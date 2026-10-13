@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.4.6](https://img.shields.io/badge/version-0.4.6-green.svg)](CHANGELOG.md)
+[![Версия 0.4.7](https://img.shields.io/badge/version-0.4.7-green.svg)](CHANGELOG.md)
 
 **Русский** · [English](README.en.md) · [Қазақша](README.kk.md)
 
@@ -17,6 +17,8 @@
 > **Статус: 0.x.** Готов первый слой — скрипты. LLM-этапы (смысл и кальки, следы машинного письма, орфография)
 > и скрипт-типограф ещё не написаны, см. [дорожную карту](#дорожная-карта).
 
+Подробнее о том, зачем это нужно и что это такое, — в [лонгриде](docs/longread.md).
+
 ## Что внутри
 
 | Файл | Что делает |
@@ -30,6 +32,7 @@
 | `tools/kk_attest.py` | засвидетельствованность: частота оборота по группам корпуса на 100 тыс. слов и контексты |
 | `tools/fetch_hunspell_kk.sh` | скачивает словарь hunspell-kk (в репозиторий не входит) |
 | `data/` | глоссарий-пример, пары терминов, списки оборотов, пример групп корпуса |
+| `docs/longread.md` | лонгрид: зачем нужен набор, для кого он и как устроен (также [English](docs/longread.en.md) и [Қазақша](docs/longread.kk.md)) |
 | `docs/USAGE.md` | руководство пользователя: установка и пять типовых задач (есть также [English](docs/USAGE.en.md) и [Қазақша](docs/USAGE.kk.md)) |
 | `docs/RULES.md` | справочник правил детекторов: коды, уровни, действия (есть также [English](docs/RULES.en.md) и [Қазақша](docs/RULES.kk.md)) |
 | `tests/` | самопроверки и образец текста с подсаженными дефектами |

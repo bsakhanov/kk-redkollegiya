@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.4.6](https://img.shields.io/badge/version-0.4.6-green.svg)](CHANGELOG.md)
+[![Version 0.4.7](https://img.shields.io/badge/version-0.4.7-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -15,6 +15,8 @@ severity); disputed cases are left to a reader of Kazakh.
 > **Status: 0.x.** The first layer (scripts) is ready. LLM stages (meaning and calques, machine-writing traces, orthography)
 > and a typography script are not written yet; see the [roadmap](#roadmap).
 
+For the why and the what in depth, see the [long-read](docs/longread.en.md).
+
 ## What is inside
 
 | File | Purpose |
@@ -26,7 +28,7 @@ severity); disputed cases are left to a reader of Kazakh.
 | `tools/kk_pairs.py` | builds a parallel corpus from a bilingual Telegram export; bilingual glossary candidates; translation consistency with the glossary |
 | `tools/kk_usage.py` | terminology policy: "corpus usage first; the international word only where usage is silent" |
 | `tools/kk_attest.py` | attestation: frequency per 100k words across corpus groups, with contexts |
-| `data/`, `docs/USAGE.en.md`, `docs/RULES.en.md`, `tests/` | example glossary and term pairs, user guide, rule reference, self-tests |
+| `data/`, `docs/longread.en.md`, `docs/USAGE.en.md`, `docs/RULES.en.md`, `tests/` | example glossary and term pairs, a long-read on why and what, user guide, rule reference, self-tests |
 
 ## How it works
 
