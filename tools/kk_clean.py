@@ -18,6 +18,11 @@
                     и наоборот («ІSBN»).
   6. dehyphenate  — по желанию: перенос «слово-\\nпродолжение» склеивается, если результат есть
                     в словаре (флаг --dehyphenate).
+                     Знаки переноса «-», «¬» и мягкий перенос понимаются одинаково.
+  7. ocr          — по желанию: путаница «ү» и «ұ» после распознавания книг («жүмыс» → «жұмыс»,
+                     «қүттықтады» → «құттықтады»). Слово правится, только если его нет в словаре и либо с «ұ»
+                     оно в словаре (запись ocr), либо «ү» стоит рядом с гласными заднего ряда — так в казахском
+                     слове не бывает (запись ocr_harmony; флаг --ocr).
 
 Чего не делает: не правит орфографию, не восстанавливает «к → қ» (это kk_lint, где вердикт за человеком),
 не трогает типографику.
@@ -340,7 +345,7 @@ def fix_homoglyphs(text, d, J):
 
 # ----------------------------------------------------------- 6. переносы ----
 
-_HYPH = re.compile(rf"([{CYR}]+)-\n([а-яәғқңөұүһі]+)")
+_HYPH = re.compile(rf"([{CYR}]+)[-¬\u00ad][ \t]*\n[ \t]*([а-яәғқңөұүһі]+)")
 
 
 def dehyphenate(text, d, J):
@@ -356,10 +361,34 @@ def dehyphenate(text, d, J):
     return _HYPH.sub(repl, text)
 
 
+# ------------------------------------------------------------- 7. ocr ----
+
+_BACK = set("аыоұ")                                    # гласные заднего ряда
+_OCRTOK = re.compile(rf"[{CYR}]+")
+
+
+def fix_ocr(text, d, J):
+    def repl(m):
+        w = m.group(0)
+        lw = w.lower()
+        if "ү" not in lw or (d is not None and d.ok and d.known(w)):
+            return w
+        if d is not None and d.ok and d.known(lw.replace("ү", "ұ")):
+            step = "ocr"
+        elif any(c in _BACK for c in lw):
+            step = "ocr_harmony"
+        else:
+            return w
+        res = w.replace("ү", "ұ").replace("Ү", "Ұ")
+        J.add(step, w, res)
+        return res
+    return _OCRTOK.sub(repl, text)
+
+
 # ------------------------------------------------------------------ ядро ----
 
 
-def clean(text, d=None, legacy=True, dehyph=False):
+def clean(text, d=None, legacy=True, dehyph=False, ocr=False):
     J = Journal()
     t0 = text
     text = unicodedata.normalize("NFC", text)
@@ -376,13 +405,15 @@ def clean(text, d=None, legacy=True, dehyph=False):
     text = fix_homoglyphs(text, d, J)
     if dehyph:
         text = dehyphenate(text, d, J)
+    if ocr:
+        text = fix_ocr(text, d, J)
     return text, J
 
 
 def _selftest():
     class FakeD:
         ok = True
-        words = {"қол", "жоқ", "түзей", "қаласы", "болған", "құрылыс", "уақыт", "соң", "ұрлықпен", "ғарифолла"}
+        words = {"қол", "жоқ", "түзей", "қаласы", "болған", "құрылыс", "уақыт", "соң", "ұрлықпен", "ғарифолла", "жұмыс", "басқарма"}
 
         def known(self, w):
             return w.lower() in self.words
@@ -409,6 +440,12 @@ def _selftest():
     assert t == "Алматы қаласы. Қаласы", t
     t, J = clean("Wрлықпен Fарифолла", d)             # латинские заместители прописных
     assert t.split()[0] == "Ұрлықпен", t
+    # ocr: ү → ұ по словарю и по гармонии гласных; слова с «ү» в гармоничном окружении не трогаем
+    t, J = clean("Жүмыс қүттықтады үстаз мазмүнына күн түзей", d, ocr=True)
+    assert t == "Жұмыс құттықтады ұстаз мазмұнына күн түзей", t
+    assert J.steps["ocr"]["count"] == 1 and J.steps["ocr_harmony"]["count"] == 3, J.steps
+    t, J = clean("бас-\nқарма бас¬\nқарма", d, dehyph=True)       # перенос «-» и «¬»
+    assert t == "басқарма басқарма", t
     print("kk_clean selftest: ok")
 
 
@@ -422,6 +459,7 @@ def main(argv=None):
     ap.add_argument("--whitelist", help="файл со словами проекта, по слову в строке")
     ap.add_argument("--journal", help="куда записать журнал (JSON)")
     ap.add_argument("--dehyphenate", action="store_true")
+    ap.add_argument("--ocr", action="store_true", help="починить путаницу «ү» и «ұ» после распознавания книг")
     ap.add_argument("--no-legacy", action="store_true")
     ap.add_argument("--check", action="store_true", help="только журнал, без записи")
     ap.add_argument("--selftest", action="store_true")
@@ -442,7 +480,7 @@ def main(argv=None):
         except OSError as e:
             print(f"[kk_clean] {f}: {e}", file=sys.stderr)
             return 1
-        text, J = clean(raw, d, legacy=not a.no_legacy, dehyph=a.dehyphenate)
+        text, J = clean(raw, d, legacy=not a.no_legacy, dehyph=a.dehyphenate, ocr=a.ocr)
         full[os.path.basename(f)] = J.to_dict()
         summary = ", ".join(f"{k}:{v['count']}" for k, v in J.steps.items() if v["count"]) or "правок нет"
         print(f"{os.path.basename(f)}: {summary}")

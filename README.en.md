@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.5.1](https://img.shields.io/badge/version-0.5.1-green.svg)](CHANGELOG.md)
+[![Version 0.6.0](https://img.shields.io/badge/version-0.6.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -21,7 +21,7 @@ For the why and the what in depth, see the [long-read](docs/longread.en.md).
 
 | File | Purpose |
 | --- | --- |
-| `tools/kk_clean.py` | text recovery: Unicode NFC, legacy Kazakh font encoding, Latin schwa «ə» for «ә», substitute letters (control and Latin characters standing for қ ғ ң ә ө ұ ү һ і), Latin look-alikes inside Cyrillic words |
+| `tools/kk_clean.py` | text recovery: Unicode NFC, legacy Kazakh font encoding, Latin schwa «ə» for «ә», substitute letters (control and Latin characters standing for қ ғ ң ә ө ұ ү һ і), Latin look-alikes inside Cyrillic words, «ү»/«ұ» confusion after book recognition |
 | `tools/kk_restore.py` | character n-gram model (n=5) that restores Kazakh letters in words typed on a Russian keyboard |
 | `tools/kk_lint.py` | detectors for technical defects; findings in `apply.py` format; `prose` and `ini` (Joomla language pack) profiles |
 | `tools/kk_parity.py` | checks a Kazakh version against the Russian original: numbers, dates, scale words, Latin names, glossary terms |

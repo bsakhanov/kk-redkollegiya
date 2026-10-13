@@ -2,6 +2,15 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.6.0] — 2026-10-13
+
+### Добавлено
+- `kk_clean --ocr`: починка путаницы «ү» и «ұ» после распознавания книг (по словарю и по гармонии гласных).
+- В руководствах на трёх языках: шаг `ocr` и абзац «Книга в DjVu или скан» (извлечение текстового слоя, перераспознавание казахской моделью tesseract).
+
+### Изменено
+- `kk_clean --dehyphenate` понимает знак переноса «¬» и мягкий перенос наравне с «-» и не склеивает слова через пустую строку.
+
 ## [0.5.1] — 2026-10-13
 
 ### Добавлено
@@ -96,6 +105,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.6.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.7...v0.5.0
 [0.4.7]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.6...v0.4.7
