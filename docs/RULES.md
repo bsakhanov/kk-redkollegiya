@@ -2,7 +2,7 @@
 
 **Русский** · [English](RULES.en.md) · [Қазақша](RULES.kk.md) · [← README](../README.md)
 
-Находка — JSON-объект: `{id, stage, zone, severity, rule, quote, action, edit, note}`. `apply.py` из redkollegiya читает
+Находка — JSON-объект: `{id, stage, zone, layer, severity, rule, quote, action, edit, note}`. `apply.py` из redkollegiya читает
 `stage`, `zone`, `severity`, `quote`, `action`, `edit`; остальные поля он пропускает. `quote` расширяется до уникальной в тексте
 (якорение дословное), `edit` — вся цитата с уже внесённой заменой.
 
@@ -46,6 +46,19 @@
 | PR04 | `number_extra` — лишние числа в казахской версии | parity | author_choice / flag |
 | PR05 | `latin_lost` — потеряны латинские имена и сокращения | parity | fix / flag |
 | PR06 | `term_mismatch` — в оригинале понятие глоссария, а выбранной казахской формы нет (только с `--glossary`, только для записей `status: usage` с `parity_check` не `false`) | terms | author_choice / flag |
+
+## Зоны и слои
+
+Поле `zone` говорит, какого рода находка; поле `layer` — какому слою, носящему имя, она принадлежит (подробнее — в [README](../README.md#слои-и-их-имена)).
+
+| Зона | Слой (`layer`) | Имя |
+| --- | --- | --- |
+| `hygiene`, `typography` | `altynsarin` | Алтынсарин |
+| `parity`, `facts` | `valikhanov` | Валиханов |
+| `terms` | `shakarim` | Шакарим |
+| `norm` | `baitursynov` | Байтурсынов |
+
+Слои `auezov` (смысл и живая речь) и `slopotron-kk` (следы машинного письма) закреплены за будущими проходами; сводки `kk_lint` и `kk_parity` показывают число находок по слоям.
 
 ## Глоссарий
 

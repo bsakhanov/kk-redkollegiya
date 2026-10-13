@@ -77,17 +77,19 @@ Why is an ordinary spell check not enough? It says «no such word» but does not
 
 The set consists of seven small programs arranged along one pipeline. A text passes three layers of checking; each layer returns findings, not finished corrections. Then what can be fixed is applied to the text, and what is disputed goes to a person.
 
-**The first layer is hygiene.** Its task is to make the text fit for any later work. `kk_clean` fixes encoding, substitutions and look-alikes, writing a corrected copy and a journal of every change; `kk_restore` proposes restoring the Kazakh letters; `kk_lint`, a linter, looks for other flaws: a Latin «ə», empty brackets, lost placeholders, words outside the dictionary.
+**The first layer is hygiene (Altynsarin).** Its task is to make the text fit for any later work. `kk_clean` fixes encoding, substitutions and look-alikes, writing a corrected copy and a journal of every change; `kk_restore` proposes restoring the Kazakh letters; `kk_lint`, a linter, looks for other flaws: a Latin «ə», empty brackets, lost placeholders, words outside the dictionary.
 
 > **Background: linter.** The word comes from the program *lint*, written in the late 1970s at Bell Labs to check programs in the C language. In English *lint* means «fluff, fuzz»: the program picks fluff off the code as one cleans clothing. Today a linter is any program that looks for suspicious places in a text without executing or reworking it.
 
-**The second layer is comparison.** If a Kazakh text has a Russian original, `kk_parity` compares numbers, dates, counting words («мың», «млн», «млрд») and Latin names. `kk_pairs` can assemble such pairs from an export of a bilingual Telegram channel and suggest how words are translated in it.
+**The second layer is comparison (Valikhanov).** If a Kazakh text has a Russian original, `kk_parity` compares numbers, dates, counting words («мың», «млн», «млрд») and Latin names. `kk_pairs` can assemble such pairs from an export of a bilingual Telegram channel and suggest how words are translated in it.
 
-**The third layer is terms.** `kk_usage` decides from a corpus which of two forms of a word to write, and the glossary stores those decisions. More in the next section.
+**The third layer is terms (Shakarim).** `kk_usage` decides from a corpus which of two forms of a word to write, and the glossary stores those decisions. More in the next section.
 
 > **Background: corpus and glossary.** «Corpus» is from the Latin *corpus*, «body»: linguists call a collection of texts assembled for the study of a language by this name. «Glossary» goes back to the Greek *glôssa*, «tongue, an obscure word that needs explaining»: at first it named a list of explanations of difficult words in old manuscripts; now it is a list of terms with their accepted translation.
 
 **Applying corrections.** The findings go to `apply.py` from the redkollegiya project: it finds each quotation in the text and, if it is unique, replaces it. It touches nothing but the quotation. It tells the severity levels (blocking, fixable, at the author's discretion) apart by itself.
+
+**The names of the layers.** In the Russian Redkollegiya the layers bear the names of those whose word in their craft serves as the measure: Chukovsky, Agranovsky, Rosenthal, Milchin. The same custom is followed here. Hygiene is called Altynsarin: he compiled the «Kirghiz Chrestomathy» of 1879 (Kazakhs were then called «Kirghiz»), one of the first books printed in Kazakh in the Cyrillic script. Comparison with the original is Valikhanov, a scholar who wrote about the Kazakhs in Russian: a living bridge between two texts. Terms are Shakarim, who in «Үш анық» takes «атом» and «мадда» when there is no Kazakh word; this is exactly our policy. The future layers already have names: meaning and living speech, Auezov, whose language in «Abai zholy» is the model of Kazakh prose; the norm, Baitursynov, founder of Kazakh linguistics; traces of machine writing, «Slopotron-kk», a joke name inherited from the Russian family.
 
 ![Pipeline: three layers of checking, three outcomes](img/pipeline.en.svg)
 

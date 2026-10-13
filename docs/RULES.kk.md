@@ -2,7 +2,7 @@
 
 [Русский](RULES.md) · [English](RULES.en.md) · **Қазақша** · [← README](../README.kk.md)
 
-Ескерту (finding) — JSON-объект: `{id, stage, zone, severity, rule, quote, action, edit, note}`. redkollegiya-дағы `apply.py` `stage`, `zone`, `severity`, `quote`,
+Ескерту (finding) — JSON-объект: `{id, stage, zone, layer, severity, rule, quote, action, edit, note}`. redkollegiya-дағы `apply.py` `stage`, `zone`, `severity`, `quote`,
 `action`, `edit` өрістерін оқиды; қалғандарын өткізіп жібереді. `quote` мәтінде бірегей болғанша кеңейтіледі (іздеу сөзбе-сөз жүреді), `edit` — ауыстыру
 енгізілген тұтас дәйексөз. `note` мәтінін құрал орысша жазады.
 
@@ -46,6 +46,19 @@
 | PR04 | `number_extra` — қазақша нұсқада артық сандар | parity | author_choice / flag |
 | PR05 | `latin_lost` — латын атаулары мен қысқартулары жоғалды | parity | fix / flag |
 | PR06 | `term_mismatch` — түпнұсқада глоссарий ұғымы бар, ал таңдалған қазақ формасы жоқ (тек `--glossary` болса, тек `status: usage` және `parity_check` мәні `false` емес жазбалар үшін) | terms | author_choice / flag |
+
+## Аймақтар және қабаттар
+
+`zone` өрісі ескертудің қандай түрде екенін, `layer` өрісі оның есімі бар қай қабатқа жататынын айтады (толығырақ — [README](../README.kk.md#қабаттар-және-олардың-есімдері)).
+
+| Аймақ | Қабат (`layer`) | Есім |
+| --- | --- | --- |
+| `hygiene`, `typography` | `altynsarin` | Алтынсарин |
+| `parity`, `facts` | `valikhanov` | Уәлиханов |
+| `terms` | `shakarim` | Шәкәрім |
+| `norm` | `baitursynov` | Байтұрсынұлы |
+
+`auezov` (мағына және тірі сөйлеу) және `slopotron-kk` (машиналық жазу іздері) қабаттары болашақ кезеңдерге бекітілген; `kk_lint` пен `kk_parity` жиынтығы қабаттар бойынша ескертулер санын көрсетеді.
 
 ## Глоссарий
 

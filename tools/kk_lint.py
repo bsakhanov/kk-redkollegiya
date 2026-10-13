@@ -38,6 +38,7 @@
 Выход: 0 — ок; 1 — ошибка входа; 2 — есть находки уровня blocker.
 """
 
+import _layers
 import argparse
 import bisect
 import collections
@@ -161,7 +162,7 @@ def to_finding(t, sp, n):
         quote = t[w[0]:w[1]]
         edit_full = None if edit is None else t[w[0]:sp.s] + edit + t[sp.e:w[1]]
         note = sp.note
-    return {"id": f"{sp.rule.split()[0]}-{n:04d}", "stage": "kk_lint", "zone": sp.zone,
+    return {"id": f"{sp.rule.split()[0]}-{n:04d}", "stage": "kk_lint", "zone": sp.zone, "layer": _layers.layer_of(sp.zone),
             "severity": sp.severity, "rule": sp.rule, "quote": quote, "action": action,
             "edit": edit_full, "note": note}
 
@@ -522,6 +523,8 @@ def main(argv=None):
                              a.only.split(",") if a.only else None, a.skip.split(",") if a.skip else None, a.names)
     by = collections.Counter((f["rule"], f["severity"], f["action"]) for f in findings)
     print(f"{a.file}: находок {len(findings)}")
+    if findings:
+        print("  по слоям: " + _layers.summary(findings))
     for (rule, sev, act), n in sorted(by.items()):
         print(f"  {rule:24} {sev:14} {act:8} {n}")
     if unknown:

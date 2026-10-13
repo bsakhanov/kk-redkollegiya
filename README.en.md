@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.4.7](https://img.shields.io/badge/version-0.4.7-green.svg)](CHANGELOG.md)
+[![Version 0.5.0](https://img.shields.io/badge/version-0.5.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -34,17 +34,32 @@ For the why and the what in depth, see the [long-read](docs/longread.en.md).
 
 ```
 Kazakh text (+ Russian original)
-  → A-kk     kk_clean · kk_restore · kk_lint     hygiene: encoding, alphabet, dictionary, numbers, placeholders
-  → parity   kk_parity · kk_pairs                check against the original
-  → terms    kk_usage · glossary.yaml            terms by corpus usage
-  → …        LLM stages: meaning-kk, ai-markers-kk, norm-kk (planned)
-  → apply.py (redkollegiya)                      applies findings by verbatim quote
+  → Altynsarin   kk_clean · kk_restore · kk_lint   hygiene: encoding, alphabet, dictionary, placeholders
+  → Valikhanov   kk_parity · kk_pairs              comparison with the original: numbers, dates, names
+  → Shakarim     kk_usage · glossary.yaml          terms by corpus usage
+  → …            planned: Auezov (meaning), Baitursynov (norm), Slopotron-kk (traces of machine writing)
+  → apply.py (redkollegiya)                        applies findings by verbatim quote
   → verdict of a reader of Kazakh
 ```
 
 Principles: separate passes with their own zones; no free rewriting (every stage returns findings with a verbatim quote,
 `apply.py` applies them); disputed items go to the author (`author_choice`); hygiene runs first because `apply.py` anchors
 quotes character by character.
+
+## Layers and their names
+
+In the Russian Redkollegiya the layers bear the names of those whose word in their craft serves as the measure: Chukovsky, Agranovsky, Rosenthal, Milchin. The same custom is kept here, with Kazakh names:
+
+| Layer | Name | Russian counterpart | What exists | Planned |
+| --- | --- | --- | --- | --- |
+| Hygiene and typography | Altynsarin | Milchin | `kk_clean`, `kk_restore`, `kk_lint` (rules H, P01, P03, P04) | a typography script |
+| Comparison with the original | Valikhanov | Agranovsky | `kk_parity`, `kk_pairs` | — |
+| Terms | Shakarim | — | `kk_usage`, the glossary, rules T01 and T02 | a `terms-kk` pass with a model |
+| Norm | Baitursynov | Rosenthal | rules S01, P02, P05, C01 | the 2013 dictionary, a `norm-kk` pass |
+| Meaning and living speech | Auezov | Chukovsky | — | a `meaning-kk` pass |
+| Traces of machine writing | Slopotron-kk | Slopotron | — | an `ai-markers-kk` pass |
+
+The layer's name is written to the `layer` field of every finding (`altynsarin`, `valikhanov`, `shakarim`, `baitursynov`), and the summaries of `kk_lint` and `kk_parity` show finding counts per layer. Future skills will get commands of the same names (`/altynsarin`, `/shakarim` and so on). Why these names were chosen: see the [long-read](docs/longread.en.md#how-it-is-built).
 
 ## Install
 

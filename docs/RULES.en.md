@@ -2,7 +2,7 @@
 
 [Русский](RULES.md) · **English** · [Қазақша](RULES.kk.md) · [← README](../README.en.md)
 
-A finding is a JSON object: `{id, stage, zone, severity, rule, quote, action, edit, note}`. redkollegiya's `apply.py` reads `stage`, `zone`,
+A finding is a JSON object: `{id, stage, zone, layer, severity, rule, quote, action, edit, note}`. redkollegiya's `apply.py` reads `stage`, `zone`,
 `severity`, `quote`, `action` and `edit`; it skips the other fields. `quote` is extended until it is unique in the text (anchoring is verbatim),
 `edit` is the whole quote with the replacement already made. The text of `note` is produced in Russian.
 
@@ -46,6 +46,19 @@ addresses without a scheme are dropped; Latin abbreviations typed with Cyrillic 
 | PR04 | `number_extra` — extra numbers in the Kazakh version | parity | author_choice / flag |
 | PR05 | `latin_lost` — Latin names and abbreviations are lost | parity | fix / flag |
 | PR06 | `term_mismatch` — the original has a glossary concept but the chosen Kazakh form is absent (only with `--glossary`, only for entries with `status: usage` whose `parity_check` is not `false`) | terms | author_choice / flag |
+
+## Zones and layers
+
+The `zone` field says what kind of finding it is; the `layer` field says which named layer it belongs to (see the [README](../README.en.md#layers-and-their-names)).
+
+| Zone | Layer (`layer`) | Name |
+| --- | --- | --- |
+| `hygiene`, `typography` | `altynsarin` | Altynsarin |
+| `parity`, `facts` | `valikhanov` | Valikhanov |
+| `terms` | `shakarim` | Shakarim |
+| `norm` | `baitursynov` | Baitursynov |
+
+The layers `auezov` (meaning and living speech) and `slopotron-kk` (traces of machine writing) are reserved for future passes; the summaries of `kk_lint` and `kk_parity` show finding counts per layer.
 
 ## Glossary
 

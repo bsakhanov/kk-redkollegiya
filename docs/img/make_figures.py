@@ -22,9 +22,9 @@ PIPE = {
     "ru": dict(
         title="Текст проходит три проверки, а последнее слово остаётся за человеком",
         inp=("Казахский", "текст"), orig=("Русский оригинал", "если он есть"),
-        hyg=("1. Гигиена", "kk_clean · kk_restore", "kk_lint (линтер)"),
-        par=("2. Сверка", "kk_parity · kk_pairs", "числа, даты, имена"),
-        ter=("3. Термины", "kk_usage · глоссарий", "узус корпуса"),
+        hyg=("Алтынсарин", "гигиена", "kk_clean · kk_restore", "kk_lint (линтер)"),
+        par=("Валиханов", "сверка с оригиналом", "kk_parity · kk_pairs", "числа, даты, имена"),
+        ter=("Шакарим", "термины", "kk_usage · глоссарий", "узус корпуса"),
         find="Находки с цитатами: у каждой свой уровень",
         o1=("Блокирующие", "публиковать нельзя", "код возврата 2"),
         o2=("Исправимые", "apply.py вносит", "в текст по цитате"),
@@ -32,9 +32,9 @@ PIPE = {
     "en": dict(
         title="A text passes three checks, and the last word stays with a person",
         inp=("Kazakh", "text"), orig=("Russian original", "if there is one"),
-        hyg=("1. Hygiene", "kk_clean · kk_restore", "kk_lint (linter)"),
-        par=("2. Parity", "kk_parity · kk_pairs", "numbers, dates, names"),
-        ter=("3. Terms", "kk_usage · glossary", "corpus usage"),
+        hyg=("Altynsarin", "hygiene", "kk_clean · kk_restore", "kk_lint (linter)"),
+        par=("Valikhanov", "comparison", "kk_parity · kk_pairs", "numbers, dates, names"),
+        ter=("Shakarim", "terms", "kk_usage · glossary", "corpus usage"),
         find="Findings with quotes: each has its own severity",
         o1=("Blocking", "do not publish", "exit code 2"),
         o2=("Fixable", "apply.py applies", "to the text by quote"),
@@ -42,9 +42,9 @@ PIPE = {
     "kk": dict(
         title="Мәтін үш тексеруден өтеді, ал соңғы сөз адамда қалады",
         inp=("Қазақша", "мәтін"), orig=("Орыс түпнұсқасы", "егер бар болса"),
-        hyg=("1. Гигиена", "kk_clean · kk_restore", "kk_lint (линтер)"),
-        par=("2. Салыстыру", "kk_parity · kk_pairs", "сандар, күндер, атаулар"),
-        ter=("3. Терминдер", "kk_usage · глоссарий", "корпус қолданысы"),
+        hyg=("Алтынсарин", "гигиена", "kk_clean · kk_restore", "kk_lint (линтер)"),
+        par=("Уәлиханов", "түпнұсқамен салыстыру", "kk_parity · kk_pairs", "сандар, күндер, атаулар"),
+        ter=("Шәкәрім", "терминдер", "kk_usage · глоссарий", "корпус қолданысы"),
         find="Дәйексөзі бар ескертулер: әрқайсысының өз деңгейі бар",
         o1=("Блоктаушы", "жариялауға болмайды", "қайтару коды 2"),
         o2=("Түзетілетін", "apply.py мәтінге", "дәйексөзбен енгізеді"),
@@ -104,22 +104,22 @@ def pipeline(lang):
     p = [t(24, 30, L["title"], 15, 600, INK, "start")]
     p.append(f'<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" '
              f'orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="{EDGE}"/></marker></defs>')
-    arrows = ["M134 172H158", "M334 172H358", "M534 172H558", "M446 104V136", "M246 208V240", "M446 208V240",
-              "M646 208V240", "M246 288V320", "M446 288V320", "M646 288V320"]
+    arrows = ["M134 180H158", "M334 180H358", "M534 180H558", "M446 104V136", "M246 224V256", "M446 224V256",
+              "M646 224V256", "M246 304V336", "M446 304V336", "M646 304V336"]
     p.append(f'<g fill="none" stroke="{EDGE}" stroke-width="1.25">' +
              "".join(f'<path d="{a}" marker-end="url(#a)"/>' for a in arrows) + "</g>")
-    p += [box(24, 144, 110, 56), t(79, 168, L["inp"][0], 13, 600), t(79, 186, L["inp"][1], 13, 600)]
+    p += [box(24, 152, 110, 56), t(79, 176, L["inp"][0], 13, 600), t(79, 194, L["inp"][1], 13, 600)]
     p += [box(358, 48, 176, 56), t(446, 72, L["orig"][0], 13, 600), t(446, 88, L["orig"][1], 11.5, 400, QUIET)]
     for x, k in ((158, "hyg"), (358, "par"), (558, "ter")):
         cx = x + 88
-        p += [box(x, 136, 176, 72), t(cx, 160, L[k][0], 13, 600), t(cx, 176, L[k][1], 11.5, 400, QUIET),
-              t(cx, 192, L[k][2], 11.5, 400, QUIET)]
-    p += [box(158, 240, 576, 48), t(446, 269, L["find"], 13, 600)]
+        p += [box(x, 136, 176, 88), t(cx, 160, L[k][0], 13, 600), t(cx, 176, L[k][1], 11.5, 400, INK),
+              t(cx, 192, L[k][2], 11.5, 400, QUIET), t(cx, 208, L[k][3], 11.5, 400, QUIET)]
+    p += [box(158, 256, 576, 48), t(446, 285, L["find"], 13, 600)]
     for x, k in ((158, "o1"), (358, "o2"), (558, "o3")):
         cx = x + 88
-        p += [box(x, 320, 176, 72, k == "o3"), t(cx, 344, L[k][0], 13, 600), t(cx, 360, L[k][1], 11.5, 400, QUIET),
-              t(cx, 376, L[k][2], 11.5, 400, QUIET)]
-    return svg(760, 416, L["title"], "\n".join(p))
+        p += [box(x, 336, 176, 72, k == "o3"), t(cx, 360, L[k][0], 13, 600), t(cx, 376, L[k][1], 11.5, 400, QUIET),
+              t(cx, 392, L[k][2], 11.5, 400, QUIET)]
+    return svg(760, 432, L["title"], "\n".join(p))
 
 
 def usage_share(lang):

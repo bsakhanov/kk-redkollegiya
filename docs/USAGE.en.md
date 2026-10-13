@@ -21,7 +21,7 @@ Check the installation: `sh tests/run_tests.sh` must finish without errors, and 
 `kk_lint.py` and `kk_parity.py` write findings as JSON (`--json file`). One finding (the text of the `note` field is produced in Russian):
 
 ```json
-{"id": "T01-0001", "stage": "kk_lint", "zone": "terms", "severity": "fix",
+{"id": "T01-0001", "stage": "kk_lint", "zone": "terms", "layer": "shakarim", "severity": "fix",
  "rule": "T01 ru_abbrev", "quote": "РК", "action": "apply", "edit": "ҚР",
  "note": "в казахском тексте «ҚР» вместо «РК»"}
 ```
@@ -29,6 +29,7 @@ Check the installation: `sh tests/run_tests.sh` must finish without errors, and 
 - `quote` is a verbatim fragment of the text, extended until it is unique; `edit` is that fragment with the replacement already made.
 - `severity`: `blocker` — do not publish; `fix` — applied to the text; `author_choice` — a human decides.
 - `action`: `apply` — apply the edit; `suggest` — offer the replacement; `flag` — there is no replacement.
+- `layer` — the named layer the finding belongs to: `altynsarin`, `valikhanov`, `shakarim`, `baitursynov` (see [RULES.en.md](RULES.en.md)).
 - `kk_lint.py` exit code: 0 — fine, 1 — input error, 2 — a `blocker` finding exists.
 
 Findings are applied by redkollegiya's `apply.py`: it applies findings with the `apply` action and leaves the rest to the author (the `to_author`

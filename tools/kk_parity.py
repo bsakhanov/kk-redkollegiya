@@ -24,6 +24,7 @@
 Выход: 0 — ок; 2 — есть blocker; 1 — ошибка входа.
 """
 
+import _layers
 import argparse
 import collections
 import json
@@ -172,6 +173,7 @@ def compare(ru_text, kk_text, gl=None):
                         "note": f"абзац {i}: в казахской версии нет имён и сокращений {lost_l}"})
     for n, f in enumerate(out, start=1):
         f["id"] = f"PR-{n:04d}"
+        f["layer"] = _layers.layer_of(f["zone"])
     return out
 
 
@@ -214,6 +216,8 @@ def main(argv=None):
     f = compare(ru, kk, gl)
     by = collections.Counter((x["rule"], x["severity"]) for x in f)
     print(f"находок {len(f)}")
+    if f:
+        print("  по слоям: " + _layers.summary(f))
     for (r, s), n in sorted(by.items()):
         print(f"  {r:24} {s:14} {n}")
     for x in f:

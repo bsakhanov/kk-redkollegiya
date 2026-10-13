@@ -21,7 +21,7 @@
 `kk_lint.py` и `kk_parity.py` пишут находки в JSON (`--json файл`). Одна находка:
 
 ```json
-{"id": "T01-0001", "stage": "kk_lint", "zone": "terms", "severity": "fix",
+{"id": "T01-0001", "stage": "kk_lint", "zone": "terms", "layer": "shakarim", "severity": "fix",
  "rule": "T01 ru_abbrev", "quote": "РК", "action": "apply", "edit": "ҚР",
  "note": "в казахском тексте «ҚР» вместо «РК»"}
 ```
@@ -29,6 +29,7 @@
 - `quote` — дословный фрагмент текста, расширенный до уникального; `edit` — этот фрагмент с уже внесённой заменой.
 - `severity`: `blocker` — публиковать нельзя; `fix` — вносится в текст; `author_choice` — решает человек.
 - `action`: `apply` — внести; `suggest` — предложить замену; `flag` — замены нет.
+- `layer` — слой с именем, которому принадлежит находка: `altynsarin`, `valikhanov`, `shakarim`, `baitursynov` (см. [RULES.md](RULES.md)).
 - Код возврата `kk_lint.py`: 0 — нормально, 1 — ошибка входа, 2 — есть находка уровня `blocker`.
 
 Находки вносит `apply.py` из redkollegiya: он применяет находки с действием `apply`, а остальное оставляет автору (в его отчёте это

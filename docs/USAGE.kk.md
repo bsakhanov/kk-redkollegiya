@@ -22,7 +22,7 @@
 `kk_lint.py` мен `kk_parity.py` ескертулерді (findings) JSON түрінде жазады (`--json файл`). Бір ескерту (`note` өрісінің мәтінін құрал орысша жазады):
 
 ```json
-{"id": "T01-0001", "stage": "kk_lint", "zone": "terms", "severity": "fix",
+{"id": "T01-0001", "stage": "kk_lint", "zone": "terms", "layer": "shakarim", "severity": "fix",
  "rule": "T01 ru_abbrev", "quote": "РК", "action": "apply", "edit": "ҚР",
  "note": "в казахском тексте «ҚР» вместо «РК»"}
 ```
@@ -30,6 +30,7 @@
 - `quote` — мәтіннен алынған сөзбе-сөз үзінді, бірегей болғанша кеңейтілген; `edit` — ауыстыру енгізілген сол үзінді.
 - `severity`: `blocker` — жариялауға болмайды; `fix` — мәтінге енгізіледі; `author_choice` — шешімді адам қабылдайды.
 - `action`: `apply` — енгізу; `suggest` — ауыстыруды ұсыну; `flag` — ауыстыру жоқ.
+- `layer` — ескерту жататын есімі бар қабат: `altynsarin`, `valikhanov`, `shakarim`, `baitursynov` ([RULES.kk.md](RULES.kk.md) қараңыз).
 - `kk_lint.py` қайтару коды: 0 — жақсы, 1 — енгізу қатесі, 2 — `blocker` деңгейіндегі ескерту бар.
 
 Ескертулерді redkollegiya-дағы `apply.py` енгізеді: ол `apply` әрекеті бар ескертулерді қолданады, қалғанын авторға қалдырады (оның есебінде бұл
