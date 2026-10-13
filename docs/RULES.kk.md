@@ -2,7 +2,7 @@
 
 [Русский](RULES.md) · [English](RULES.en.md) · **Қазақша** · [← README](../README.kk.md)
 
-Ескерту (finding) — JSON нысаны: `{id, stage, zone, severity, rule, quote, action, edit, note}`. redkollegiya-дағы `apply.py` `stage`, `zone`, `severity`, `quote`,
+Ескерту (finding) — JSON-объект: `{id, stage, zone, severity, rule, quote, action, edit, note}`. redkollegiya-дағы `apply.py` `stage`, `zone`, `severity`, `quote`,
 `action`, `edit` өрістерін оқиды; қалғандарын өткізіп жібереді. `quote` мәтінде бірегей болғанша кеңейтіледі (іздеу сөзбе-сөз жүреді), `edit` — ауыстыру
 енгізілген тұтас дәйексөз. `note` мәтінін құрал орысша жазады.
 

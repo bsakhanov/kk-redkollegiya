@@ -24,13 +24,11 @@ entries:
   note: «пошта» — казахская форма; русская «почта» в казахском тексте — дефект
 - key: object
   ru: объект
-  kk: нысан
-  avoid:
-  - объект
-  avoid_action: suggest
-  status: usage
-  kk_re: нысан\w*
-  parity_ru: объект\w*
+  kk: объект
+  avoid: []
+  status: author
+  decided: решение автора
+  note: международный термин, не переводится; решение автора стоит поверх узуса корпуса («нысан» — 84%)
   evidence:
     corpus_words: 838939
     a:
@@ -43,14 +41,13 @@ entries:
       count: 753
       per100k: 89.8
       share: 0.84
-  decided: политика узуса корпуса
-  consistency:
-    pairs: 252
-    ok: 229
-    other_form: 13
-    neither: 10
-    share: 0.91
-  parity_check: true
+- key: subject
+  ru: субъект
+  kk: субъект
+  avoid: []
+  status: author
+  decided: решение автора
+  note: международный термин, не переводится
 - key: project
   ru: проект
   kk: жоба

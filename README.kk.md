@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.4.2](https://img.shields.io/badge/version-0.4.2-green.svg)](CHANGELOG.md)
+[![Версия 0.4.3](https://img.shields.io/badge/version-0.4.3-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
