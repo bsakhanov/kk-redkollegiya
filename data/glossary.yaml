@@ -79,13 +79,13 @@ entries:
   parity_check: true
 - key: partner
   ru: партнёр
-  kk: серіктес
-  avoid:
-  - партнёр
-  avoid_action: suggest
-  status: usage
-  kk_re: серіктес\w*
-  parity_ru: партн[её]р\w*
+  kk: партнер
+  avoid: []
+  status: author
+  decided: решение автора
+  note: 'международный термин, не переводится: «партнер» — формальные деловые отношения, «серіктес» ближе к «товарищу»
+    (коллега, порой друг) и несёт иной оттенок; решение автора стоит поверх узуса корпуса («серіктес» — 91%); пишется
+    без «ё», как чаще в корпусе'
   evidence:
     corpus_words: 838939
     a:
@@ -98,14 +98,6 @@ entries:
       count: 598
       per100k: 71.3
       share: 0.91
-  decided: политика узуса корпуса
-  consistency:
-    pairs: 227
-    ok: 204
-    other_form: 0
-    neither: 23
-    share: 0.9
-  parity_check: true
 - key: concept
   ru: концепция
   kk: концепция

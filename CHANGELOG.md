@@ -2,6 +2,12 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.4.5] — 2026-10-13
+
+### Изменено
+- Пример глоссария: «партнёр» остаётся международным термином (оттенок формальных деловых отношений; «серіктес» ближе к «товарищу»); запись закреплена решением автора поверх узуса корпуса.
+- Числа в README на трёх языках: в примере глоссария 20 решений по узусу и 5 решений автора.
+
 ## [0.4.4] — 2026-10-13
 
 ### Изменено
@@ -58,6 +64,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.4.5]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.4...v0.4.5
 [0.4.4]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.1...v0.4.2
