@@ -23,6 +23,10 @@
                      «қүттықтады» → «құттықтады»). Слово правится, только если его нет в словаре и либо с «ұ»
                      оно в словаре (запись ocr), либо «ү» стоит рядом с гласными заднего ряда — так в казахском
                      слове не бывает (запись ocr_harmony; флаг --ocr).
+                     С моделью букв (--lm, см. kk_restore.py) шаг чинит и потерянные казахские буквы («кызметімен» →
+                     «қызметімен», «жатуга» → «жатуға»): слово правится, только если его нет в словаре, модель
+                     предлагает вариант с запасом (по умолчанию 2,0) и этот вариант есть в словаре, причём второго
+                     словарного варианта рядом нет (запись ocr_lm). Неоднозначное («кол» — «қол» или «көл») не трогается.
 
 Чего не делает: не правит орфографию, не восстанавливает «к → қ» (это kk_lint, где вердикт за человеком),
 не трогает типографику.
@@ -385,10 +389,30 @@ def fix_ocr(text, d, J):
     return _OCRTOK.sub(repl, text)
 
 
+def fix_ocr_lm(text, d, lm, J, margin=2.0):
+    """Потерянные казахские буквы после распознавания: исправление по модели букв, подтверждённое словарём."""
+    def repl(m):
+        w = m.group(0)
+        low = w.lower()
+        if len(low) < 3 or d is None or not d.ok or d.known(w) or d.known(low):
+            return w
+        fin = lm.best(low)
+        base = lm.score(low)
+        cands = [(v, sc) for v, sc in fin[:10] if v != low and d.known(v)]
+        if not cands or cands[0][1] - base < margin:
+            return w
+        if len(cands) > 1 and cands[0][1] - cands[1][1] < 3.0:       # два словарных варианта: решать человеку
+            return w
+        res = "".join(n.upper() if o.isupper() else n for o, n in zip(w, cands[0][0]))
+        J.add("ocr_lm", w, res)
+        return res
+    return _OCRTOK.sub(repl, text)
+
+
 # ------------------------------------------------------------------ ядро ----
 
 
-def clean(text, d=None, legacy=True, dehyph=False, ocr=False):
+def clean(text, d=None, legacy=True, dehyph=False, ocr=False, lm=None):
     J = Journal()
     t0 = text
     text = unicodedata.normalize("NFC", text)
@@ -407,6 +431,8 @@ def clean(text, d=None, legacy=True, dehyph=False, ocr=False):
         text = dehyphenate(text, d, J)
     if ocr:
         text = fix_ocr(text, d, J)
+        if lm is not None:
+            text = fix_ocr_lm(text, d, lm, J)
     return text, J
 
 
@@ -446,6 +472,22 @@ def _selftest():
     assert J.steps["ocr"]["count"] == 1 and J.steps["ocr_harmony"]["count"] == 3, J.steps
     t, J = clean("бас-\nқарма бас¬\nқарма", d, dehyph=True)       # перенос «-» и «¬»
     assert t == "басқарма басқарма", t
+
+    class FakeLM:                                       # модель букв: варианты и оценки заданы вручную
+        table = {"автоматтык": [("автоматтық", -10.0), ("автоматтык", -15.0)],
+                 "кол": [("көл", -6.0), ("қол", -6.5), ("кол", -9.0)],
+                 "қызметімен": [("қызметімен", -8.0)]}
+
+        def best(self, w):
+            return self.table.get(w, [(w, -9.0)])
+
+        def score(self, w):
+            return dict(self.table.get(w, [(w, -9.0)])).get(w, -9.0)
+
+    d.words |= {"автоматтық", "көл", "қол"}
+    t, J = clean("автоматтык кол Автоматтык", d, ocr=True, lm=FakeLM())
+    assert t == "автоматтық кол Автоматтық", t                    # «кол» неоднозначно — не тронуто
+    assert J.steps["ocr_lm"]["count"] == 2, J.steps
     print("kk_clean selftest: ok")
 
 
@@ -460,6 +502,7 @@ def main(argv=None):
     ap.add_argument("--journal", help="куда записать журнал (JSON)")
     ap.add_argument("--dehyphenate", action="store_true")
     ap.add_argument("--ocr", action="store_true", help="починить путаницу «ү» и «ұ» после распознавания книг")
+    ap.add_argument("--lm", help="модель букв (kk_restore.py train): с --ocr чинит и потерянные казахские буквы")
     ap.add_argument("--no-legacy", action="store_true")
     ap.add_argument("--check", action="store_true", help="только журнал, без записи")
     ap.add_argument("--selftest", action="store_true")
@@ -473,6 +516,10 @@ def main(argv=None):
     if a.whitelist and os.path.exists(a.whitelist):
         white = open(a.whitelist, encoding="utf-8").read().split()
     d = Dictionary(a.dict, white)
+    lm = None
+    if a.lm:
+        from kk_restore import CharLM
+        lm = CharLM.load(a.lm)
     full = {}
     for f in a.files:
         try:
@@ -480,7 +527,7 @@ def main(argv=None):
         except OSError as e:
             print(f"[kk_clean] {f}: {e}", file=sys.stderr)
             return 1
-        text, J = clean(raw, d, legacy=not a.no_legacy, dehyph=a.dehyphenate, ocr=a.ocr)
+        text, J = clean(raw, d, legacy=not a.no_legacy, dehyph=a.dehyphenate, ocr=a.ocr, lm=lm)
         full[os.path.basename(f)] = J.to_dict()
         summary = ", ".join(f"{k}:{v['count']}" for k, v in J.steps.items() if v["count"]) or "правок нет"
         print(f"{os.path.basename(f)}: {summary}")

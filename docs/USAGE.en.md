@@ -52,12 +52,12 @@ the counters and "before → after" examples.
 | `substitute` | control and Latin characters standing for Kazakh letters; needs the dictionary. A `substitute_guess` entry means the dictionary did not confirm the word: review those in the journal |
 | `homoglyph` | Latin look-alikes inside Cyrillic words («қорықca») and the other way round («ІSBN»); `homoglyph_ambiguous` — not resolved |
 | `dehyphenate` | only with `--dehyphenate`: joins a word split by a line-end hyphen when the result is in the dictionary. The marks «-», «¬» and the soft hyphen are treated alike |
-| `ocr` | only with `--ocr`: «ү»/«ұ» confusion after book recognition («жүмыс» → «жұмыс»). A word is corrected if it is not in the dictionary and either it is in the dictionary with «ұ» or «ү» stands next to back vowels (which a Kazakh word does not have); journal entries `ocr` and `ocr_harmony` |
+| `ocr` | only with `--ocr`: «ү»/«ұ» confusion after book recognition («жүмыс» → «жұмыс»). A word is corrected if it is not in the dictionary and either it is in the dictionary with «ұ» or «ү» stands next to back vowels (which a Kazakh word does not have); journal entries `ocr` and `ocr_harmony`. With `--lm model` (trained by `kk_restore.py train`) the step also repairs lost Kazakh letters («кызметімен» → «қызметімен»): a word is corrected only if it is not in the dictionary, the model proposes a variant with a margin of 2.0 and that variant is in the dictionary; entry `ocr_lm`. An ambiguous case («кол» — «қол» or «көл») is left alone |
 
 `--check` writes nothing and only shows the journal. `--no-legacy` turns off legacy-encoding detection.
 Clean bilingual editions (Kazakh and Russian text mixed) of Russian lines separately before any counting.
 
-**A book in DjVu or a scan.** `djvutxt book.djvu book.txt` extracts the DjVu text layer. If there is no layer or it is damaged (for example, it holds not a single Kazakh letter), the pages have to be recognized again: `ddjvu -format=pgm -page=7 book.djvu page.pgm`, then `tesseract page.pgm page -l kaz+rus --psm 3`. The Kazakh model `kaz.traineddata` comes from the tessdata_fast set. Run the recognized text through `kk_clean.py --dehyphenate --ocr`: recognizers often confuse «ү» and «ұ» and leave line-end hyphens.
+**A book in DjVu or a scan.** `djvutxt book.djvu book.txt` extracts the DjVu text layer. If there is no layer or it is damaged (for example, it holds not a single Kazakh letter), the pages have to be recognized again: `ddjvu -format=pgm -page=7 book.djvu page.pgm`, then `tesseract page.pgm page -l kaz+rus --psm 3`. The Kazakh model `kaz.traineddata` comes from the tessdata_fast set. Run the recognized text through `kk_clean.py --dehyphenate --ocr --lm lm.json.gz`: recognizers often confuse «ү» and «ұ», drop Kazakh letters and leave line-end hyphens.
 
 ## 4. Task B. Check an article or a web page
 

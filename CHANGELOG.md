@@ -2,6 +2,11 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.7.0] — 2026-10-13
+
+### Добавлено
+- `kk_clean --ocr --lm модель`: починка потерянных казахских букв после распознавания книг («кызметімен» → «қызметімен») по модели букв, с подтверждением словарём; неоднозначные случаи («кол» — «қол» или «көл») не трогаются.
+
 ## [0.6.0] — 2026-10-13
 
 ### Добавлено
@@ -105,6 +110,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.7.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.6.0...v0.7.0
 [0.6.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.5.1...v0.6.0
 [0.5.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.7...v0.5.0
