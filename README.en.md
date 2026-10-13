@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.4.5](https://img.shields.io/badge/version-0.4.5-green.svg)](CHANGELOG.md)
+[![Version 0.4.6](https://img.shields.io/badge/version-0.4.6-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -99,7 +99,7 @@ is derived frequency data. `.gitignore` excludes them. The hunspell-kk dictionar
 ## Limitations
 
 The hunspell-kk dictionary (about 54k stems) is a candidate generator, not a judge (14% of correct words flagged as unknown on a small sample);
-restoration suggestions are `suggest` by default; Latin-script Kazakh is not processed (no approved Latin alphabet);
+restoration suggestions are `suggest` by default; Latin-script Kazakh is not processed (the toolkit is built for the Cyrillic script);
 the 2013 orthographic dictionary and a morphological analyzer are not integrated; numbers spelled out in words are not compared in parity checks;
 LLM stages are unmeasured (no gold set yet). The scripts do not replace a reader of Kazakh.
 

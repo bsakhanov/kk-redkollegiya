@@ -46,7 +46,7 @@ the counters and "before → after" examples.
 | Step | What it repairs |
 | --- | --- |
 | `nfc` | decomposed characters ("й", "ё" stored as two marks) |
-| `legacy` | legacy Kazakh font encoding, detected automatically (the text reads «ñòåìäiãi» instead of «стемдігі») |
+| `legacy` | legacy Kazakh font encoding, detected automatically (the word «мектеп» reads as «ìåêòåï») |
 | `schwa` | Latin «ə» for «ә»; «ӓ ӧ ӱ» for «ә ө ү» |
 | `substitute` | control and Latin characters standing for Kazakh letters; needs the dictionary. A `substitute_guess` entry means the dictionary did not confirm the word: review those in the journal |
 | `homoglyph` | Latin look-alikes inside Cyrillic words («қорықca») and the other way round («ІSBN»); `homoglyph_ambiguous` — not resolved |
@@ -172,7 +172,7 @@ in the glossary; the PR06 check is enabled only for entries whose consistency is
 | "looks like a legacy encoding" | run the text through `kk_clean.py` first |
 | too many words outside the dictionary | add correct words to `--whitelist`; the dictionary is old and does not know new words |
 | `apply.py` handed a finding to the author: "quote is not unique" or "not found" | edit by hand using the `quote` field; after edits, re-run the findings against the new text |
-| Latin script in Kazakh text is not corrected | by design: the Latin-script alphabet is not approved, Latin words are left alone |
+| Latin script in Kazakh text is not corrected | by design: the toolkit is built for the Cyrillic script, Latin words are left alone |
 | the text is not UTF-8 | re-encode: `iconv -f cp1251 -t utf-8 in.txt > out.txt` |
 
 Bugs and requests go to [Issues](https://github.com/bsakhanov/kk-redkollegiya/issues).
