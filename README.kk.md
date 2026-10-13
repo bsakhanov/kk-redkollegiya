@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.5.0](https://img.shields.io/badge/version-0.5.0-green.svg)](CHANGELOG.md)
+[![Версия 0.5.1](https://img.shields.io/badge/version-0.5.1-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
@@ -169,7 +169,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 ## Версиялау
 
 [Семантикалық версиялау](https://semver.org/): `MAJOR.MINOR.PATCH`. `0.x` кезінде командалық жол интерфейстері өзгеруі мүмкін; ескертулер форматы тұрақты және `apply.py` келісімімен сәйкес.
-Версия нөмірі `VERSION` файлында тұрады, `--version` опциясымен шығады, `vX.Y.Z` тегтерімен белгіленеді және [CHANGELOG.md](CHANGELOG.md) ішінде сипатталады.
+Версия нөмірі `VERSION` файлында тұрады, `--version` опциясымен шығады, `vX.Y.Z` тегтерімен белгіленеді және [CHANGELOG.md](CHANGELOG.md) ішінде сипатталады. Әр релизге `kk-redkollegiya-X.Y.Z.zip` архиві мен оның SHA-256 бақылау сомасы тіркеледі; оны `release-assets` жұмыс процесі жинайды.
 
 ## Үлес қосу
 

@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.5.0](https://img.shields.io/badge/version-0.5.0-green.svg)](CHANGELOG.md)
+[![Версия 0.5.1](https://img.shields.io/badge/version-0.5.1-green.svg)](CHANGELOG.md)
 
 **Русский** · [English](README.en.md) · [Қазақша](README.kk.md)
 
@@ -171,7 +171,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 
 [Семантическое версионирование](https://semver.org/lang/ru/): `MAJOR.MINOR.PATCH`. Пока `0.x`, интерфейсы командной строки могут меняться;
 формат находок стабилен и совпадает с контрактом `apply.py`. Версия лежит в файле `VERSION`, выводится флагом `--version`,
-отмечается тегами `vX.Y.Z` и описывается в [CHANGELOG.md](CHANGELOG.md).
+отмечается тегами `vX.Y.Z` и описывается в [CHANGELOG.md](CHANGELOG.md). К каждому релизу прикладывается архив `kk-redkollegiya-X.Y.Z.zip` с контрольной суммой SHA-256; его собирает рабочий процесс `release-assets`.
 
 ## Участие
 

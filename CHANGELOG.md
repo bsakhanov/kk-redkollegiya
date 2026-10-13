@@ -2,6 +2,12 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.5.1] — 2026-10-13
+
+### Добавлено
+- Рабочий процесс `release-assets`: к каждому релизу прикладывается архив `kk-redkollegiya-X.Y.Z.zip` и контрольная сумма SHA-256; архивы приложены и ко всем прежним релизам (0.4.0–0.5.0).
+- Раздел «Выпуск релиза» в `CONTRIBUTING.md`.
+
 ## [0.5.0] — 2026-10-13
 
 ### Добавлено
@@ -90,6 +96,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.5.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.5.0...v0.5.1
 [0.5.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.7...v0.5.0
 [0.4.7]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.6...v0.4.7
 [0.4.6]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.4.5...v0.4.6

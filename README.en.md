@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.5.0](https://img.shields.io/badge/version-0.5.0-green.svg)](CHANGELOG.md)
+[![Version 0.5.1](https://img.shields.io/badge/version-0.5.1-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -128,7 +128,7 @@ morphology and the 2013 dictionary; register profiles; the full methodology text
 ## Versioning
 
 [Semantic Versioning](https://semver.org/). While `0.x`, command-line interfaces may change; the findings format is stable and matches the `apply.py` contract.
-The version lives in `VERSION`, is printed by `--version`, tagged as `vX.Y.Z`, and described in [CHANGELOG.md](CHANGELOG.md).
+The version lives in `VERSION`, is printed by `--version`, tagged as `vX.Y.Z`, and described in [CHANGELOG.md](CHANGELOG.md). Every release carries the archive `kk-redkollegiya-X.Y.Z.zip` with its SHA-256 checksum, attached by the `release-assets` workflow.
 
 ## Contributing
 

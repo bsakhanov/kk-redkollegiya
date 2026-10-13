@@ -1,0 +1,60 @@
+# SPDX-License-Identifier: GPL-3.0-or-later
+# Copyright (C) 2026 Beibit Sakhanov
+#
+# Прикладывает к каждому релизу архив kk-redkollegiya-<версия>.zip и его контрольную сумму SHA-256.
+#   · при публикации релиза — для его тега;
+#   · при правке этого файла в main — для всех существующих тегов v* (однократная доводка прежних релизов);
+#   · вручную (Actions → release-assets → Run workflow) — для указанного тега или, если поле пустое, для всех.
+name: release-assets
+
+on:
+  release:
+    types: [published]
+  push:
+    branches: [main]
+    paths: [".github/workflows/release-assets.yml"]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: "Тег релиза, например v0.5.0 (пусто — все теги v*)"
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+jobs:
+  assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Собрать архивы и приложить к релизам
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT: ${{ github.event_name }}
+          REF_NAME: ${{ github.ref_name }}
+          INPUT_TAG: ${{ github.event.inputs.tag }}
+        run: |
+          set -eu
+          if [ "$EVENT" = "release" ]; then
+            tags="$REF_NAME"
+          elif [ -n "$INPUT_TAG" ]; then
+            tags="$INPUT_TAG"
+          else
+            tags="$(git tag --list 'v*' --sort=v:refname)"
+          fi
+          for tag in $tags; do
+            ver="${tag#v}"
+            dir="dist/$tag"
+            mkdir -p "$dir"
+            git archive --format=zip --prefix="kk-redkollegiya-$ver/" -o "$dir/kk-redkollegiya-$ver.zip" "$tag"
+            (cd "$dir" && sha256sum "kk-redkollegiya-$ver.zip" > "kk-redkollegiya-$ver.zip.sha256")
+            if gh release view "$tag" >/dev/null 2>&1; then
+              gh release upload "$tag" "$dir/kk-redkollegiya-$ver.zip" "$dir/kk-redkollegiya-$ver.zip.sha256" --clobber
+              echo "приложено к $tag"
+            else
+              echo "у $tag нет релиза: пропуск"
+            fi
+          done
