@@ -64,6 +64,12 @@ def make_entry(p, ca, cb, n_words, status, win):
                      "b": {"form": p["b"]["label"], "count": cb, "per100k": rate(cb), "share": round(cb / t, 2)}},
         "decided": "политика узуса корпуса",
     }
+    if p.get("avoid_exclude"):
+        e["avoid_exclude"] = list(p["avoid_exclude"])
+    if p.get("no_avoid"):
+        e["avoid"] = []
+    if p.get("note") and status == "usage":
+        e["note"] = p["note"]
     if status == "silent":
         e["note"] = "узус молчит: по решению автора берётся международная форма"
     elif status == "contested":

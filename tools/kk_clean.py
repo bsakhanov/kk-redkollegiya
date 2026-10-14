@@ -325,9 +325,26 @@ def _to_lat(tok):
     return "".join(_CYR2LAT.get(c, c) for c in tok)
 
 
+_ROMAN = r"(?=[IVXLCDM])M{0,3}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})"
+_LOOK2LAT = dict(zip("ІХСМТ", "IXCMT"))             # кириллические двойники римских цифр и «IT»
+
+
+def is_roman_or_it(tok):
+    """Римская цифра («IV», «ХІV», «XVIIIғ» — с кириллическим окончанием) или «IT»: это не слово с двойниками."""
+    norm = "".join(_LOOK2LAT.get(c, c) for c in tok.upper())
+    if norm == "IT":
+        return True
+    if len(norm) >= 2 and re.fullmatch(_ROMAN, norm) and all(ord(c) < 128 or c in _LOOK2LAT for c in tok.upper()):
+        return True
+    m = re.match(_ROMAN, tok)
+    return bool(m and len(m.group(0)) >= 2 and re.fullmatch(rf"[{CYR}]{{1,6}}", tok[len(m.group(0)):] or "-"))
+
+
 def fix_homoglyphs(text, d, J):
     def repl(m):
         tok = m.group(0)
+        if is_roman_or_it(tok):
+            return tok
         cy = _RE_CYR.findall(tok)
         la = _RE_LAT.findall(tok)
         if not cy or not la:
@@ -464,6 +481,8 @@ def _selftest():
     assert t.split()[:4] == ["жоқ", "болған", "түзей", "қаласы"], t
     t, J = clean("Алматы \x08аласы. \x08аласы", d)
     assert t == "Алматы қаласы. Қаласы", t
+    t, J = clean("XVIIIғ. IVтарау IT ХІV Iшкі", d)       # римские цифры и «IT» не трогаем, а «Iшкі» — двойник
+    assert t == "XVIIIғ. IVтарау IT ХІV Ішкі", t
     t, J = clean("Wрлықпен Fарифолла", d)             # латинские заместители прописных
     assert t.split()[0] == "Ұрлықпен", t
     # ocr: ү → ұ по словарю и по гармонии гласных; слова с «ү» в гармоничном окружении не трогаем

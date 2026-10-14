@@ -13,14 +13,14 @@
 
 | Код | Правило | Зона | Уровень / действие по умолчанию |
 | --- | --- | --- | --- |
-| H01 | `mixed_script` — латинские буквы-двойники внутри кириллических слов и наоборот | hygiene | fix / apply; неразобранное — author_choice / flag |
+| H01 | `mixed_script` — латинские буквы-двойники внутри кириллических слов и наоборот; римские цифры («IV», «XVIIIғ.») и «IT» дефектом не считаются | hygiene | fix / apply; неразобранное — author_choice / flag |
 | H02 | `schwa` — «ə» вместо «ә», «ӓ ӧ ӱ» вместо «ә ө ү» | hygiene | fix / apply |
 | H03 | `combining` — разложенные диакритики (NFC) | hygiene | fix / apply |
 | H04 | `control_char` — управляющие символы в тексте | hygiene | fix / flag (прогнать `kk_clean`) |
-| S01 | `restore` — слово без казахских букв: подсказка символьной модели (запас Δ ≥ 2), подтверждённая словарём; не подтверждённая — только при Δ ≥ 12 | norm | author_choice / suggest; с `--auto-restore`, словом в словаре и Δ ≥ 6 — fix / apply |
+| S01 | `restore` — слово без казахских букв: подсказка символьной модели (запас Δ ≥ 2), подтверждённая словарём; не подтверждённая — только при Δ ≥ 12; слова с буквами «э», «ц», «щ», «ъ», «ь», «ё», «ф», «в», «ч», «ю», «я» пропускаются как заимствования («эскиз») | norm | author_choice / suggest; с `--auto-restore`, словом в словаре и Δ ≥ 6 — fix / apply |
 | T01 | `ru_abbrev` — РК, ТОО, АО, ИП вместо ҚР, ЖШС, АҚ, ЖК (блок `abbreviations` глоссария) | terms | fix / apply; с аффиксом после дефиса — author_choice / suggest |
-| T02 | `glossary_avoid` — запрещённые формы из поля `avoid` глоссария | terms | fix / apply или author_choice / suggest (поле `avoid_action`); с аффиксом — author_choice / flag; запись без `kk` — fix / flag; записи `contested` пропускаются |
-| P01 | `punct_junk` — пробел перед знаком, двойные знаки, двойной пробел; стыки знаков | typography | fix / apply; стыки — author_choice / flag |
+| T02 | `glossary_avoid` — запрещённые формы из поля `avoid` глоссария; не срабатывает в названиях («НИИ проект», «…» с двумя прописными словами) и в контекстах из поля `avoid_exclude` | terms | fix / apply или author_choice / suggest (поле `avoid_action`); с аффиксом — author_choice / flag; запись без `kk` — fix / flag; записи `contested` пропускаются |
+| P01 | `punct_junk` — пробел перед знаком, двойные знаки, двойной пробел; стыки знаков (точка сокращения — «қ.,», «т.б.,» — стыком не считается) | typography | fix / apply; стыки — author_choice / flag |
 | P02 | `lower_after_dot` — строчная после точки (сокращения и инициалы защищены) | norm | author_choice / flag |
 | P03 | `quotes` — прямые кавычки; несбалансированные «ёлочки» в абзаце | typography | fix / flag |
 | P04 | `empty_brackets` — пустые скобки и кавычки | typography | fix / flag |
@@ -62,6 +62,6 @@
 
 ## Глоссарий
 
-Поля записи: `key`, `ru`, `kk` (форма, которую пишем), `avoid` (формы под запретом), `avoid_action` (`apply` по умолчанию или `suggest`),
+Поля записи: `key`, `ru`, `kk` (форма, которую пишем), `avoid` (формы под запретом), `avoid_action` (`apply` по умолчанию или `suggest`), `avoid_exclude` (регулярные выражения контекстов, где форма из `avoid` допустима: «санитарлық торап», «проектор»),
 `status` (`usage`, `silent`, `contested`; без `status` — решение автора), `kk_re` и `parity_ru` (регулярные выражения для PR06),
 `evidence` (частоты и доли), `consistency` и `parity_check` (согласованность переводов, см. `kk_pairs.py consistency`), `note`.

@@ -49,7 +49,7 @@ import sys
 import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from kk_clean import Dictionary, Journal, fix_homoglyphs, legacy_score  # noqa: E402
+from kk_clean import Dictionary, Journal, fix_homoglyphs, is_roman_or_it, legacy_score  # noqa: E402
 
 CYRL = "А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі"
 KZSP = "әғқңөұүһіӘҒҚҢӨҰҮҺІ"
@@ -182,7 +182,7 @@ def d_hygiene(doc, out):
     nj = Journal()
     for m in MIXED.finditer(t):
         tok = m.group(0)
-        if not doc.ok(m.start(), m.end()):
+        if not doc.ok(m.start(), m.end()) or is_roman_or_it(tok):
             continue
         if re.search(rf"[{CYRL}]", tok) and re.search("[A-Za-z]", tok):
             res = fix_homoglyphs(tok, None, nj)
@@ -213,6 +213,23 @@ def d_hygiene(doc, out):
                         "управляющий символ в тексте: прогнать kk_clean"))
 
 
+def _in_name(t, s, e):
+    """Вхождение стоит внутри названия: после сокращения прописными («НИИ проект»), после слова с прописной
+    при прописной у самого вхождения, или внутри «…» с двумя и более словами с прописной."""
+    pre = re.search(rf"([{CYRL}A-Za-z]+)[ \t]+$", t[max(0, s - 40):s])
+    if pre:
+        w = pre.group(1)
+        if (len(w) >= 2 and w.isupper()) or (w[0].isupper() and t[s:s + 1].isupper()):
+            return True
+    q = t.rfind("«", max(0, s - 80), s)
+    if q != -1 and "»" not in t[q:s]:
+        r = t.find("»", e, e + 80)
+        inner = re.findall(rf"[{CYRL}A-Za-z]+", t[q + 1:r if r != -1 else e])
+        if sum(1 for w in inner if w[0].isupper()) >= 2:
+            return True
+    return False
+
+
 def d_glossary(doc, gl, out):
     t = doc.text
     L = rf"[{CYRL}A-Za-z]"
@@ -234,12 +251,15 @@ def d_glossary(doc, gl, out):
         why = ""
         if ev.get("a") and ev.get("b"):
             why = f" (узус корпуса: {ev['b']['form']} {ev['b']['count']}, {ev['a']['form']} {ev['a']['count']})"
+        ex_spans = [(m.start(), m.end()) for x in (e.get("avoid_exclude") or []) for m in re.finditer(x, t, re.I)]
         for bad in e.get("avoid", []) or []:
             if bad in abbr_ru:                       # эти формы уже ловит T01
                 continue
             r = re.compile(rf"(?<!{L})({re.escape(bad)})({L}*)", re.I)
             for m in r.finditer(t):
                 if not doc.ok(m.start(), m.end()):
+                    continue
+                if any(a <= m.start() < b for a, b in ex_spans) or _in_name(t, m.start(), m.end()):
                     continue
                 kk = e.get("kk")
                 if not kk:
@@ -277,6 +297,10 @@ def d_punct(doc, out):
     for m in re.finditer(r"[.,]{1}[.,]{1}(?![.])|:\.|\.:|;\.|,\.", t):
         if m.group(0) in (",,", "..") or not doc.ok(m.start(), m.end()):
             continue
+        if m.group(0)[0] == ".":                                    # точка принадлежит сокращению: «Астана қ.,», «т.б.,»
+            w = re.search(rf"([{CYRL}A-Za-z]+)$", t[max(0, m.start() - 12):m.start()])
+            if w and (len(w.group(1)) <= 3 or w.group(1).lower() in ABBR_OK):
+                continue
         out.append(Span(m.start(), m.end(), None, "P01 punct_junk", "typography", "author_choice", "flag",
                         "стык знаков препинания (след правки)"))
     for m in re.finditer(r"\(\s*\)|«\s*»|\[\s*\]", t):
@@ -356,6 +380,8 @@ def d_restore(doc, d, lm, gl_words, auto, out, unknown_log, names=False):
         if i >= 0 and ru[i][0] <= s < ru[i][1]:
             continue
         if tok.isupper() or tok.lower() in gl_words or d.known(tok):
+            continue
+        if re.search("[эцщъьёфвчюяЭЦЩЪЬЁФВЧЮЯ]", tok):   # этих букв нет в исконных словах: заимствование («эскиз», «цемент»)
             continue
         if "-" in tok and all(d.known(p) or len(p) < 3 for p in tok.split("-")):
             continue
@@ -474,6 +500,24 @@ def _selftest():
     # якорение: каждая apply-находка с edit имеет уникальную цитату
     f, _ = lint("қорықca. қорықca.\n", gl={})
     assert all(x["quote"] and (x["action"] != "apply" or x["quote"].count("қорықca") == 1 or True) for x in f)
+    # ложные срабатывания из отзывов: сокращение с точкой, римские цифры и IT, названия и омонимы в T02
+    f, _ = lint("Астана қ., көше. Ол т.б., XVIIIғ. IVтарау, IT саласы, Iшкі.\n", gl={})
+    r3 = [(x["rule"].split()[0], x["quote"]) for x in f]
+    assert not any(a == "P01" for a, _ in r3), r3
+    assert [q for a, q in r3 if a == "H01"] == ["Iшкі"], r3
+    g2 = {"entries": [{"ru": "проект", "kk": "жоба", "avoid": ["проект"], "avoid_exclude": ["проектор\\w*"], "avoid_action": "suggest"}]}
+    f, _ = lint("Жаңа проектор. Казпромстрой НИИ проект құрылды. «Қазақстан Жоба проект» берілді. Бұл проект жақсы.\n", gl=g2)
+    t2 = [x["quote"] for x in f if x["rule"].startswith("T02")]
+    assert len(t2) == 1 and "Бұл проект" in t2[0] and "НИИ" not in t2[0], t2     # цитата — с соседними словами для якорения
+
+    class FakeLM:
+        def suggest(self, tok, margin=2.0):
+            return {"эскиз": ("әскіз", 15.0), "казакстан": ("қазақстан", 15.0)}.get(tok.lower(), (None, 0.0))
+
+    dd = Dictionary(None, ["қазақстан"])
+    f, _ = lint("Бұл эскиз және казакстан туралы.\n", d=dd, lm=FakeLM(), gl={})
+    s1 = [x["quote"] for x in f if x["rule"].startswith("S01")]
+    assert s1 == ["казакстан"], s1
     print("kk_lint selftest: ok")
 
 
