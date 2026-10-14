@@ -115,7 +115,7 @@ The rule serves the person, not the other way round. The author can fix a decisi
 
 ![Share of the Kazakh form across 25 pairs: usage chose the Kazakh word in 20 pairs, in three of them the author kept the international one](img/usage-share.en.svg)
 
-The blue bars are words for which the corpus stood for the Kazakh form but the author kept the international one. In the disputed zone lie two pairs, «НПЗ» — «МӨЗ» and «мобильді қосымша» — «қолданба»; for them the author chose «МӨЗ» and «қолданба». The three pairs near zero are those where living speech itself chose the international word: «цифрлық», «сайт», «жасанды интеллект».
+The blue bars are words for which the corpus stood for the Kazakh form but the author kept the international one. In the disputed zone lie two pairs, «НПЗ» — «МӨЗ» and «мобильді қосымша» — «қолданба»; for them the author chose «МӨЗ» and «мобильді қосымша». The three pairs near zero are those where living speech itself chose the international word: «цифрлық», «сайт», «жасанды интеллект».
 
 There is a general reservation too. Corpus usage is the usage of those who wrote in it, and among them are many translators, so it can fix calques as well. That is why the set applies its decisions as suggestions: the losing form lives among native speakers and stands in names, so it must not be replaced silently.
 

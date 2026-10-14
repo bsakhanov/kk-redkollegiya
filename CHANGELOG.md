@@ -2,6 +2,12 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.9.2] — 2026-10-14
+
+### Изменено
+- В примере глоссария основной парой для «приложение» стала «мобильді қосымша» (решение автора 14.10.2026, оно отменяет решение от 13.10.2026); «қолданба» допустимо как синоним, но не как основная пара.
+- Лонгрид на трёх языках: исправлено упоминание выбора по спорной паре.
+
 ## [0.9.1] — 2026-10-14
 
 ### Добавлено
@@ -134,6 +140,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.9.2]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.9.1...v0.9.2
 [0.9.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.7.0...v0.8.0
