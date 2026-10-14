@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.9.2](https://img.shields.io/badge/version-0.9.2-green.svg)](CHANGELOG.md)
+[![Версия 0.10.0](https://img.shields.io/badge/version-0.10.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
@@ -16,7 +16,7 @@
 > **Күйі: 0.x.** Бірінші қабат — скрипттер — дайын. LLM кезеңдері (мағына мен калькалар, машиналық мәтіннің белгілері, емле) және типограф-скрипт әлі жазылған жоқ,
 > [даму жоспарын](#даму-жоспары) қараңыз.
 
-Неге қажет екені және не екені туралы толығырақ — [лонгридте](docs/longread.kk.md).
+Неге қажет екені және не екені туралы толығырақ — [лонгридте](https://webmarka.kz/research/kk-redkollegiya/kk/) (интерактивті нұсқа; Markdown мәтіні — [docs/longread.kk.md](docs/longread.kk.md)).
 
 ## Ішінде не бар
 

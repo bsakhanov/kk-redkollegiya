@@ -4,7 +4,7 @@ title: "kk-redkollegiya: Kazakh text cleanup, linting and RU-KK parity toolkit"
 authors:
   - family-names: Sakhanov
     given-names: Beibit
-version: 0.9.2
+version: 0.10.0
 date-released: 2026-10-13
 license: GPL-3.0-or-later
 repository-code: "https://github.com/bsakhanov/kk-redkollegiya"

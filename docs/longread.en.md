@@ -113,6 +113,8 @@ The rule serves the person, not the other way round. The author can fix a decisi
 - **концепция** stays an international word. «Тұжырымдама» is acceptable as a synonym but not required: «концепция» means the basic notion, that which lies at the foundation;
 - **партнёр** is not translated: the word carries a shade of formal, business relations. «Серіктес» is closer to «comrade», to a colleague, at times a friend; with a comrade you can talk heart to heart, with a partner you cannot.
 
+There is also a pair where the author chose not an international word but an established phrase: for «приложение» the main pair became «мобильді қосымша», and «қолданба» is allowed as a synonym. In the corpus «қолданба» stands more often (21 against 15), but the author's decision stands above usage.
+
 ![Share of the Kazakh form across 25 pairs: usage chose the Kazakh word in 20 pairs, in three of them the author kept the international one](img/usage-share.en.svg)
 
 The blue bars are words for which the corpus stood for the Kazakh form but the author kept the international one. In the disputed zone lie two pairs, «НПЗ» — «МӨЗ» and «мобильді қосымша» — «қолданба»; for them the author chose «МӨЗ» and «мобильді қосымша». The three pairs near zero are those where living speech itself chose the international word: «цифрлық», «сайт», «жасанды интеллект».
@@ -129,7 +131,8 @@ All measurements were made on the author's private corpora: books, newspapers an
 | Letter substitutions | 602 words confirmed by the dictionary, 154 inferred from context | a PDF book, about 760 characters |
 | Restoring Kazakh letters | 90.1% of words right on the first try; 69–77% on sentences; false suggestions in 4–13% of untouched sentences | books the model had not seen |
 | Comparison with the original | no discrepancies in 69.0% of pairs; numbers diverge in 1.7% | 1,516 «Kazakh post — Russian post» pairs |
-| Terminology policy | of 25 pairs, 20 decided by usage, 5 fixed by the author's decision | corpus of about 840 thousand words |
+| Terminology policy | of the first 25 pairs, 20 decided by usage, 5 fixed by the author's decision | corpus of about 840 thousand words |
+| Glossary | 71 entries over 63 pairs: 42 decided by usage, 26 fixed by the author's decision, 3 without a status | corpus of about 840 thousand words |
 
 These measurements have not been independently verified. The main missing measurement, on a reference set of sentences marked by a native speaker, is still ahead; more on it below.
 

@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.9.2](https://img.shields.io/badge/version-0.9.2-green.svg)](CHANGELOG.md)
+[![Version 0.10.0](https://img.shields.io/badge/version-0.10.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -15,7 +15,7 @@ severity); disputed cases are left to a reader of Kazakh.
 > **Status: 0.x.** The first layer (scripts) is ready. LLM stages (meaning and calques, machine-writing traces, orthography)
 > and a typography script are not written yet; see the [roadmap](#roadmap).
 
-For the why and the what in depth, see the [long-read](docs/longread.en.md).
+For the why and the what in depth, see the [long-read](https://webmarka.kz/research/kk-redkollegiya/en/) (interactive version; the Markdown text is [docs/longread.en.md](docs/longread.en.md)).
 
 ## What is inside
 
