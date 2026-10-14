@@ -9,7 +9,8 @@
   2. legacy       — старая кодировка казахских шрифтов (Windows-1251 с казахскими буквами
                     в ячейках 0xB0–0xBF; латинская «i» вместо «і»). Признак: текст из PDF читается
                     как «ñòåìäiãi» вместо «стемдігі». Определяется автоматически.
-  3. schwa        — латинская «Ə/ə» вместо «Ә/ә», буквы «ӓ ӧ ӱ» вместо «ә ө ү».
+  3. schwa        — латинская «Ə/ə» вместо «Ә/ә», буквы «ӓ ӧ ӱ» вместо «ә ө ү», «ӊ ҥ» вместо «ң», «ɵ» вместо «ө»,
+                     «ҡ» вместо «қ»; невидимые символы нулевой ширины удаляются (запись invisible).
   4. substitute   — буквы-заместители: управляющие символы на месте казахских букв («жо\\x08» → «жоқ»)
                     и латинские не-двойники в кириллических словах («Wрлық» → «Ұрлық»). Что стоит за кодом,
                     выводится по словарю: для каждого слова берётся комбинация, при которой оно есть
@@ -153,11 +154,25 @@ def decode_legacy(text, J=None):
 # ----------------------------------------------------- 3. схва и диерезис ----
 
 _SCHWA = str.maketrans({"\u018f": "Ә", "\u0259": "ә"})
-_DIAER = str.maketrans({"ӓ": "ә", "Ӓ": "Ә", "ӧ": "ө", "Ӧ": "Ө", "ӱ": "ү", "Ӱ": "Ү"})
+_DIAER = str.maketrans({"ӓ": "ә", "Ӓ": "Ә", "ӧ": "ө", "Ӧ": "Ө", "ӱ": "ү", "Ӱ": "Ү",
+                        "ӊ": "ң", "Ӊ": "Ң", "ҥ": "ң", "Ҥ": "Ң", "ɵ": "ө", "Ɵ": "Ө", "ҡ": "қ", "Ҡ": "Қ"})
+
+
+_INVIS = str.maketrans("", "", "\u200b\u200c\u200d\u2060\ufeff")
+
+
+def strip_invisible(text, J=None):
+    """Невидимые символы нулевой ширины (U+200B, U+200C, U+200D, U+2060, U+FEFF) в казахском тексте не нужны."""
+    n = sum(text.count(c) for c in "\u200b\u200c\u200d\u2060\ufeff")
+    if n:
+        text = text.translate(_INVIS)
+        if J is not None:
+            J.add("invisible", "U+200B", "", n=n)
+    return text
 
 
 def fix_schwa(text, J=None):
-    n = sum(text.count(c) for c in "\u018f\u0259ӓӒӧӦӱӰ")
+    n = sum(text.count(c) for c in "\u018f\u0259ӓӒӧӦӱӰӊӉҥҤɵƟҡҠ")
     if n:
         text = text.translate(_SCHWA).translate(_DIAER)
         if J is not None:
@@ -441,6 +456,7 @@ def clean(text, d=None, legacy=True, dehyph=False, ocr=False, lm=None):
         if sc > 0.25:
             J.note("legacy", f"доля латинских букв U+00C0–U+00FF: {sc:.2f}; применён декодер")
             text = decode_legacy(text, J)
+    text = strip_invisible(text, J)
     text = fix_schwa(text, J)
     text = repair_substitutes(text, d, J)
     text = fix_homoglyphs(text, d, J)
@@ -483,6 +499,8 @@ def _selftest():
     assert t == "Алматы қаласы. Қаласы", t
     t, J = clean("XVIIIғ. IVтарау IT ХІV Iшкі", d)       # римские цифры и «IT» не трогаем, а «Iшкі» — двойник
     assert t == "XVIIIғ. IVтарау IT ХІV Ішкі", t
+    t, J = clean("Қайыpлы таӊ Ə\u200bнші ɵ ҡ", d)         # чужие двойники казахских букв и невидимые символы
+    assert t == "Қайырлы таң Әнші ө қ", t
     t, J = clean("Wрлықпен Fарифолла", d)             # латинские заместители прописных
     assert t.split()[0] == "Ұрлықпен", t
     # ocr: ү → ұ по словарю и по гармонии гласных; слова с «ү» в гармоничном окружении не трогаем

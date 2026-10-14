@@ -53,7 +53,10 @@ from kk_clean import Dictionary, Journal, fix_homoglyphs, is_roman_or_it, legacy
 
 CYRL = "А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі"
 KZSP = "әғқңөұүһіӘҒҚҢӨҰҮҺІ"
-CTRL = "\x00-\x08\x0b\x0e-\x1f"
+CTRL = "\x00-\x08\x0b\x0e-\x1f\u200b-\u200d\u2060\ufeff"   # управляющие и невидимые символы
+_H02_MAP = {"\u018f": "Ә", "\u0259": "ә", "ӓ": "ә", "Ӓ": "Ә", "ӧ": "ө", "Ӧ": "Ө", "ӱ": "ү", "Ӱ": "Ү",
+            "ӊ": "ң", "Ӊ": "Ң", "ҥ": "ң", "Ҥ": "Ң", "ɵ": "ө", "Ɵ": "Ө", "ҡ": "қ", "Ҡ": "Қ"}
+_H02_CHARS = "".join(_H02_MAP)
 TOKEN = re.compile(rf"[{CYRL}]+(?:-[{CYRL}]+)*")
 MIXED = re.compile(rf"[{CYRL}A-Za-z]+")
 
@@ -192,16 +195,16 @@ def d_hygiene(doc, out):
             else:
                 out.append(Span(m.start(), m.end(), None, "H01 mixed_script", "hygiene", "author_choice", "flag",
                                 "смешение алфавитов, не разобрано автоматически"))
-    for m in re.finditer("[\u018f\u0259ӓӒӧӦӱӰ]", t):
+    for m in re.finditer(f"[{_H02_CHARS}]", t):
         # токен целиком, чтобы цитата была осмысленной
         s = m.start()
-        while s > 0 and re.match(rf"[{CYRL}\u018f\u0259ӓӒӧӦӱӰ]", t[s - 1]):
+        while s > 0 and re.match(rf"[{CYRL}{_H02_CHARS}]", t[s - 1]):
             s -= 1
         e = m.end()
-        while e < len(t) and re.match(rf"[{CYRL}\u018f\u0259ӓӒӧӦӱӰ]", t[e]):
+        while e < len(t) and re.match(rf"[{CYRL}{_H02_CHARS}]", t[e]):
             e += 1
         tok = t[s:e]
-        fixed = tok.translate(str.maketrans({"\u018f": "Ә", "\u0259": "ә", "ӓ": "ә", "Ӓ": "Ә", "ӧ": "ө", "Ӧ": "Ө", "ӱ": "ү", "Ӱ": "Ү"}))
+        fixed = tok.translate(str.maketrans(_H02_MAP))
         if doc.ok(s, e) and not any(sp.s == s and sp.rule.startswith("H02") for sp in out[-3:]):
             out.append(Span(s, e, fixed, "H02 schwa", "hygiene", "fix", "apply", "латинская схва вместо «ә»"))
     for m in re.finditer(rf"[{CYRL}][\u0300-\u036F]+", t):
@@ -210,7 +213,7 @@ def d_hygiene(doc, out):
             out.append(Span(m.start(), m.end(), nfc, "H03 combining", "hygiene", "fix", "apply", "разложенный диакритик"))
     for m in re.finditer(rf"[{CTRL}]", t):
         out.append(Span(max(0, m.start() - 1), m.end() + 1, None, "H04 control_char", "hygiene", "fix", "flag",
-                        "управляющий символ в тексте: прогнать kk_clean"))
+                        "управляющий или невидимый символ в тексте: прогнать kk_clean"))
 
 
 def _in_name(t, s, e):
@@ -518,6 +521,9 @@ def _selftest():
     f, _ = lint("Бұл эскиз және казакстан туралы.\n", d=dd, lm=FakeLM(), gl={})
     s1 = [x["quote"] for x in f if x["rule"].startswith("S01")]
     assert s1 == ["казакстан"], s1
+    f, _ = lint("таӊ\u200bтүс\n", gl={})
+    r4 = {x["rule"].split()[0] for x in f}
+    assert {"H02", "H04"} <= r4, r4
     print("kk_lint selftest: ok")
 
 

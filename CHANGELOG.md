@@ -2,6 +2,12 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.9.1] — 2026-10-14
+
+### Добавлено
+- `kk_clean` и H02 исправляют чужие двойники казахских букв: «ӊ», «ҥ» вместо «ң», «ɵ» вместо «ө», «ҡ» вместо «қ».
+- `kk_clean` удаляет невидимые символы нулевой ширины (U+200B, U+200C, U+200D, U+2060, U+FEFF), а H04 их находит. Пробел нулевой ширины внутри слова ломал поиск и словарь, а набор его не замечал; пробел нашёлся при сравнении с модулем начальной нормализации проекта kaznlp.
+
 ## [0.9.0] — 2026-10-14
 
 ### Исправлено (ложные срабатывания, по отзывам пользователей)
@@ -128,6 +134,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.9.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.9.0...v0.9.1
 [0.9.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.8.0...v0.9.0
 [0.8.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.7.0...v0.8.0
 [0.7.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.6.0...v0.7.0

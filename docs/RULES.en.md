@@ -14,9 +14,9 @@ A finding is a JSON object: `{id, stage, zone, layer, severity, rule, quote, act
 | Code | Rule | Zone | Default severity / action |
 | --- | --- | --- | --- |
 | H01 | `mixed_script` — Latin look-alike letters inside Cyrillic words and the other way round; Roman numerals («IV», «XVIIIғ.») and «IT» are not defects | hygiene | fix / apply; unresolved — author_choice / flag |
-| H02 | `schwa` — «ə» for «ә», «ӓ ӧ ӱ» for «ә ө ү» | hygiene | fix / apply |
+| H02 | `schwa` — «ə» for «ә», «ӓ ӧ ӱ» for «ә ө ү», «ӊ ҥ» for «ң», «ɵ» for «ө», «ҡ» for «қ» | hygiene | fix / apply |
 | H03 | `combining` — decomposed diacritics (NFC) | hygiene | fix / apply |
-| H04 | `control_char` — control characters in the text | hygiene | fix / flag (run `kk_clean`) |
+| H04 | `control_char` — control and invisible (zero-width) characters in the text | hygiene | fix / flag (run `kk_clean`) |
 | S01 | `restore` — a word without Kazakh letters: a suggestion of the character model (margin Δ ≥ 2) confirmed by the dictionary; an unconfirmed one is shown only at Δ ≥ 12; words with the letters «э», «ц», «щ», «ъ», «ь», «ё», «ф», «в», «ч», «ю», «я» are skipped as loanwords («эскиз») | norm | author_choice / suggest; with `--auto-restore`, a dictionary word and Δ ≥ 6 — fix / apply |
 | T01 | `ru_abbrev` — РК, ТОО, АО, ИП instead of ҚР, ЖШС, АҚ, ЖК (the glossary's `abbreviations` block) | terms | fix / apply; with an affix after a hyphen — author_choice / suggest |
 | T02 | `glossary_avoid` — forms forbidden by the glossary's `avoid` field; it does not fire inside names («НИИ проект», a «…» quote with two capitalized words) or in contexts listed in `avoid_exclude` | terms | fix / apply or author_choice / suggest (the `avoid_action` field); with an affix — author_choice / flag; an entry without `kk` — fix / flag; `contested` entries are skipped |
