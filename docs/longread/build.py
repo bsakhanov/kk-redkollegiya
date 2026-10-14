@@ -48,7 +48,14 @@ def split_md(text):
 
 
 def md(s):
-    return markdown.markdown(s, extensions=["tables", "fenced_code", "sane_lists"])
+    h = markdown.markdown(s, extensions=["tables", "fenced_code", "sane_lists"])
+
+    def link(m):
+        href = m.group(1)
+        if re.match(r"^(?:https?:|#|mailto:)", href):
+            return m.group(0)
+        return 'href="https://github.com/bsakhanov/kk-redkollegiya/blob/main/' + ("" if href.startswith("../") else "docs/") + href.replace("../", "") + '"'
+    return re.sub(r'href="([^"]+)"', link, h)       # относительные ссылки Markdown ведут на репозиторий
 
 
 def mark_terms(h, T, used):
@@ -202,7 +209,7 @@ def build(lang):
         h = mark_terms(h, T, used)
         if i == 1:      # «Зачем это нужно»: нумерованные подразделы и иллюстрации к каждому
             figs = [look_fig(T) + playground(T), pair_fig(T["fig"]["enc_t"], T["fig"]["enc_was"], "ìåêòåï", T["fig"]["enc_now"], "мектеп", T["fig"]["enc_c"]),
-                    pair_fig(T["fig"]["ocr_t"], T["fig"]["ocr_was"], "ЖАЦЕЫРЫЕУ", T["fig"]["ocr_now"], "ЖАҢҒЫРЫҒУ", T["fig"]["ocr_c"]), restore_fig(T), calque_fig(T), parity_fig(T)]
+                    pair_fig(T["fig"]["ocr_t"], T["fig"]["ocr_was"], "жацеырыеу", T["fig"]["ocr_now"], "жаңғырығу", T["fig"]["ocr_c"]), restore_fig(T), calque_fig(T), parity_fig(T)]
             chunks = re.split(r"(?=<h3>)", h)
             out = chunks[0]
             for k, ch in enumerate(chunks[1:]):
@@ -243,6 +250,7 @@ def build(lang):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- build: kk-redkollegiya longread, набор v{VER}, 2026-10-14 -->
+<!-- ссылка «все материалы исследования» уже есть в шапке страницы -->
 <title>{E(T["title_tag"])}</title>
 <meta name="description" content="{E(T["og_desc"])}">
 <link rel="canonical" href="{url}">
@@ -252,7 +260,7 @@ def build(lang):
 <meta property="og:type" content="article"><meta property="og:site_name" content="Webmarka"><meta property="og:locale" content="{T["locale"]}">
 <meta property="og:url" content="{url}"><meta property="og:title" content="{E(T["og_title"])}"><meta property="og:description" content="{E(T["og_desc"])}">
 <meta property="og:image" content="https://webmarka.kz/assets/media/2026/kk-redkollegiya-og.jpg"><meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%233346d3'/%3E%3Ctext x='32' y='45' text-anchor='middle' font-size='36' font-family='sans-serif' font-weight='700' fill='white'%3E%D2%9A%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="https://webmarka.kz/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="stylesheet" href="{A}longread.css?v={VER}">
 <script type="application/ld+json">{json.dumps(ld, ensure_ascii=False)}</script>
 </head>
