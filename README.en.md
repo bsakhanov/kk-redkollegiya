@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.7.0](https://img.shields.io/badge/version-0.7.0-green.svg)](CHANGELOG.md)
+[![Version 0.8.0](https://img.shields.io/badge/version-0.8.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -99,7 +99,7 @@ Measured on the author's private corpora (books, newspapers, a bilingual corpora
 | Substitute letters (control / Latin characters) | one PDF book: about 760 characters; 602 words confirmed by the dictionary, 154 inferred from context |
 | Letter restoration (`kk_restore`) | on books the model had not seen: 90.1% of words restored on the first try; on sentences with one damaged word, 77% (20th-century prose) and 69% (Abai); false suggestions in 3.9% and 13.2% of untouched sentences |
 | RU↔KK parity (`kk_parity`) | 1,516 post pairs from a bilingual corporate channel: no discrepancies in 69.0% of pairs, changed number values in 1.7% |
-| Terminology policy (`kk_usage`) | example glossary, 25 pairs: 20 usage decisions and 5 decisions by the author (two disputed cases and three exceptions that keep «объект», «концепция» and «партнёр» international) |
+| Terminology policy (`kk_usage`) | example glossary, 71 entries over 63 pairs: 42 usage decisions, 26 decisions by the author (among them «объект», «концепция», «партнёр» and «ритм» kept international) and 3 entries without a status |
 
 ## Terminology policy
 

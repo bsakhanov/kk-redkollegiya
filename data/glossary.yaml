@@ -27,7 +27,7 @@ entries:
   kk: объект
   avoid: []
   status: author
-  decided: решение автора
+  decided: решение автора, 13.10.2026
   note: международный термин, не переводится; решение автора стоит поверх узуса корпуса («нысан» — 84%)
   evidence:
     corpus_words: 838939
@@ -46,8 +46,495 @@ entries:
   kk: субъект
   avoid: []
   status: author
-  decided: решение автора
+  decided: решение автора, 13.10.2026
   note: международный термин, не переводится
+- key: partner
+  ru: партнёр
+  kk: партнер
+  avoid: []
+  status: author
+  decided: решение автора, 13.10.2026
+  note: 'международный термин, не переводится: «партнер» — формальные деловые отношения, «серіктес» ближе к «товарищу»
+    (коллега, порой друг) и несёт иной оттенок; решение автора стоит поверх узуса корпуса («серіктес» — 91%); пишется
+    без «ё», как чаще в корпусе'
+  evidence:
+    corpus_words: 838939
+    a:
+      form: партнёр
+      count: 56
+      per100k: 6.7
+      share: 0.09
+    b:
+      form: серіктес
+      count: 598
+      per100k: 71.3
+      share: 0.91
+- key: concept
+  ru: концепция
+  kk: концепция
+  avoid: []
+  status: author
+  decided: решение автора, 13.10.2026
+  note: международный термин; «тұжырымдама» допустимо как синоним; значение — основное понятие, то, что лежит в
+    основе; решение автора стоит поверх узуса корпуса («тұжырымдама» — 89%)
+  evidence:
+    corpus_words: 838939
+    a:
+      form: концепция
+      count: 7
+      per100k: 0.8
+      share: 0.11
+    b:
+      form: тұжырымдама
+      count: 59
+      per100k: 7.0
+      share: 0.89
+- key: abbr-refinery
+  ru: НПЗ
+  kk: МӨЗ
+  avoid:
+  - НПЗ
+  avoid_action: suggest
+  status: author
+  kk_re: мөз
+  parity_ru: \bнпз\b
+  evidence:
+    corpus_words: 838939
+    a:
+      form: НПЗ
+      count: 107
+      per100k: 12.8
+      share: 0.32
+    b:
+      form: МӨЗ
+      count: 224
+      per100k: 26.7
+      share: 0.68
+  decided: решение автора, 12.10.2026
+  note: спорный случай по узусу; закрыт решением автора
+- key: application
+  ru: приложение
+  kk: қолданба
+  avoid:
+  - мобильді қосымша
+  avoid_action: suggest
+  status: author
+  kk_re: қолданба\w*
+  parity_ru: мобильн\w+\s+приложени\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: мобильді қосымша
+      count: 15
+      per100k: 1.8
+      share: 0.42
+    b:
+      form: қолданба
+      count: 21
+      per100k: 2.5
+      share: 0.58
+  decided: решение автора, 12.10.2026
+  note: спорный случай по узусу; закрыт решением автора
+- key: failure
+  ru: сбой
+  kk: іркіліс
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: іркіліс\w*
+  parity_ru: сбо[йя]\w*|сбои\w*
+  note: узус редок (5 вхождений обеих форм), но казахская форма засвидетельствована; принята автором
+  evidence:
+    corpus_words: 838939
+    a:
+      form: сбой
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: іркіліс
+      count: 5
+      per100k: 0.6
+      share: 1.0
+- key: day-off
+  ru: выходной день
+  kk: демалыс күні
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: демалыс\s+күн\w*
+  parity_ru: выходн\w+\s+д\w+
+  note: узус редок (8 вхождений обеих форм), но казахская форма засвидетельствована; принята автором
+  evidence:
+    corpus_words: 838939
+    a:
+      form: выходной день
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: демалыс күні
+      count: 8
+      per100k: 1.0
+      share: 1.0
+- key: load-capacity
+  ru: грузоподъёмность
+  kk: жүк көтергіштігі
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: жүк\s*көтергіш\w*
+  parity_ru: грузоподъ[её]мност\w*
+  note: производное от «жүк көтергіш» (в корпусе стоит часто); словарная слитная форма «жүккөтергіштік» в корпусе
+    не встречается
+  evidence:
+    corpus_words: 838939
+    a:
+      form: грузоподъёмность
+      count: 1
+      per100k: 0.1
+      share: 0.05
+    b:
+      form: жүк көтергіш
+      count: 19
+      per100k: 2.3
+      share: 0.95
+- key: shutoff-valves
+  ru: запорная арматура
+  kk: бекіту арматурасы
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: бекіту\s+арматур\w*
+  parity_ru: запорн\w+\s+арматур\w*
+  note: узус редок (3 вхождений обеих форм), но казахская форма засвидетельствована; принята автором
+  evidence:
+    corpus_words: 838939
+    a:
+      form: запорная арматура
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: бекіту арматурасы
+      count: 3
+      per100k: 0.4
+      share: 1.0
+- key: hydraulic-fracturing
+  ru: гидроразрыв
+  kk: гидравликалық жару
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: гидравликалық\s+жару\w*
+  parity_ru: гидроразрыв\w*
+  note: узус редок (5 вхождений обеих форм), но казахская форма засвидетельствована; принята автором; полная форма
+    — «қабатты гидравликалық жару» (ГРП)
+  evidence:
+    corpus_words: 838939
+    a:
+      form: гидроразрыв
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: гидравликалық жару
+      count: 5
+      per100k: 0.6
+      share: 1.0
+- key: current-repair
+  ru: текущий ремонт
+  kk: ағымдағы жөндеу
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: ағымдағы\s+жөндеу\w*
+  parity_ru: текущ\w+\s+ремонт\w*
+  note: узус редок (6 вхождений обеих форм), но казахская форма засвидетельствована; принята автором
+  evidence:
+    corpus_words: 838939
+    a:
+      form: текущий ремонт
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: ағымдағы жөндеу
+      count: 6
+      per100k: 0.7
+      share: 1.0
+- key: burner
+  ru: горелка
+  kk: жанарғы
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: жанарғы\w*
+  parity_ru: горелк\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: горелка
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: жанарғы
+      count: 4
+      per100k: 0.5
+      share: 1.0
+- key: fuel-consumption
+  ru: расход топлива
+  kk: отын шығыны
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: отын\s+шығын\w*
+  parity_ru: расход\w*\s+топлив\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: расход топлива
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: отын шығыны
+      count: 3
+      per100k: 0.4
+      share: 1.0
+- key: supplies
+  ru: принадлежности
+  kk: керек-жарақ
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: керек[\s-]*жарақ\w*
+  parity_ru: принадлежност\w*
+  note: например, школьные принадлежности
+  evidence:
+    corpus_words: 838939
+    a:
+      form: принадлежности
+      count: 2
+      per100k: 0.2
+      share: 0.4
+    b:
+      form: керек-жарақ
+      count: 3
+      per100k: 0.4
+      share: 0.6
+  parity_check: false
+- key: feedback
+  ru: обратная связь
+  kk: кері байланыс
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: кері\s+байланыс\w*
+  parity_ru: обратн\w+\s+связ\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: обратная связь
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: кері байланыс
+      count: 7
+      per100k: 0.8
+      share: 1.0
+- key: serviceability
+  ru: исправность
+  kk: жарамдылық
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: жарамдылық\w*|жарамдылығ\w*
+  parity_ru: исправност\w*
+  note: техническая исправность
+  evidence:
+    corpus_words: 838939
+    a:
+      form: исправность
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: жарамдылық
+      count: 8
+      per100k: 1.0
+      share: 1.0
+- key: briefing
+  ru: инструктаж
+  kk: нұсқама
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: нұсқама\w*
+  parity_ru: инструктаж\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: инструктаж
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: нұсқама
+      count: 4
+      per100k: 0.5
+      share: 1.0
+- key: rhythm
+  ru: ритм
+  kk: ритм
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: ритм\w*
+  parity_ru: ритм\w*
+  note: «ырғақ» допустимо как синоним, но не как основная пара «ритма»
+  evidence:
+    corpus_words: 838939
+    a:
+      form: ритм
+      count: 3
+      per100k: 0.4
+      share: 0.6
+    b:
+      form: ырғақ
+      count: 2
+      per100k: 0.2
+      share: 0.4
+- key: operational
+  ru: оперативность
+  kk: оперативтілік
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: оперативтілік\w*|оперативтіліг\w*
+  parity_ru: оперативност\w*
+  note: «жеделдік» допустимо как синоним, но не как пара для «оперативность»; в корпусе «жеделдік» — 13, «оперативтілік»
+    — 0; решение автора стоит поверх узуса
+  evidence:
+    corpus_words: 838939
+    a:
+      form: оперативность
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: жеделдік
+      count: 13
+      per100k: 1.5
+      share: 1.0
+- key: phase
+  ru: фаза
+  kk: фаза
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: фаз[аыуеойл]\w*
+  parity_ru: фаз[аыуеойл]\w*
+  note: международное слово; в казахских текстах уже стоит, словарь согласен
+  evidence:
+    corpus_words: 838939
+    a:
+      form: фаза
+      count: 7
+      per100k: 0.8
+      share: 1.0
+- key: gram
+  ru: грамм
+  kk: грамм
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: грамм\w*
+  parity_ru: грамм\w*
+  note: международное слово; в казахских текстах уже стоит, словарь согласен
+  evidence:
+    corpus_words: 838939
+    a:
+      form: грамм
+      count: 4
+      per100k: 0.5
+      share: 1.0
+- key: tendency
+  ru: тенденция
+  kk: тенденция
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: тенденци\w*
+  parity_ru: тенденци\w*
+  note: международное слово; словарное «беталыс» в корпусе почти не встречается
+  evidence:
+    corpus_words: 838939
+    a:
+      form: тенденция
+      count: 9
+      per100k: 1.1
+      share: 0.9
+    b:
+      form: беталыс
+      count: 1
+      per100k: 0.1
+      share: 0.1
+- key: array
+  ru: массив
+  kk: массив
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: массив\w*
+  parity_ru: массив\w*
+  note: международное слово; в казахских текстах уже стоит, словарь согласен
+  evidence:
+    corpus_words: 838939
+    a:
+      form: массив
+      count: 3
+      per100k: 0.4
+      share: 1.0
+- key: butane
+  ru: бутан
+  kk: бутан
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: бутан\w*
+  parity_ru: бутан\w*
+  note: международное слово; в казахских текстах уже стоит, словарь согласен
+  evidence:
+    corpus_words: 838939
+    a:
+      form: бутан
+      count: 8
+      per100k: 1.0
+      share: 1.0
+- key: container-ship
+  ru: контейнеровоз
+  kk: контейнеровоз
+  avoid: []
+  status: author
+  decided: решение автора 14.10.2026
+  kk_re: контейнеровоз\w*
+  parity_ru: контейнеровоз\w*
+  note: международное слово; в казахских текстах уже стоит, словарь согласен
+  evidence:
+    corpus_words: 838939
+    a:
+      form: контейнеровоз
+      count: 5
+      per100k: 0.6
+      share: 1.0
+    b:
+      form: контейнер тасығыш
+      count: 0
+      per100k: 0.0
+      share: 0.0
 - key: project
   ru: проект
   kk: жоба
@@ -77,47 +564,6 @@ entries:
     neither: 8
     share: 0.99
   parity_check: true
-- key: partner
-  ru: партнёр
-  kk: партнер
-  avoid: []
-  status: author
-  decided: решение автора
-  note: 'международный термин, не переводится: «партнер» — формальные деловые отношения, «серіктес» ближе к «товарищу»
-    (коллега, порой друг) и несёт иной оттенок; решение автора стоит поверх узуса корпуса («серіктес» — 91%); пишется
-    без «ё», как чаще в корпусе'
-  evidence:
-    corpus_words: 838939
-    a:
-      form: партнёр
-      count: 56
-      per100k: 6.7
-      share: 0.09
-    b:
-      form: серіктес
-      count: 598
-      per100k: 71.3
-      share: 0.91
-- key: concept
-  ru: концепция
-  kk: концепция
-  avoid: []
-  status: author
-  decided: решение автора
-  note: международный термин; «тұжырымдама» допустимо как синоним; значение — основное понятие, то, что лежит в
-    основе; решение автора стоит поверх узуса корпуса («тұжырымдама» — 89%)
-  evidence:
-    corpus_words: 838939
-    a:
-      form: концепция
-      count: 7
-      per100k: 0.8
-      share: 0.11
-    b:
-      form: тұжырымдама
-      count: 59
-      per100k: 7.0
-      share: 0.89
 - key: digital
   ru: цифровой
   kk: цифрлық
@@ -611,29 +1057,6 @@ entries:
     neither: 24
     share: 0.95
   parity_check: true
-- key: abbr-refinery
-  ru: НПЗ
-  kk: МӨЗ
-  avoid:
-  - НПЗ
-  avoid_action: suggest
-  status: author
-  kk_re: мөз
-  parity_ru: \bнпз\b
-  evidence:
-    corpus_words: 838939
-    a:
-      form: НПЗ
-      count: 107
-      per100k: 12.8
-      share: 0.32
-    b:
-      form: МӨЗ
-      count: 224
-      per100k: 26.7
-      share: 0.68
-  decided: решение автора
-  note: спорный случай по узусу; закрыт решением автора
 - key: website
   ru: сайт
   kk: сайт
@@ -663,29 +1086,6 @@ entries:
     neither: 0
     share: 1.0
   parity_check: true
-- key: application
-  ru: приложение
-  kk: қолданба
-  avoid:
-  - мобильді қосымша
-  avoid_action: suggest
-  status: author
-  kk_re: қолданба\w*
-  parity_ru: мобильн\w+\s+приложени\w*
-  evidence:
-    corpus_words: 838939
-    a:
-      form: мобильді қосымша
-      count: 15
-      per100k: 1.8
-      share: 0.42
-    b:
-      form: қолданба
-      count: 21
-      per100k: 2.5
-      share: 0.58
-  decided: решение автора
-  note: спорный случай по узусу; закрыт решением автора
 - key: database
   ru: база данных
   kk: дерекқор
@@ -708,6 +1108,605 @@ entries:
       per100k: 0.8
       share: 0.7
   decided: политика узуса корпуса
+- key: mounting
+  ru: монтажный
+  kk: монтаж
+  avoid:
+  - монтажный
+  avoid_action: suggest
+  status: usage
+  kk_re: монтаж(?!н)\w*
+  parity_ru: монтажн\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: монтажный
+      count: 6
+      per100k: 0.7
+      share: 0.03
+    b:
+      form: монтаж
+      count: 206
+      per100k: 24.6
+      share: 0.97
+  decided: политика узуса корпуса
+  note: «монтаж жұмыстары»; словарное «құрастырғыш» — другой смысл
+  consistency:
+    pairs: 52
+    ok: 50
+    other_form: 0
+    neither: 2
+    share: 0.96
+  parity_check: true
+- key: chain
+  ru: цепочка
+  kk: тізбек
+  avoid:
+  - цепочка
+  avoid_action: suggest
+  status: usage
+  kk_re: тізбек\w*
+  parity_ru: цепочк\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: цепочка
+      count: 3
+      per100k: 0.4
+      share: 0.07
+    b:
+      form: тізбек
+      count: 40
+      per100k: 4.8
+      share: 0.93
+  decided: политика узуса корпуса
+  note: не «тізбеше» (словарное уменьшительное)
+  consistency:
+    pairs: 28
+    ok: 9
+    other_form: 0
+    neither: 19
+    share: 0.32
+  parity_check: false
+- key: gas-pipeline
+  ru: газопровод
+  kk: газ құбыры
+  avoid:
+  - газопровод
+  avoid_action: suggest
+  status: usage
+  kk_re: газ\s+құбыр\w*
+  parity_ru: газопровод\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: газопровод
+      count: 4
+      per100k: 0.5
+      share: 0.1
+    b:
+      form: газ құбыры
+      count: 38
+      per100k: 4.5
+      share: 0.9
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 14
+    ok: 14
+    other_form: 0
+    neither: 0
+    share: 1.0
+  parity_check: false
+- key: electrical-equipment
+  ru: электрооборудование
+  kk: электр жабдығы
+  avoid:
+  - электрооборудование
+  avoid_action: suggest
+  status: usage
+  kk_re: электр\s*жабдық\w*|электр\s*жабдығ\w*
+  parity_ru: электрооборудовани\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: электрооборудование
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: электр жабдығы
+      count: 33
+      per100k: 3.9
+      share: 1.0
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 10
+    ok: 7
+    other_form: 0
+    neither: 3
+    share: 0.7
+  parity_check: false
+- key: freight-turnover
+  ru: грузооборот
+  kk: жүк айналымы
+  avoid:
+  - грузооборот
+  avoid_action: suggest
+  status: usage
+  kk_re: жүк\s+айналым\w*
+  parity_ru: грузооборот\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: грузооборот
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: жүк айналымы
+      count: 18
+      per100k: 2.1
+      share: 1.0
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 10
+    ok: 7
+    other_form: 0
+    neither: 3
+    share: 0.7
+  parity_check: false
+- key: mechanical-engineering
+  ru: машиностроение
+  kk: машина жасау
+  avoid:
+  - машиностроение
+  avoid_action: suggest
+  status: usage
+  kk_re: машина\s*жасау\w*
+  parity_ru: машиностроени\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: машиностроение
+      count: 4
+      per100k: 0.5
+      share: 0.08
+    b:
+      form: машина жасау
+      count: 44
+      per100k: 5.2
+      share: 0.92
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 14
+    ok: 13
+    other_form: 0
+    neither: 1
+    share: 0.93
+  parity_check: false
+- key: man-hour
+  ru: человеко-час
+  kk: адам-сағат
+  avoid:
+  - человеко-час
+  avoid_action: suggest
+  status: usage
+  kk_re: адам[\s-]+сағат\w*
+  parity_ru: человеко[\s-]*час\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: человеко-час
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: адам-сағат
+      count: 11
+      per100k: 1.3
+      share: 1.0
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 9
+    ok: 8
+    other_form: 0
+    neither: 1
+    share: 0.89
+  parity_check: false
+- key: ecosystem
+  ru: экосистема
+  kk: экожүйе
+  avoid:
+  - экосистема
+  avoid_action: suggest
+  status: usage
+  kk_re: экожүйе\w*
+  parity_ru: экосистем\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: экосистема
+      count: 3
+      per100k: 0.4
+      share: 0.09
+    b:
+      form: экожүйе
+      count: 31
+      per100k: 3.7
+      share: 0.91
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 9
+    ok: 7
+    other_form: 0
+    neither: 2
+    share: 0.78
+  parity_check: false
+- key: heat-exchanger
+  ru: теплообменник
+  kk: жылу алмастырғыш
+  avoid:
+  - теплообменник
+  avoid_action: suggest
+  status: usage
+  kk_re: жылу\s*алмастырғыш\w*
+  parity_ru: теплообменник\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: теплообменник
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: жылу алмастырғыш
+      count: 25
+      per100k: 3.0
+      share: 1.0
+  decided: политика узуса корпуса
+  consistency:
+    pairs: 6
+    ok: 6
+    other_form: 0
+    neither: 0
+    share: 1.0
+  parity_check: false
+- key: malfunction
+  ru: неисправность
+  kk: ақау
+  avoid:
+  - неисправность
+  avoid_action: suggest
+  status: usage
+  kk_re: ақау\w*
+  parity_ru: неисправност\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: неисправность
+      count: 1
+      per100k: 0.1
+      share: 0.01
+    b:
+      form: ақау
+      count: 74
+      per100k: 8.8
+      share: 0.99
+  decided: политика узуса корпуса
+- key: removal
+  ru: вывоз
+  kk: әкету
+  avoid:
+  - вывоз
+  avoid_action: suggest
+  status: usage
+  kk_re: әкету\w*
+  parity_ru: вывоз\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: вывоз
+      count: 2
+      per100k: 0.2
+      share: 0.18
+    b:
+      form: әкету
+      count: 9
+      per100k: 1.1
+      share: 0.82
+  decided: политика узуса корпуса
+- key: shift
+  ru: сменный
+  kk: ауысым
+  avoid:
+  - сменный
+  avoid_action: suggest
+  status: usage
+  kk_re: ауысым\w*
+  parity_ru: сменн\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: сменный
+      count: 0
+      per100k: 0.0
+      share: 0.0
+    b:
+      form: ауысым
+      count: 79
+      per100k: 9.4
+      share: 1.0
+  decided: политика узуса корпуса
+  note: «ауысым бастығы»; словарное «ауыспалы» значит «переменный»
+- key: electric-motor
+  ru: электродвигатель
+  kk: электр қозғалтқыш
+  avoid:
+  - электродвигатель
+  avoid_action: suggest
+  status: usage
+  kk_re: электр\s*қозғалтқыш\w*
+  parity_ru: электродвигател\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: электродвигатель
+      count: 1
+      per100k: 0.1
+      share: 0.08
+    b:
+      form: электр қозғалтқыш
+      count: 11
+      per100k: 1.3
+      share: 0.92
+  decided: политика узуса корпуса
+- key: scheduled-repair
+  ru: плановый ремонт
+  kk: жоспарлы жөндеу
+  avoid:
+  - плановый ремонт
+  avoid_action: suggest
+  status: usage
+  kk_re: жоспарлы\s+жөндеу\w*
+  parity_ru: планов\w+\s+ремонт\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: плановый ремонт
+      count: 4
+      per100k: 0.5
+      share: 0.16
+    b:
+      form: жоспарлы жөндеу
+      count: 21
+      per100k: 2.5
+      share: 0.84
+  decided: политика узуса корпуса
+  note: словарное «жобалы жөндеу» не подходит
+  consistency:
+    pairs: 10
+    ok: 8
+    other_form: 0
+    neither: 2
+    share: 0.8
+  parity_check: false
+- key: welder
+  ru: сварщик
+  kk: дәнекерлеуші
+  avoid:
+  - сварщик
+  avoid_action: suggest
+  status: usage
+  kk_re: дәнекерле\w*
+  parity_ru: сварщик\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: сварщик
+      count: 1
+      per100k: 0.1
+      share: 0.01
+    b:
+      form: дәнекерлеуші
+      count: 118
+      per100k: 14.1
+      share: 0.99
+  decided: политика узуса корпуса
+  note: словарное «пісіруші» в корпусе в этом значении не встречается
+  consistency:
+    pairs: 16
+    ok: 14
+    other_form: 0
+    neither: 2
+    share: 0.88
+  parity_check: false
+- key: appeal
+  ru: обращение
+  kk: өтініш
+  avoid:
+  - обращение
+  avoid_action: suggest
+  status: usage
+  kk_re: өтініш\w*
+  parity_ru: обращени\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: обращение
+      count: 8
+      per100k: 1.0
+      share: 0.09
+    b:
+      form: өтініш
+      count: 80
+      per100k: 9.5
+      share: 0.91
+  decided: политика узуса корпуса
+  note: в значении «обращение граждан»; «обращение денег, ценных бумаг» — «айналым»; механически не заменять
+  consistency:
+    pairs: 10
+    ok: 0
+    other_form: 0
+    neither: 10
+    share: 0.0
+  parity_check: false
+- key: length
+  ru: протяжённость
+  kk: ұзындығы
+  avoid:
+  - протяжённость
+  avoid_action: suggest
+  status: usage
+  kk_re: ұзындығ\w*|ұзындық\w*
+  parity_ru: протяж[её]нност\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: протяжённость
+      count: 13
+      per100k: 1.5
+      share: 0.1
+    b:
+      form: ұзындығы
+      count: 112
+      per100k: 13.4
+      share: 0.9
+  decided: политика узуса корпуса
+  note: «ұзындығы 100 км»; словарное «ұзақтық» значит «длительность»
+  consistency:
+    pairs: 22
+    ok: 21
+    other_form: 0
+    neither: 1
+    share: 0.95
+  parity_check: true
+- key: integrity
+  ru: целостность
+  kk: тұтастық
+  avoid:
+  - целостность
+  avoid_action: suggest
+  status: usage
+  kk_re: тұтастық\w*|тұтастығ\w*
+  parity_ru: целостност\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: целостность
+      count: 3
+      per100k: 0.4
+      share: 0.12
+    b:
+      form: тұтастық
+      count: 21
+      per100k: 2.5
+      share: 0.88
+  decided: политика узуса корпуса
+- key: service-life
+  ru: срок службы
+  kk: қызмет ету мерзімі
+  avoid:
+  - срок службы
+  avoid_action: suggest
+  status: usage
+  kk_re: қызмет\s+ету\s+мерзім\w*|қызмет\s+мерзім\w*
+  parity_ru: срок\w*\s+служб\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: срок службы
+      count: 1
+      per100k: 0.1
+      share: 0.08
+    b:
+      form: қызмет ету мерзімі
+      count: 12
+      per100k: 1.4
+      share: 0.92
+  decided: политика узуса корпуса
+  note: срок эксплуатации — «пайдалану мерзімі»
+- key: support
+  ru: опорный
+  kk: тірек
+  avoid:
+  - опорный
+  avoid_action: suggest
+  status: usage
+  kk_re: тірек\w*
+  parity_ru: опорн\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: опорный
+      count: 1
+      per100k: 0.1
+      share: 0.03
+    b:
+      form: тірек
+      count: 32
+      per100k: 3.8
+      share: 0.97
+  decided: политика узуса корпуса
+  note: многозначно; в глоссарии как основа для «тірек …»
+  consistency:
+    pairs: 10
+    ok: 9
+    other_form: 0
+    neither: 1
+    share: 0.9
+  parity_check: false
+- key: difference
+  ru: разница
+  kk: айырма
+  avoid:
+  - разница
+  avoid_action: suggest
+  status: usage
+  kk_re: айырма\w*
+  parity_ru: разниц\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: разница
+      count: 1
+      per100k: 0.1
+      share: 0.03
+    b:
+      form: айырма
+      count: 28
+      per100k: 3.3
+      share: 0.97
+  decided: политика узуса корпуса
+- key: power-unit
+  ru: силовой
+  kk: күштік
+  avoid:
+  - силовой
+  avoid_action: suggest
+  status: usage
+  kk_re: күштік\w*
+  parity_ru: силов\w*
+  evidence:
+    corpus_words: 838939
+    a:
+      form: силовой
+      count: 3
+      per100k: 0.4
+      share: 0.27
+    b:
+      form: күштік
+      count: 8
+      per100k: 1.0
+      share: 0.73
+  decided: политика узуса корпуса
+  note: например, «күштік трансформатор»; многозначно
+  consistency:
+    pairs: 5
+    ok: 3
+    other_form: 0
+    neither: 2
+    share: 0.6
+  parity_check: false
 abbreviations:
 - ru: РК
   kk: ҚР
