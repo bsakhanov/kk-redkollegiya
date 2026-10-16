@@ -39,7 +39,7 @@
         (function step(t) { var k = Math.min(1, (t - t0) / 1100), v = to * (1 - Math.pow(1 - k, 3)); el.textContent = fmt(v) + suf; if (k < 1) requestAnimationFrame(step); })(t0);
       });
     });
-  }, { threshold: 0.15 });
+  }, { threshold: 0, rootMargin: '0px 0px -6% 0px' });   /* порог 0: раздел может быть в разы выше экрана телефона, и 15% его высоты на экран не помещаются */
   $$('.rv,.stat,.meas .m,.ux').forEach(function (el) { io.observe(el); });
 
   /* справки-всплывашки */

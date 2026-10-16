@@ -238,7 +238,7 @@ def build(lang):
     alts = "".join(f'<link rel="alternate" hreflang="{c}" href="{BASE + LANGS[c]["url_suffix"]}">' for c in ("ru", "kk", "en")) + f'<link rel="alternate" hreflang="x-default" href="{BASE}">'
     rel = {"ru": {"kk": "kk/", "en": "en/"}, "kk": {"ru": "../", "en": "../en/"}, "en": {"ru": "../", "kk": "../kk/"}}[lang]
     seg = "".join((f'<a href="{rel[c]}" hreflang="{c}" lang="{c}">{LANGS[c]["name"]}</a>' if c != lang else f'<a aria-current="page" lang="{c}">{LANGS[c]["name"]}</a>') for c in ("ru", "kk", "en"))
-    ld = {"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "@id": url + "#article", "headline": title, "inLanguage": lang, "datePublished": "2026-10-13", "dateModified": "2026-10-14",
+    ld = {"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "@id": url + "#article", "headline": title, "inLanguage": lang, "datePublished": "2026-10-13", "dateModified": "2026-10-16",
           "author": {"@id": "https://webmarka.kz/#person"}, "mainEntityOfPage": url, "image": "https://webmarka.kz/assets/media/2026/kk-redkollegiya-og.jpg",
           "about": {"@type": "SoftwareSourceCode", "name": "kk-redkollegiya", "codeRepository": "https://github.com/bsakhanov/kk-redkollegiya", "license": "https://www.gnu.org/licenses/gpl-3.0.html"}}]}
     lead = "".join(f"<p>{re.sub(r'^<p>|</p>$', '', md(p))}</p>" for p in paras[:2])
@@ -249,7 +249,7 @@ def build(lang):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- build: kk-redkollegiya longread, набор v{VER}, 2026-10-14 -->
+<!-- build: kk-redkollegiya longread, набор v{VER}, 2026-10-16 -->
 <!-- ссылка «все материалы исследования» уже есть в шапке страницы -->
 <title>{E(T["title_tag"])}</title>
 <meta name="description" content="{E(T["og_desc"])}">
