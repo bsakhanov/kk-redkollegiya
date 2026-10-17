@@ -18,7 +18,7 @@ RU = L(
     ui=dict(back='← webmarka.kz: все материалы исследования', toc='Содержание', min='мин', more='В глоссарий', copy='Копировать', copied='Готово',
             eta='Чтение — около {n} мин', theme='Тема', top='Наверх'),
     kicker='Лонгрид · открытый набор',
-    meta='Обновлено 16 октября 2026 · набор v{ver} · GPL-3.0-or-later',
+    meta='Обновлено 17 октября 2026 · набор v{ver} · GPL-3.0-or-later',
     cta=('Репозиторий на GitHub', 'Скачать архив v{ver}', 'Попробовать лупу'),
     stats=[(1085, '', 'подменённых «ә» в одном издании «Қара сөздер»'), (None, '77–79 %', 'слов Есенберлина узнаёт словарь после перекодировки'),
            (None, '69,0 %', 'пар «пост — пост» без расхождений при сверке с оригиналом'), (840, ' тыс.', 'слов корпоративного корпуса, на котором держится узус'),
@@ -106,7 +106,7 @@ RU = L(
 EN = L(
     code='en', locale='en_US', name='English', url_suffix='en/',
     ui=dict(back='← webmarka.kz: all research materials', toc='Contents', min='min', more='To the glossary', copy='Copy', copied='Done', eta='About {n} min read', theme='Theme', top='Up'),
-    kicker='Long-read · open toolkit', meta='Updated 16 October 2026 · toolkit v{ver} · GPL-3.0-or-later',
+    kicker='Long-read · open toolkit', meta='Updated 17 October 2026 · toolkit v{ver} · GPL-3.0-or-later',
     cta=('Repository on GitHub', 'Download archive v{ver}', 'Try the magnifier'),
     stats=[(1085, '', 'substituted «ә» in one edition of «Қара сөздер»'), (None, '77–79 %', 'of the words in Yesenberlin recognized after recoding'),
            (None, '69.0 %', 'of «post — post» pairs with no discrepancy against the original'), (840, 'k', 'words in the corporate corpus behind the usage rule'),
@@ -193,7 +193,7 @@ EN = L(
 KK = L(
     code='kk', locale='kk_KZ', name='Қазақша', url_suffix='kk/',
     ui=dict(back='← webmarka.kz: зерттеудің барлық материалы', toc='Мазмұны', min='мин', more='Глоссарийге', copy='Көшіру', copied='Дайын', eta='Оқу — шамамен {n} мин', theme='Тақырып', top='Жоғары'),
-    kicker='Лонгрид · ашық жиынтық', meta='2026 жылғы 16 қазанда жаңартылды · жиынтық v{ver} · GPL-3.0-or-later',
+    kicker='Лонгрид · ашық жиынтық', meta='2026 жылғы 17 қазанда жаңартылды · жиынтық v{ver} · GPL-3.0-or-later',
     cta=('GitHub-тағы репозиторий', 'v{ver} архивін жүктеу', 'Лупаны байқап көру'),
     stats=[(1085, '', '«Қара сөздер» басылымының бірінде ауыстырылған «ә»'), (None, '77–79 %', 'Есенберлин сөздерін сөздік қайта кодтаудан кейін таниды'),
            (None, '69,0 %', 'түпнұсқамен салыстырғанда алшақтығы жоқ «жазба — жазба» жұптары'), (840, ' мың', 'қолданыс негізделген корпоративтік корпустағы сөздер'),

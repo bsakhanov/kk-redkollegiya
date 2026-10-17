@@ -95,7 +95,7 @@ def pipeline_svg(T, A):
             + box(158, 136, 176, 88, "L1", S["L1"]) + box(358, 136, 176, 88, "L2", S["L2"]) + box(558, 136, 176, 88, "L3", S["L3"])
             + box(158, 256, 576, 48, "find", [S["find"]])
             + box(158, 336, 176, 72, "o1", S["o1"]) + box(358, 336, 176, 72, "o2", S["o2"]) + box(558, 336, 176, 72, "o3", S["o3"], True))
-    return (f'<figure class="fig pipe rv"><svg viewBox="0 0 760 420" role="img" aria-label="{E(S["title"])}">{body}</svg>'
+    return (f'<figure class="fig pipe rv"><div class="sc"><svg viewBox="0 0 760 420" role="img" aria-label="{E(S["title"])}">{body}</svg></div>'
             f'<div class="panel" aria-live="polite"></div><figcaption>{E(S["hint"])}</figcaption></figure>')
 
 
@@ -238,7 +238,7 @@ def build(lang):
     alts = "".join(f'<link rel="alternate" hreflang="{c}" href="{BASE + LANGS[c]["url_suffix"]}">' for c in ("ru", "kk", "en")) + f'<link rel="alternate" hreflang="x-default" href="{BASE}">'
     rel = {"ru": {"kk": "kk/", "en": "en/"}, "kk": {"ru": "../", "en": "../en/"}, "en": {"ru": "../", "kk": "../kk/"}}[lang]
     seg = "".join((f'<a href="{rel[c]}" hreflang="{c}" lang="{c}">{LANGS[c]["name"]}</a>' if c != lang else f'<a aria-current="page" lang="{c}">{LANGS[c]["name"]}</a>') for c in ("ru", "kk", "en"))
-    ld = {"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "@id": url + "#article", "headline": title, "inLanguage": lang, "datePublished": "2026-10-13", "dateModified": "2026-10-16",
+    ld = {"@context": "https://schema.org", "@graph": [{"@type": "TechArticle", "@id": url + "#article", "headline": title, "inLanguage": lang, "datePublished": "2026-10-13", "dateModified": "2026-10-17",
           "author": {"@id": "https://webmarka.kz/#person"}, "mainEntityOfPage": url, "image": "https://webmarka.kz/assets/media/2026/kk-redkollegiya-og.jpg",
           "about": {"@type": "SoftwareSourceCode", "name": "kk-redkollegiya", "codeRepository": "https://github.com/bsakhanov/kk-redkollegiya", "license": "https://www.gnu.org/licenses/gpl-3.0.html"}}]}
     lead = "".join(f"<p>{re.sub(r'^<p>|</p>$', '', md(p))}</p>" for p in paras[:2])
@@ -249,7 +249,7 @@ def build(lang):
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- build: kk-redkollegiya longread, набор v{VER}, 2026-10-16 -->
+<!-- build: kk-redkollegiya longread, набор v{VER}, 2026-10-17 -->
 <!-- ссылка «все материалы исследования» уже есть в шапке страницы -->
 <title>{E(T["title_tag"])}</title>
 <meta name="description" content="{E(T["og_desc"])}">

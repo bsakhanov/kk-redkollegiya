@@ -110,3 +110,6 @@ mark sup{font:600 10px var(--mono);color:var(--muted);margin-left:2px}
 .rv{opacity:0;transform:translateY(14px);transition:opacity .6s,transform .6s}.rv.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.rv{opacity:1;transform:none}}
 @media print{.bar-top,.toc,.toc-btn,.pg,.lk,.hero .cta,.code button{display:none!important}.layout{display:block}.rv{opacity:1;transform:none}.fig,.card{box-shadow:none;break-inside:avoid}body{font-size:12pt;color:#000}}
+/* узкий экран: обозреватель узуса — название отдельной строкой над полоской; схема конвейера прокручивается вбок, подписи остаются читаемыми */
+@media(max-width:560px){.ux .row{grid-template-columns:minmax(0,1fr) 52px;gap:4px 10px;padding:8px 6px}.ux .row .nm{grid-column:1/-1;text-align:left}.ux .row .tr{height:12px}}
+.pipe .sc{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -6px;padding:0 6px}.pipe svg{min-width:700px}

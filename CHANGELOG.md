@@ -2,6 +2,11 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.10.3] — 2026-10-17
+
+### Исправлено
+- Лонгрид на телефоне: в обозревателе узуса полоски снова видны (название стоит отдельной строкой над полоской), схема конвейера не сжимается до нечитаемых подписей, а прокручивается вбок.
+
 ## [0.10.2] — 2026-10-16
 
 ### Исправлено
@@ -162,6 +167,8 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.10.3]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.10.2...v0.10.3
+[0.10.2]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.10.1...v0.10.2
 [0.10.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.10.0...v0.10.1
 [0.10.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.9.2...v0.10.0
 [0.9.2]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.9.1...v0.9.2
