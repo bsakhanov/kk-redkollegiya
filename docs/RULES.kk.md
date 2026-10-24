@@ -25,6 +25,20 @@
 | P03 | `quotes` — тік тырнақшалар; абзацтағы жұпталмаған «» тырнақшалары | typography | fix / flag |
 | P04 | `empty_brackets` — бос жақшалар мен тырнақшалар | typography | fix / flag |
 | P05 | `number_affix` — санның жалғауы сызықшасыз жазылған («5ке») | norm | author_choice / suggest |
+| Y01 | `quotes` — түзу және ағылшын тырнақшалары → «ёлочки», ішкілері → „лапки“; жабылмағандары өткізіледі | typography | fix / apply |
+| Y02 | `dash` — сөздер арасындағы дефис, қысқа сызықша немесе `--` → «—» | typography | fix / apply |
+| Y03 | `dash_space` — «—» алдындағы бос орын → ажыратылмайтын | typography | fix / apply |
+| Y04 | `range` — сандық аралық «2020-2025» → «2020–2025» (күндер, телефондар, нөмірлер қозғалмайды) | typography | fix / apply |
+| Y05 | `unit_space` — сан мен өлшем бірлігі арасындағы ажыратылмайтын бос орын («5 млн теңге», «2026 жыл») | typography | fix / apply |
+| Y06 | `abbr` — «т. б.» → «т.б.», «т. с. с.» → «т.с.с.» | typography | fix / apply |
+| Y07 | `ellipsis` — «...» → «…» | typography | fix / apply |
+| Y08 | `spaces` — қос бос орын, таңба алдындағы және жақшадан кейінгі бос орын, үтірден кейін түсіп қалған бос орын | typography | fix / apply |
+| Y09 | `mln` — «млн.», «млрд.» → «млн», «млрд» кіші әріптің алдында | typography | fix / apply |
+| Y10 | `initials` — «Қ. К. Тоқаев» → «Қ.К. Тоқаев», тегінің алдында ажыратылмайтын бос орын | typography | fix / apply |
+| Y11 | `thousands` — разрядтар «1 085» ажыратылмайтын бос орынмен | typography | fix / apply |
+| Y12 | `percent` — «78 %» → «78%» | typography | fix / apply |
+| Y13 | `numero` — «№ 5» → «№5» | typography | fix / apply |
+| Y14 | `degree` — «20 °C» → «20°C» | typography | fix / apply |
 | C01 | `currency` — бір құжатта ақша үшін таңба мен сөз қатар жүр | norm | author_choice / flag |
 | J01 | `placeholders` (ini профилі) — толтырғыштар мен тегтер бастапқы жолмен сәйкес келмейді | parity | blocker / flag |
 | J02 | `missing_key` (ini профилі) — бастапқы файлдың кілті аударылмаған | parity | fix / flag |

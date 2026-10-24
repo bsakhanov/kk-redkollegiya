@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.11.1](https://img.shields.io/badge/version-0.11.1-green.svg)](CHANGELOG.md)
+[![Version 0.12.0](https://img.shields.io/badge/version-0.12.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -29,6 +29,7 @@ For the why and the what in depth, see the [long-read](https://webmarka.kz/resea
 | `tools/kk_usage.py` | terminology policy: "corpus usage first; the international word only where usage is silent" |
 | `tools/kk_attest.py` | attestation: frequency per 100k words across corpus groups, with contexts |
 | `tools/kk_stem.py` | stem veto: is this a correct form of a known stem? (for S01 and `ocr_lm`); the word list is `data/kk_stems.txt` |
+| `tools/kk_typo.py` | typographer: «guillemets», dashes, non-breaking spaces, ranges, digit groups, initials (rules Y01–Y14, [docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md)) |
 | `tests/bench/kaznerd_bench.py` | a bench on the open KazNERD corpus: findings per rule and letter-restoration accuracy ([docs/BENCH.md](docs/BENCH.md)) |
 | `data/`, `docs/longread.en.md`, `docs/USAGE.en.md`, `docs/RULES.en.md`, `tests/` | example glossary and term pairs, a long-read on why and what, user guide, rule reference, self-tests |
 

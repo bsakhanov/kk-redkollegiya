@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.11.1](https://img.shields.io/badge/version-0.11.1-green.svg)](CHANGELOG.md)
+[![Версия 0.12.0](https://img.shields.io/badge/version-0.12.0-green.svg)](CHANGELOG.md)
 
 **Русский** · [English](README.en.md) · [Қазақша](README.kk.md)
 
@@ -31,6 +31,7 @@
 | `tools/kk_usage.py` | политика терминов «узус корпуса; международное слово — только там, где узус молчит» |
 | `tools/kk_attest.py` | засвидетельствованность: частота оборота по группам корпуса на 100 тыс. слов и контексты |
 | `tools/kk_stem.py` | вето по основам: правильная ли это форма известной основы (для S01 и `ocr_lm`); словарь — `data/kk_stems.txt` |
+| `tools/kk_typo.py` | типограф: «ёлочки», тире, неразрывные пробелы, диапазоны, разряды, инициалы (правила Y01–Y14, [docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md)) |
 | `tests/bench/kaznerd_bench.py` | стенд на открытом корпусе KazNERD: находки по правилам и точность восстановления букв ([docs/BENCH.md](docs/BENCH.md)) |
 | `tools/fetch_hunspell_kk.sh` | скачивает словарь hunspell-kk (в репозиторий не входит) |
 | `data/` | глоссарий-пример, пары терминов, списки оборотов, пример групп корпуса |
@@ -163,7 +164,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 ## Дорожная карта
 
 - [ ] LLM-этапы: `meaning-kk` (кальки, порядок слов, управление), `ai-markers-kk`, `norm-kk`, `terms-kk`
-- [ ] скрипт-типограф `typography-kk`
+- [x] типограф `kk_typo` — слой Алтынсарина, правила Y01–Y14 ([docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md))
 - [ ] gold-set на 150–300 предложений с пометкой носителя
 - [ ] подключение морфоанализатора и словаря 2013 года
 - [ ] профили регистра («советская норма», «классический», «официальный», «пресс-релиз»)

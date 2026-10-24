@@ -25,6 +25,20 @@ A finding is a JSON object: `{id, stage, zone, layer, severity, rule, quote, act
 | P03 | `quotes` — straight quotes; unbalanced «» quotes in a paragraph | typography | fix / flag |
 | P04 | `empty_brackets` — empty brackets and quotes | typography | fix / flag |
 | P05 | `number_affix` — a number and an affix without a hyphen («5ке») | norm | author_choice / suggest |
+| Y01 | `quotes` — straight and English quotes → «guillemets», nested → „low-high“; unclosed ones are skipped | typography | fix / apply |
+| Y02 | `dash` — a hyphen, en dash or `--` between words → «—» | typography | fix / apply |
+| Y03 | `dash_space` — a space before «—» → non-breaking | typography | fix / apply |
+| Y04 | `range` — a numeric range «2020-2025» → «2020–2025» (dates, phones, numbers are left alone) | typography | fix / apply |
+| Y05 | `unit_space` — a non-breaking space between a number and a unit («5 млн теңге», «2026 жыл») | typography | fix / apply |
+| Y06 | `abbr` — «т. б.» → «т.б.», «т. с. с.» → «т.с.с.» | typography | fix / apply |
+| Y07 | `ellipsis` — «...» → «…» | typography | fix / apply |
+| Y08 | `spaces` — a double space, a space before a mark or after a bracket, a missing space after a comma | typography | fix / apply |
+| Y09 | `mln` — «млн.», «млрд.» → «млн», «млрд» before a lowercase letter | typography | fix / apply |
+| Y10 | `initials` — «Қ. К. Тоқаев» → «Қ.К. Тоқаев», a non-breaking space before the surname | typography | fix / apply |
+| Y11 | `thousands` — digit groups «1 085» with a non-breaking space | typography | fix / apply |
+| Y12 | `percent` — «78 %» → «78%» | typography | fix / apply |
+| Y13 | `numero` — «№ 5» → «№5» | typography | fix / apply |
+| Y14 | `degree` — «20 °C» → «20°C» | typography | fix / apply |
 | C01 | `currency` — a symbol and a word for money in one document | norm | author_choice / flag |
 | J01 | `placeholders` (ini profile) — placeholders and markup differ from the source string | parity | blocker / flag |
 | J02 | `missing_key` (ini profile) — a key of the source file is not translated | parity | fix / flag |

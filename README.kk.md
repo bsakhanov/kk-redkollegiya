@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.11.1](https://img.shields.io/badge/version-0.11.1-green.svg)](CHANGELOG.md)
+[![Версия 0.12.0](https://img.shields.io/badge/version-0.12.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
@@ -30,6 +30,7 @@
 | `tools/kk_usage.py` | терминдер саясаты: «корпус қолданысы бірінші; халықаралық сөз — қолданыс болмаған жерде ғана» |
 | `tools/kk_attest.py` | сөз тіркестерінің корпус топтарындағы қолданысы: 100 мың сөзге шаққандағы жиілік және контекстер |
 | `tools/kk_stem.py` | негіз бойынша вето: бұл белгілі негіздің дұрыс формасы ма (S01 және `ocr_lm` үшін); сөздік — `data/kk_stems.txt` |
+| `tools/kk_typo.py` | типограф: «ёлочки», сызықша, ажыратылмайтын бос орындар, аралықтар, разрядтар, инициалдар (Y01–Y14 ережелері, [docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md)) |
 | `tests/bench/kaznerd_bench.py` | ашық KazNERD корпусындағы сынақ: ережелер бойынша ескертулер және әріптерді қайтару дәлдігі ([docs/BENCH.md](docs/BENCH.md)) |
 | `tools/fetch_hunspell_kk.sh` | hunspell-kk сөздігін жүктейді (репозиторийге кірмейді) |
 | `data/` | мысал глоссарий, термин жұптары, сөз тіркестерінің тізімі, корпус топтарының мысалы |
@@ -162,7 +163,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 ## Даму жоспары
 
 - [ ] LLM кезеңдері: `meaning-kk` (калькалар, сөз тәртібі, меңгеру), `ai-markers-kk`, `norm-kk`, `terms-kk`
-- [ ] `typography-kk` типограф-скрипті
+- [x] `kk_typo` типографы — Алтынсарин қабаты, Y01–Y14 ережелері ([docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md))
 - [ ] қазақ тілін жетік білетін адам белгілеген 150–300 сөйлемдік gold-set
 - [ ] морфологиялық талдағыш пен 2013 жылғы сөздікті қосу
 - [ ] стиль профильдері («кеңестік норма», «классикалық», «ресми», «пресс-релиз»)

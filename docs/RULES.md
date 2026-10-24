@@ -25,6 +25,20 @@
 | P03 | `quotes` — прямые кавычки; несбалансированные «ёлочки» в абзаце | typography | fix / flag |
 | P04 | `empty_brackets` — пустые скобки и кавычки | typography | fix / flag |
 | P05 | `number_affix` — число и аффикс без дефиса («5ке») | norm | author_choice / suggest |
+| Y01 | `quotes` — прямые и английские кавычки → «ёлочки», вложенные → „лапки“; незакрытые пропускаются | typography | fix / apply |
+| Y02 | `dash` — дефис, короткое тире и `--` между словами → «—» | typography | fix / apply |
+| Y03 | `dash_space` — пробел перед «—» → неразрывный | typography | fix / apply |
+| Y04 | `range` — числовой диапазон «2020-2025» → «2020–2025» (даты, телефоны, номера не трогаются) | typography | fix / apply |
+| Y05 | `unit_space` — неразрывный пробел между числом и единицей («5 млн теңге», «2026 жыл») | typography | fix / apply |
+| Y06 | `abbr` — «т. б.» → «т.б.», «т. с. с.» → «т.с.с.» | typography | fix / apply |
+| Y07 | `ellipsis` — «...» → «…» | typography | fix / apply |
+| Y08 | `spaces` — двойной пробел, пробел перед знаком и после скобки, пропущенный пробел после запятой | typography | fix / apply |
+| Y09 | `mln` — «млн.», «млрд.» → «млн», «млрд» перед строчной буквой | typography | fix / apply |
+| Y10 | `initials` — «Қ. К. Тоқаев» → «Қ.К. Тоқаев», неразрывный пробел перед фамилией | typography | fix / apply |
+| Y11 | `thousands` — разряды «1 085» через неразрывный пробел | typography | fix / apply |
+| Y12 | `percent` — «78 %» → «78%» | typography | fix / apply |
+| Y13 | `numero` — «№ 5» → «№5» | typography | fix / apply |
+| Y14 | `degree` — «20 °C» → «20°C» | typography | fix / apply |
 | C01 | `currency` — символ и слово для денег в одном документе | norm | author_choice / flag |
 | J01 | `placeholders` (профиль ini) — заполнители и разметка не совпадают с исходной строкой | parity | blocker / flag |
 | J02 | `missing_key` (профиль ini) — ключ исходного файла не переведён | parity | fix / flag |
