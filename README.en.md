@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.12.0](https://img.shields.io/badge/version-0.12.0-green.svg)](CHANGELOG.md)
+[![Version 0.12.1](https://img.shields.io/badge/version-0.12.1-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -12,8 +12,8 @@ checks against the Russian original, and a usage-based terminology policy. It is
 but built for Kazakh. The scripts emit findings in the format of redkollegiya's `apply.py` (verbatim quote, replacement,
 severity); disputed cases are left to a reader of Kazakh.
 
-> **Status: 0.x.** The first layer (scripts) is ready. LLM stages (meaning and calques, machine-writing traces, orthography)
-> and a typography script are not written yet; see the [roadmap](#roadmap).
+> **Status: 0.x.** The first layer (scripts, including the typographer `kk_typo`) is ready. LLM stages (meaning and calques, machine-writing traces, orthography)
+> are not written yet; see the [roadmap](#roadmap).
 
 For the why and the what in depth, see the [long-read](https://webmarka.kz/research/kk-redkollegiya/en/) (interactive version; the Markdown text is [docs/longread.en.md](docs/longread.en.md)).
 
@@ -55,7 +55,7 @@ In the Russian Redkollegiya the layers bear the names of those whose word in the
 
 | Layer | Name | Russian counterpart | What exists | Planned |
 | --- | --- | --- | --- | --- |
-| Hygiene and typography | Altynsarin | Milchin | `kk_clean`, `kk_restore`, `kk_lint` (rules H, P01, P03, P04) | a typography script |
+| Hygiene and typography | Altynsarin | Milchin | `kk_clean`, `kk_restore`, `kk_lint` (rules H, P01, P03, P04), `kk_typo` (Y01–Y14) | — |
 | Comparison with the original | Valikhanov | Agranovsky | `kk_parity`, `kk_pairs` | — |
 | Terms | Shakarim | — | `kk_usage`, the glossary, rules T01 and T02 | a `terms-kk` pass with a model |
 | Norm | Baitursynov | Rosenthal | rules S01, P02, P05, C01 | the 2013 dictionary, a `norm-kk` pass |
@@ -125,7 +125,7 @@ LLM stages are unmeasured (no gold set yet). The scripts do not replace a reader
 
 ## Roadmap
 
-LLM stages (`meaning-kk`, `ai-markers-kk`, `norm-kk`, `terms-kk`); a typography script; a gold set of 150–300 sentences reviewed by a native reader;
+LLM stages (`meaning-kk`, `ai-markers-kk`, `norm-kk`, `terms-kk`); a gold set of 150–300 sentences reviewed by a native reader;
 morphology and the 2013 dictionary; register profiles; the full methodology text in `docs/`.
 
 ## Versioning

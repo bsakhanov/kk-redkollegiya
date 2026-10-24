@@ -157,7 +157,7 @@ The first layer, the scripts, is ready; three tasks lie ahead.
 
 **Choosing models.** On the [ISSAI](https://issai.nu.edu.kz/kazllm/) page, from the institute at Nazarbayev University, Kazakh models of two generations are published. KazLLM 1.0 (December 2024) is released under the [CC BY-NC](https://huggingface.co/issai/LLama-3.1-KazLLM-1.0-8B) license, that is, for non-commercial use, with Meta's terms for Llama 3.1 added to it; commercial work needs a separate permission from the authors. The new [Qwen3.5 Kazakh](https://huggingface.co/issai/Qwen3.5-9B-Kazakh) models (4B, 9B and 35B-A3B) are released under Apache 2.0, which allows commercial use as well. On Kazakh knowledge tests they beat the original Qwen3.5: for example, on KazMMLU the 9B model scores 83.1 against 77.0. Neither family has tests for editing text, so only a measurement on the reference set will show whether they suit our task. It has not been made yet.
 
-The other plans are more modest: a typography script, a morphological analyzer, style profiles («Soviet norm», «classical», «official», «press release»).
+The other plans are more modest: a morphological analyzer, style profiles («Soviet norm», «classical», «official», «press release»).
 
 ## How to try it
 

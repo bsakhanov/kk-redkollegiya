@@ -2,6 +2,12 @@
 
 Формат — [Keep a Changelog](https://keepachangelog.com/ru/1.1.0/), версии — [SemVer](https://semver.org/lang/ru/).
 
+## [0.12.1] — 2026-10-24
+
+### Исправлено
+- В трёх README и в лонгриде типограф больше не назван ненаписанным: статус, таблица слоёв и дорожная карта показывают `kk_typo`.
+- Лонгрид: карточка и схема слоя Алтынсарина называют `kk_typo`, хроника доведена до 0.12.0.
+
 ## [0.12.0] — 2026-10-24
 
 ### Добавлено
@@ -193,6 +199,7 @@
 - **0.2.0** — `kk_parity` (числа, даты, шкала, латинские сокращения кириллицей) и `kk_pairs` (параллельный корпус из Telegram, кандидаты в глоссарий); исправлен счётчик NFC в `kk_clean`.
 - **0.1.0** — `kk_clean`, `kk_restore`, `kk_lint`, `kk_attest`, глоссарий и тесты.
 
+[0.12.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.12.0...v0.12.1
 [0.12.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.11.1...v0.12.0
 [0.11.1]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.11.0...v0.11.1
 [0.11.0]: https://github.com/bsakhanov/kk-redkollegiya/compare/v0.10.3...v0.11.0
