@@ -63,10 +63,11 @@ CTRL = "\x00-\x08\x0b\x0e-\x1f"          # без \t \n \f \r
 class Dictionary:
     """Тонкая обёртка над Hunspell (spylls) и проектным белым списком."""
 
-    def __init__(self, prefix=None, whitelist=(), stems=None):
+    def __init__(self, prefix=None, whitelist=(), stems=None, attested=None):
         self._d = None
         self.white = {w.strip().lower() for w in whitelist if w.strip()}
         self._stems = stems                              # None — загрузить data/kk_stems.txt при первом обращении
+        self._att = attested                             # None — загрузить data/kk_attested.txt при первом обращении
         self._infl = {}
         if prefix:
             try:
@@ -101,11 +102,12 @@ class Dictionary:
         lw = w.lower()
         r = self._infl.get(lw)
         if r is None:
+            from kk_stem import ATTESTED_PATH, load_lexicon, strip
             if self._stems is None:
-                from kk_stem import load_lexicon
                 self._stems = load_lexicon()
-            from kk_stem import strip
-            r = bool(strip(lw, lambda s: s in self._stems or self.known(s), 5))
+            if self._att is None:
+                self._att = load_lexicon(ATTESTED_PATH)
+            r = lw in self._att or bool(strip(lw, lambda s: s in self._stems or s in self._att or self.known(s), 5))
             self._infl[lw] = r
         return r
 

@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.11.0](https://img.shields.io/badge/version-0.11.0-green.svg)](CHANGELOG.md)
+[![Version 0.11.1](https://img.shields.io/badge/version-0.11.1-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -141,7 +141,7 @@ Issues and pull requests are welcome, see [CONTRIBUTING.md](CONTRIBUTING.md). Re
 [GNU General Public License v3.0 or later](LICENSE) (`GPL-3.0-or-later`). Third-party components are not bundled:
 the hunspell-kk dictionary (GPL / LGPL / MPL, downloaded separately), `apply.py` from redkollegiya (MIT), spylls (MPL-2.0), PyYAML (MIT).
 
-Data: `data/kk_stems.txt` is a list of stems from Apertium-kaz (GPL-3.0) via pg_kazsearch (LGPL-3.0). The bench downloads the KazNERD corpus (ISSAI, CC BY 4.0); it is not part of the repository.
+Data: `data/kk_stems.txt` is a list of stems from Apertium-kaz (GPL-3.0) via pg_kazsearch (LGPL-3.0); `data/kk_attested.txt` lists words frequent in the training part of KazNERD (CC BY 4.0). The bench downloads the KazNERD corpus (ISSAI, CC BY 4.0); it is not part of the repository.
 
 ## Acknowledgments
 

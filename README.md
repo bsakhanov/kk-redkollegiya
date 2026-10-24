@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.11.0](https://img.shields.io/badge/version-0.11.0-green.svg)](CHANGELOG.md)
+[![Версия 0.11.1](https://img.shields.io/badge/version-0.11.1-green.svg)](CHANGELOG.md)
 
 **Русский** · [English](README.en.md) · [Қазақша](README.kk.md)
 
@@ -185,7 +185,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 [GNU General Public License v3.0 или новее](LICENSE) (`GPL-3.0-or-later`). Сторонние компоненты в набор не входят:
 словарь hunspell-kk (GPL / LGPL / MPL, скачивается отдельно), `apply.py` из redkollegiya (MIT), библиотеки spylls (MPL-2.0) и PyYAML (MIT).
 
-Данные: `data/kk_stems.txt` — список основ из Apertium-kaz (GPL-3.0) через pg_kazsearch (LGPL-3.0). Стенд скачивает корпус KazNERD (ISSAI, CC BY 4.0), в репозиторий он не входит.
+Данные: `data/kk_stems.txt` — список основ из Apertium-kaz (GPL-3.0) через pg_kazsearch (LGPL-3.0); `data/kk_attested.txt` — слова, часто встречающиеся в обучающей части KazNERD (CC BY 4.0). Стенд скачивает корпус KazNERD (ISSAI, CC BY 4.0), в репозиторий он не входит.
 
 ## Благодарности
 

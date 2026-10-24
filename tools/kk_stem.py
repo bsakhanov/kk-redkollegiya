@@ -22,6 +22,7 @@ import sys
 
 _DIR = os.path.dirname(os.path.abspath(__file__))
 LEXICON_PATH = os.path.normpath(os.path.join(_DIR, "..", "data", "kk_stems.txt"))
+ATTESTED_PATH = os.path.normpath(os.path.join(_DIR, "..", "data", "kk_attested.txt"))
 
 BACKV = set("аоұыя")
 FRONTV = set("әөүіе")
@@ -99,9 +100,16 @@ def _cases(w, h, pk):
 def valid_ending(stem, ending, both=False):
     """Можно ли получить «основа + ending» цепочкой [мн.] [притяж.] [падеж] по правилам гармонии и стыков.
 
-    both=True — для заимствований: ряд гласных у них определяют на слух, поэтому допускаем оба."""
+    both=True — для заимствований: ряд гласных у них определяют на слух, поэтому допускаем оба.
+    У основ с группой согласных на «т» («турист») удвоенное «т» не пишут: «туристер», «туристен» вместо «туристтер»."""
     if not ending:
         return False
+    if len(stem) >= 2 and stem[-1] == "т" and stem[-2] not in VOWELS and ending[0] in VOWELS and _valid(stem, "т" + ending, both):
+        return True
+    return _valid(stem, ending, both)
+
+
+def _valid(stem, ending, both):
     for h in (("b", "f") if both else _classes(stem)):
         for pl in ("", _plural(stem, h)):
             if pl and not ending.startswith(pl):
@@ -153,6 +161,8 @@ def _selftest():
     assert strip("адамның", isst, minstem=4) == ("адам", "ның")
     assert strip("сөздердің", isst, minstem=3) == ("сөз", "дердің")
     assert strip("көшеге", isst, minstem=4) == ("көше", "ге")
+    assert strip("туристер", {"турист"}.__contains__) == ("турист", "ер")     # без удвоения «т»
+    assert strip("туристен", {"турист"}.__contains__) == ("турист", "ен")
     print("kk_stem selftest: ok")
 
 

@@ -545,7 +545,7 @@ def _selftest():
             return {"эскиз": ("әскіз", 15.0), "казакстан": ("қазақстан", 15.0),
                     "шығынын": ("шығының", 15.0)}.get(tok.lower(), (None, 0.0))
 
-    dd = Dictionary(None, ["қазақстан", "шығының"], stems={"шығын"})
+    dd = Dictionary(None, ["қазақстан", "шығының"], stems={"шығын"}, attested=set())
     f, _ = lint("Бұл эскиз және казакстан туралы, шығынын көрдік.\n", d=dd, lm=FakeLM(), gl={})
     s1 = [x["quote"] for x in f if x["rule"].startswith("S01")]
     assert len(s1) == 1 and "казакстан" in s1[0], s1          # «шығынын» — форма основы «шығын», вето по основам

@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.11.0](https://img.shields.io/badge/version-0.11.0-green.svg)](CHANGELOG.md)
+[![Версия 0.11.1](https://img.shields.io/badge/version-0.11.1-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
@@ -182,7 +182,7 @@ python3 tools/kk_pairs.py align pairs.jsonl -o term_candidates.tsv
 [GNU General Public License v3.0 немесе одан кейінгі версиясы](LICENSE) (`GPL-3.0-or-later`). Үшінші тарап компоненттері жиынтыққа кірмейді:
 hunspell-kk сөздігі (GPL / LGPL / MPL, бөлек жүктеледі), redkollegiya-дағы `apply.py` (MIT), spylls кітапханасы (MPL-2.0) және PyYAML (MIT).
 
-Деректер: `data/kk_stems.txt` — Apertium-kaz (GPL-3.0) негіздерінің pg_kazsearch (LGPL-3.0) арқылы алынған тізімі. Сынақ KazNERD корпусын (ISSAI, CC BY 4.0) жүктейді, ол репозиторийге кірмейді.
+Деректер: `data/kk_stems.txt` — Apertium-kaz (GPL-3.0) негіздерінің pg_kazsearch (LGPL-3.0) арқылы алынған тізімі; `data/kk_attested.txt` — KazNERD оқу бөлігінде жиі кездесетін сөздер (CC BY 4.0). Сынақ KazNERD корпусын (ISSAI, CC BY 4.0) жүктейді, ол репозиторийге кірмейді.
 
 ## Алғыс
 
