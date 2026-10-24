@@ -50,6 +50,7 @@ import unicodedata
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from kk_clean import Dictionary, Journal, fix_homoglyphs, is_roman_or_it, legacy_score  # noqa: E402
+from kk_stem import valid_ending  # noqa: E402
 
 CYRL = "А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі"
 KZSP = "әғқңөұүһіӘҒҚҢӨҰҮҺІ"
@@ -233,6 +234,24 @@ def _in_name(t, s, e):
     return False
 
 
+_DERIV = ("лау", "леу", "дау", "деу", "тау", "теу", "лап", "леп", "дап", "деп", "тап", "теп", "ландыр", "лендір",
+          "дандыр", "дендір", "лық", "лік", "дық", "дік", "тық", "тік", "шы", "ші", "лы", "лі")
+
+
+def _same_word(bad, cont, loan):
+    """Продолжение после запрещённой формы — это её словоизменение (а у заимствований и словообразование)?
+
+    Иначе перед нами другое слово: «проектор» не форма «проект», «сандықтау» не форма «сандық»."""
+    b, c = bad.lower(), cont.lower()
+    if valid_ending(b, c, both=loan):
+        return True
+    if loan:
+        for dv in _DERIV:
+            if c.startswith(dv) and (c == dv or valid_ending(b + dv, c[len(dv):], both=True)):
+                return True
+    return False
+
+
 def d_glossary(doc, gl, out):
     t = doc.text
     L = rf"[{CYRL}A-Za-z]"
@@ -259,11 +278,17 @@ def d_glossary(doc, gl, out):
             if bad in abbr_ru:                       # эти формы уже ловит T01
                 continue
             r = re.compile(rf"(?<!{L})({re.escape(bad)})({L}*)", re.I)
+            ru0 = (e.get("ru") or "").lower()
+            loan = bool(re.search("[цщъьфвчэёюя]", bad.lower())) or (len(ru0) >= 5 and bad.lower()[:5] == ru0[:5])
             for m in r.finditer(t):
                 if not doc.ok(m.start(), m.end()):
                     continue
                 if any(a <= m.start() < b for a, b in ex_spans) or _in_name(t, m.start(), m.end()):
                     continue
+                if m.group(2) and not _same_word(bad, m.group(2), loan):    # «проектор», «сандықтау» — другие слова
+                    continue
+                if m.group(1)[:1].isupper() and not bad[:1].isupper() and not _sent_start(t, m.start()):
+                    continue                                              # прописная внутри предложения: имя собственное
                 kk = e.get("kk")
                 if not kk:
                     out.append(Span(m.start(), m.end(), None, "T02 glossary_avoid", "terms", "fix", "flag",
@@ -393,6 +418,8 @@ def d_restore(doc, d, lm, gl_words, auto, out, unknown_log, names=False):
         unknown_log[tok.lower()] += 1
         if lm is None:
             continue
+        if getattr(d, "inflected_ok", None) and d.inflected_ok(tok):      # правильная форма известной основы
+            continue
         cand, delta = lm.suggest(tok, 2.0)
         if cand and d.known(cand):
             if auto and delta >= 6.0:
@@ -515,12 +542,21 @@ def _selftest():
 
     class FakeLM:
         def suggest(self, tok, margin=2.0):
-            return {"эскиз": ("әскіз", 15.0), "казакстан": ("қазақстан", 15.0)}.get(tok.lower(), (None, 0.0))
+            return {"эскиз": ("әскіз", 15.0), "казакстан": ("қазақстан", 15.0),
+                    "шығынын": ("шығының", 15.0)}.get(tok.lower(), (None, 0.0))
 
-    dd = Dictionary(None, ["қазақстан"])
-    f, _ = lint("Бұл эскиз және казакстан туралы.\n", d=dd, lm=FakeLM(), gl={})
+    dd = Dictionary(None, ["қазақстан", "шығының"], stems={"шығын"})
+    f, _ = lint("Бұл эскиз және казакстан туралы, шығынын көрдік.\n", d=dd, lm=FakeLM(), gl={})
     s1 = [x["quote"] for x in f if x["rule"].startswith("S01")]
-    assert s1 == ["казакстан"], s1
+    assert len(s1) == 1 and "казакстан" in s1[0], s1          # «шығынын» — форма основы «шығын», вето по основам
+    # T02: продолжение должно быть словоизменением запрещённой формы, иначе это другое слово
+    g3 = {"entries": [{"ru": "цифровой", "kk": "цифрлық", "avoid": ["сандық"], "avoid_action": "suggest"},
+                      {"ru": "проект", "kk": "жоба", "avoid": ["проект"], "avoid_action": "suggest"}]}
+
+    def t02(text):
+        return sum(1 for x in lint(text + "\n", gl=g3)[0] if x["rule"].startswith("T02"))
+    assert [t02("Жаңа сандықтау әдісі."), t02("Сандықтау ауылы."), t02("Проектор алдық.")] == [0, 0, 0]
+    assert [t02("Сандықтың мәні."), t02("Бұл сандық формат."), t02("Проектімізді жасадық.")] == [1, 1, 1]
     f, _ = lint("таӊ\u200bтүс\n", gl={})
     r4 = {x["rule"].split()[0] for x in f}
     assert {"H02", "H04"} <= r4, r4

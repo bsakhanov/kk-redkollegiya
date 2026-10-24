@@ -5,6 +5,7 @@
 set -e
 here="$(cd "$(dirname "$0")/.." && pwd)"
 python3 "$here/tools/kk_clean.py" --selftest
+python3 "$here/tools/kk_stem.py" --selftest
 python3 "$here/tools/kk_lint.py" --selftest
 python3 "$here/tools/kk_parity.py" --selftest
 python3 "$here/tools/kk_usage.py" --selftest

@@ -63,9 +63,11 @@ CTRL = "\x00-\x08\x0b\x0e-\x1f"          # без \t \n \f \r
 class Dictionary:
     """Тонкая обёртка над Hunspell (spylls) и проектным белым списком."""
 
-    def __init__(self, prefix=None, whitelist=()):
+    def __init__(self, prefix=None, whitelist=(), stems=None):
         self._d = None
         self.white = {w.strip().lower() for w in whitelist if w.strip()}
+        self._stems = stems                              # None — загрузить data/kk_stems.txt при первом обращении
+        self._infl = {}
         if prefix:
             try:
                 from spylls.hunspell import Dictionary as HS
@@ -90,6 +92,21 @@ class Dictionary:
             except Exception:                            # noqa: BLE001
                 r = False
         self._cache[w] = r
+        return r
+
+    def inflected_ok(self, w):
+        """Слово — правильная форма известной основы (основа от пяти букв, словарь основ или Hunspell).
+
+        Только вето для подсказчиков восстановления букв: слову, у которого есть такой разбор, чужие буквы не подставляем."""
+        lw = w.lower()
+        r = self._infl.get(lw)
+        if r is None:
+            if self._stems is None:
+                from kk_stem import load_lexicon
+                self._stems = load_lexicon()
+            from kk_stem import strip
+            r = bool(strip(lw, lambda s: s in self._stems or self.known(s), 5))
+            self._infl[lw] = r
         return r
 
 
@@ -427,6 +444,8 @@ def fix_ocr_lm(text, d, lm, J, margin=2.0):
         w = m.group(0)
         low = w.lower()
         if len(low) < 3 or d is None or not d.ok or d.known(w) or d.known(low):
+            return w
+        if getattr(d, "inflected_ok", None) and d.inflected_ok(low):     # правильная форма известной основы: не трогаем
             return w
         fin = lm.best(low)
         base = lm.score(low)

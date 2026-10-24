@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.10.3](https://img.shields.io/badge/version-0.10.3-green.svg)](CHANGELOG.md)
+[![Version 0.11.0](https://img.shields.io/badge/version-0.11.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -28,6 +28,8 @@ For the why and the what in depth, see the [long-read](https://webmarka.kz/resea
 | `tools/kk_pairs.py` | builds a parallel corpus from a bilingual Telegram export; bilingual glossary candidates; translation consistency with the glossary |
 | `tools/kk_usage.py` | terminology policy: "corpus usage first; the international word only where usage is silent" |
 | `tools/kk_attest.py` | attestation: frequency per 100k words across corpus groups, with contexts |
+| `tools/kk_stem.py` | stem veto: is this a correct form of a known stem? (for S01 and `ocr_lm`); the word list is `data/kk_stems.txt` |
+| `tests/bench/kaznerd_bench.py` | a bench on the open KazNERD corpus: findings per rule and letter-restoration accuracy ([docs/BENCH.md](docs/BENCH.md)) |
 | `data/`, `docs/longread.en.md`, `docs/USAGE.en.md`, `docs/RULES.en.md`, `tests/` | example glossary and term pairs, a long-read on why and what, user guide, rule reference, self-tests |
 
 ## How it works
@@ -138,6 +140,8 @@ Issues and pull requests are welcome, see [CONTRIBUTING.md](CONTRIBUTING.md). Re
 
 [GNU General Public License v3.0 or later](LICENSE) (`GPL-3.0-or-later`). Third-party components are not bundled:
 the hunspell-kk dictionary (GPL / LGPL / MPL, downloaded separately), `apply.py` from redkollegiya (MIT), spylls (MPL-2.0), PyYAML (MIT).
+
+Data: `data/kk_stems.txt` is a list of stems from Apertium-kaz (GPL-3.0) via pg_kazsearch (LGPL-3.0). The bench downloads the KazNERD corpus (ISSAI, CC BY 4.0); it is not part of the repository.
 
 ## Acknowledgments
 
