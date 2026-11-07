@@ -31,7 +31,7 @@ import json
 import re
 import sys
 
-NUM = re.compile(r"(?<![\w])\d[\d\u00a0\u202f ]*(?:[.,]\d+)?(?![\w])|\d")
+NUM = re.compile(r"(?<![\w])\d[\d\u00a0\u202f\u2009\u2007 ]*(?:[.,]\d+)?(?![\w])|\d")
 LATIN = re.compile(r"(?<![A-Za-z0-9])[A-Za-z][A-Za-z0-9.+&-]{1,}")
 CYR = "А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі"
 # латинские сокращения (IPO, KPI) в казахской версии часто набраны кириллическими двойниками («ІРО»)
@@ -48,9 +48,19 @@ _DATE = re.compile(r"(?<![\d.])(\d{1,2})\.(\d{1,2})(?:\.(\d{2,4}))?(?![\d])")
 
 
 def norm_num(s):
-    s = s.replace("\u00a0", "").replace("\u202f", "").replace(" ", "")
+    s = s.replace("\u00a0", "").replace("\u202f", "").replace("\u2009", "").replace("\u2007", "").replace(" ", "")
     s = s.replace(",", ".")
     return s.rstrip(".")
+
+
+def _grouped(parts):
+    """Это одно число с разрядами («1 234,5»)? После первой группы идут ровно по три цифры, а дробная часть бывает только у последней.
+
+    Раньше длина последней группы считалась вместе с дробью («234,5» — пять знаков), и «1 234,5» разваливалось на «1» и «234,5»."""
+    for i, p in enumerate(parts[1:], 1):
+        if not re.fullmatch(r"\d{3}(?:[.,]\d+)?" if i == len(parts) - 1 else r"\d{3}", p):
+            return False
+    return True
 
 
 def _fmt(x):
@@ -90,8 +100,8 @@ def numbers(par):
     par = _DATE.sub(date, par)
     for m in NUM.finditer(par):
         raw = m.group(0).strip()
-        parts = re.split(r"[\u00a0\u202f ]+", raw)
-        vals = [norm_num(raw)] if not (len(parts) > 1 and not all(len(p) == 3 for p in parts[1:])) else [norm_num(p) for p in parts]
+        parts = re.split(r"[\u00a0\u202f\u2009\u2007 ]+", raw)
+        vals = [norm_num(raw)] if _grouped(parts) else [norm_num(p) for p in parts]
         if len(vals) == 1:
             tail = re.sub(r"^-[а-яa-z]{1,3}(?=[\s.])", "", par[m.end():m.end() + 18])
             for rx, k in _SCALE:
@@ -184,6 +194,14 @@ def _selftest():
     rules = {x["rule"].split()[0] for x in f}
     assert "PR02" in rules and "PR05" in rules, f
     assert not any("1234.5" in x["note"] or "1 234,5" in x["note"] for x in f), f
+    # разряды и дробь: «1 234,5 тыс.» и «1234,5 мың» — одно число (раньше: «1» и «234,5»)
+    assert numbers("1 234,5 тыс. тонн") == numbers("1234,5 мың тонна") == ["1234500"]
+    assert numbers("1\u00a0234,5 тыс.") == numbers("1\u202f234,5 мың") == ["1234500"]
+    assert numbers("12 345,67") == numbers("12345,67") == ["12345.67"]
+    assert numbers("1 234 567,8 млн") == numbers("1234567,8 млн") and len(numbers("1 234 567,8 млн")) == 1
+    assert numbers("1 085 тонн") == numbers("1\u00a0085 тонна") == ["1085"] and numbers("1 234,5 и 6 7") == ["1234.5", "6", "7"]
+    f = compare("В 2026 году выпущено 1 234,5 тыс. тонн.", "2026 жылы 1234,5 мың тонна шығарылды.")
+    assert f == [], f
     f = compare("Один.\n\nДва 5.", "Бір.")
     assert any(x["rule"].startswith("PR01") for x in f)
     print("kk_parity selftest: ok")
