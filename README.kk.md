@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.13.1](https://img.shields.io/badge/version-0.13.1-green.svg)](CHANGELOG.md)
+[![Версия 0.14.0](https://img.shields.io/badge/version-0.14.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · [English](README.en.md) · **Қазақша**
 
@@ -15,6 +15,7 @@
 
 > **Күйі: 0.x.** Бірінші қабат — скрипттер, соның ішінде `kk_typo` типографы — дайын. LLM кезеңдері (мағына мен калькалар, машиналық мәтіннің белгілері, емле) әлі жазылған жоқ,
 > [даму жоспарын](#даму-жоспары) қараңыз.
+> Әріптерді қайтару (S01) өз корпусыңызсыз да жұмыс істейді: KazNERD ашық моделінде, [docs/USAGE.kk.md](docs/USAGE.kk.md) қараңыз.
 
 Неге қажет екені және не екені туралы толығырақ — [лонгридте](https://webmarka.kz/research/kk-redkollegiya/kk/) (интерактивті нұсқа; Markdown мәтіні — [docs/longread.kk.md](docs/longread.kk.md)).
 
@@ -33,6 +34,7 @@
 | `tools/kk_typo.py` | типограф: «ёлочки», сызықша, ажыратылмайтын бос орындар, аралықтар, разрядтар, инициалдар (Y01–Y14 ережелері, [docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md)) |
 | `tests/bench/kaznerd_bench.py` | ашық KazNERD корпусындағы сынақ: ережелер бойынша ескертулер және әріптерді қайтару дәлдігі ([docs/BENCH.md](docs/BENCH.md)) |
 | `tests/bench/goldset_sample.py` | gold-set таңдамасы: орыс түпнұсқасы бар сөйлемдер, страталар, белгілеу кестесі ([docs/GOLDSET.md](docs/GOLDSET.md)) |
+| `tests/bench/train_kaznerd.py` | KazNERD-тен ашық әріп моделі мен формалар тізімі: өз корпусыңызсыз және Hunspell-сіз әріптерді қайтару (S01) ([docs/USAGE.kk.md](docs/USAGE.kk.md)) |
 | `tools/fetch_hunspell_kk.sh` | hunspell-kk сөздігін жүктейді (репозиторийге кірмейді) |
 | `data/` | мысал глоссарий, термин жұптары, сөз тіркестерінің тізімі, корпус топтарының мысалы |
 | `docs/longread.kk.md` | лонгрид: жиынтық неге қажет, кімге арналған және қалай құрылған |

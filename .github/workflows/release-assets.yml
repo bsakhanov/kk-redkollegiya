@@ -5,6 +5,7 @@
 #   · при публикации релиза — для его тега;
 #   · при правке этого файла в main — для всех существующих тегов v* (однократная доводка прежних релизов);
 #   · вручную (Actions → release-assets → Run workflow) — для указанного тега или, если поле пустое, для всех.
+# Для тегов, где есть tests/bench/train_kaznerd.py, прикладывает и открытую модель букв lm-kaznerd.json.gz с контрольной суммой.
 name: release-assets
 
 on:
@@ -54,6 +55,14 @@ jobs:
             if gh release view "$tag" >/dev/null 2>&1; then
               gh release upload "$tag" "$dir/kk-redkollegiya-$ver.zip" "$dir/kk-redkollegiya-$ver.zip.sha256" --clobber
               echo "приложено к $tag"
+              if git cat-file -e "$tag:tests/bench/train_kaznerd.py" 2>/dev/null; then
+                mkdir -p "$dir/src" "$dir/model"
+                git archive "$tag" tests tools data | tar -x -C "$dir/src"
+                python3 "$dir/src/tests/bench/train_kaznerd.py" --out-dir "$dir/model" --cache "$dir/cache"
+                (cd "$dir/model" && sha256sum lm-kaznerd.json.gz > lm-kaznerd.json.gz.sha256)
+                gh release upload "$tag" "$dir/model/lm-kaznerd.json.gz" "$dir/model/lm-kaznerd.json.gz.sha256" --clobber
+                echo "модель приложена к $tag"
+              fi
             else
               echo "у $tag нет релиза: пропуск"
             fi

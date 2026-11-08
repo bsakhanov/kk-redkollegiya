@@ -63,12 +63,19 @@ CTRL = "\x00-\x08\x0b\x0e-\x1f"          # без \t \n \f \r
 class Dictionary:
     """Тонкая обёртка над Hunspell (spylls) и проектным белым списком."""
 
-    def __init__(self, prefix=None, whitelist=(), stems=None, attested=None):
+    def __init__(self, prefix=None, whitelist=(), stems=None, attested=None, forms=None):
         self._d = None
         self.white = {w.strip().lower() for w in whitelist if w.strip()}
         self._stems = stems                              # None — загрузить data/kk_stems.txt при первом обращении
         self._att = attested                             # None — загрузить data/kk_attested.txt при первом обращении
         self._infl = {}
+        self._forms = None                               # открытый словарь: список форм (путь или набор) вместо Hunspell
+        if forms:
+            from kk_stem import ATTESTED_PATH, load_lexicon
+            fs = load_lexicon(forms) if isinstance(forms, str) else {w.lower() for w in forms}
+            if self._att is None:
+                self._att = load_lexicon(ATTESTED_PATH)
+            self._forms = fs | self._att
         if prefix:
             try:
                 from spylls.hunspell import Dictionary as HS
@@ -79,14 +86,14 @@ class Dictionary:
 
     @property
     def ok(self):
-        return self._d is not None or bool(self.white)
+        return self._d is not None or bool(self.white) or bool(self._forms)
 
     def known(self, w):
         r = self._cache.get(w)
         if r is not None:
             return r
         lw = w.lower()
-        r = lw in self.white
+        r = lw in self.white or (self._forms is not None and lw in self._forms)
         if not r and self._d is not None:
             try:
                 r = bool(self._d.lookup(w) or self._d.lookup(lw) or self._d.lookup(w.capitalize()))

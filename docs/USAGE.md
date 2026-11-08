@@ -182,3 +182,16 @@ python3 tools/kk_pairs.py consistency pairs.jsonl --glossary data/glossary.yaml 
 | текст в другой кодировке, не UTF-8 | перекодируйте: `iconv -f cp1251 -t utf-8 in.txt > out.txt` |
 
 Ошибки и пожелания — в [Issues](https://github.com/bsakhanov/kk-redkollegiya/issues).
+
+## Восстановление букв без своего корпуса: три команды
+
+```
+python3 tests/bench/train_kaznerd.py --out-dir open-model          # или скачать lm-kaznerd.json.gz из релиза
+python3 tools/kk_lint.py текст.md --forms data/kk_forms_kaznerd.txt --lm open-model/lm-kaznerd.json.gz --only S01
+python3 tools/kk_restore.py word --lm open-model/lm-kaznerd.json.gz казакстан
+```
+
+Первая команда обучает модель на открытом корпусе KazNERD (несколько секунд), вторая ищет в тексте слова с потерянными казахскими буквами
+без Hunspell, третья показывает варианты для одного слова. Подсказки остаются предложениями (`author_choice / suggest`); `--auto-restore` с открытой
+настройкой включать не стоит. Список форм знает новостную лексику, для отраслевых текстов добавьте Hunspell (`--dict`) или свой белый список
+(`--whitelist`). Измерения — в [BENCH.md](BENCH.md).

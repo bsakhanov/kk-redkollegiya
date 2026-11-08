@@ -180,3 +180,16 @@ python3 tools/kk_pairs.py consistency pairs.jsonl --glossary data/glossary.yaml 
 | мәтін UTF-8 емес | қайта кодтаңыз: `iconv -f cp1251 -t utf-8 in.txt > out.txt` |
 
 Қателер мен тілектер — [Issues](https://github.com/bsakhanov/kk-redkollegiya/issues) бөлімінде.
+
+## Өз корпусыңызсыз әріптерді қайтару: үш команда
+
+```
+python3 tests/bench/train_kaznerd.py --out-dir open-model          # немесе релизден lm-kaznerd.json.gz жүктеңіз
+python3 tools/kk_lint.py мәтін.md --forms data/kk_forms_kaznerd.txt --lm open-model/lm-kaznerd.json.gz --only S01
+python3 tools/kk_restore.py word --lm open-model/lm-kaznerd.json.gz казакстан
+```
+
+Бірінші команда ашық KazNERD корпусында модельді оқытады (бірнеше секунд), екіншісі Hunspell-сіз қазақ әріптері түсіп қалған сөздерді іздейді,
+үшіншісі жеке сөздің нұсқаларын көрсетеді. Ұсыныстар ұсыныс күйінде қалады (`author_choice / suggest`); ашық баптаумен `--auto-restore` қосуға болмайды.
+Формалар тізімі жаңалық лексикасын біледі; салалық мәтіндерге Hunspell (`--dict`) немесе өз ақ тізіміңізді (`--whitelist`) қосыңыз.
+Өлшемдер — [BENCH.md](BENCH.md) ішінде.

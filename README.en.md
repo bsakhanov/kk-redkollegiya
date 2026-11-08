@@ -2,7 +2,7 @@
 
 [![License: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Version 0.13.1](https://img.shields.io/badge/version-0.13.1-green.svg)](CHANGELOG.md)
+[![Version 0.14.0](https://img.shields.io/badge/version-0.14.0-green.svg)](CHANGELOG.md)
 
 [Русский](README.md) · **English** · [Қазақша](README.kk.md)
 
@@ -14,6 +14,7 @@ severity); disputed cases are left to a reader of Kazakh.
 
 > **Status: 0.x.** The first layer (scripts, including the typographer `kk_typo`) is ready. LLM stages (meaning and calques, machine-writing traces, orthography)
 > are not written yet; see the [roadmap](#roadmap).
+> Letter restoration (S01) also works without your own corpus: on the open KazNERD model, see [docs/USAGE.en.md](docs/USAGE.en.md).
 
 For the why and the what in depth, see the [long-read](https://webmarka.kz/research/kk-redkollegiya/en/) (interactive version; the Markdown text is [docs/longread.en.md](docs/longread.en.md)).
 
@@ -32,6 +33,7 @@ For the why and the what in depth, see the [long-read](https://webmarka.kz/resea
 | `tools/kk_typo.py` | typographer: «guillemets», dashes, non-breaking spaces, ranges, digit groups, initials (rules Y01–Y14, [docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md)) |
 | `tests/bench/kaznerd_bench.py` | a bench on the open KazNERD corpus: findings per rule and letter-restoration accuracy ([docs/BENCH.md](docs/BENCH.md)) |
 | `tests/bench/goldset_sample.py` | a gold-set sample: sentences with a Russian original, strata, an annotation sheet ([docs/GOLDSET.md](docs/GOLDSET.md)) |
+| `tests/bench/train_kaznerd.py` | an open letter model and a list of forms from KazNERD: letter restoration (S01) without your own corpus and without Hunspell ([docs/USAGE.en.md](docs/USAGE.en.md)) |
 | `data/`, `docs/longread.en.md`, `docs/USAGE.en.md`, `docs/RULES.en.md`, `tests/` | example glossary and term pairs, a long-read on why and what, user guide, rule reference, self-tests |
 
 ## How it works

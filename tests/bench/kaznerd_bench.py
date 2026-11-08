@@ -17,6 +17,7 @@ import argparse
 import collections
 import json
 import os
+import random
 import re
 import subprocess
 import sys
@@ -55,10 +56,49 @@ def detok(toks):
     return re.sub(r"([(«])\s+", r"\1", s)
 
 
+_STRIP = str.maketrans({"ә": "а", "ғ": "г", "қ": "к", "ң": "н", "ө": "о", "ұ": "у", "ү": "у", "і": "и", "һ": "х",
+                        "Ә": "А", "Ғ": "Г", "Қ": "К", "Ң": "Н", "Ө": "О", "Ұ": "У", "Ү": "У", "І": "И", "Һ": "Х"})
+_CYR = "А-Яа-яЁёӘәҒғҚқҢңӨөҰұҮүҺһІі"
+
+
+def strip_task(sents, a):
+    """Обратная задача: у слов в N предложениях сняты казахские буквы; сколько подсказок S01 вернули исходное слово."""
+    pick = random.Random(a.seed).sample(sents, min(a.strip, len(sents)))
+    corr = [s.translate(_STRIP) for s in pick]
+    want, changed = collections.defaultdict(set), 0
+    for o, c in zip(pick, corr):
+        for x, y in zip(o.split(), c.split()):
+            x2, y2 = re.sub(rf"[^{_CYR}]", "", x).lower(), re.sub(rf"[^{_CYR}]", "", y).lower()
+            if x2 != y2 and len(x2) >= 3:
+                want[y2].add(x2)
+                changed += 1
+    tmp = tempfile.mkdtemp()
+    src, js = os.path.join(tmp, "strip.txt"), os.path.join(tmp, "f.json")
+    open(src, "w", encoding="utf-8").write("\n".join(corr) + "\n")
+    cmd = [sys.executable, os.path.join(ROOT, "tools", "kk_lint.py"), src, "--glossary", a.glossary, "--only", "S01", "--json", js]
+    for flag, val in (("--dict", a.dict), ("--lm", a.lm), ("--forms", a.forms)):
+        if val:
+            cmd += [flag, val]
+    subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
+    f = json.load(open(js, encoding="utf-8"))["findings"]
+    ok = 0
+    for x in f:
+        for q, e in zip(x["quote"].split(), (x.get("edit") or "").split()):
+            if q != e:
+                q2, e2 = re.sub(rf"[^{_CYR}]", "", q).lower(), re.sub(rf"[^{_CYR}]", "", e).lower()
+                ok += e2 in want.get(q2, ())
+                break
+    return {"предложений": len(pick), "слов со снятыми буквами": changed, "подсказок S01": len(f), "верных": ok,
+            "доля верных": round(100 * ok / max(len(f), 1), 1), "полнота": round(100 * ok / max(changed, 1), 1)}
+
+
 def main(argv=None):
     ap = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     ap.add_argument("--dict", help="префикс словаря Hunspell (без .dic/.aff)")
     ap.add_argument("--lm", help="модель букв (kk_restore train); без неё S01 и точность восстановления не считаются")
+    ap.add_argument("--forms", help="список форм (data/kk_forms_kaznerd.txt): открытый словарь вместо Hunspell")
+    ap.add_argument("--strip", type=int, default=0, help="обратная задача: в N предложениях снять казахские буквы и посчитать подсказки S01")
+    ap.add_argument("--seed", type=int, default=7, help="зерно выборки предложений для --strip")
     ap.add_argument("--glossary", default=os.path.join(ROOT, "data", "glossary.yaml"))
     ap.add_argument("--parts", nargs="+", default=["test", "valid"])
     ap.add_argument("--cache", default=os.path.expanduser("~/.cache/kk-redkollegiya/kaznerd"))
@@ -77,6 +117,8 @@ def main(argv=None):
         cmd += ["--dict", a.dict]
     if a.lm:
         cmd += ["--lm", a.lm]
+    if a.forms:
+        cmd += ["--forms", a.forms]
     subprocess.run(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL, check=False)
     f = json.load(open(js, encoding="utf-8"))["findings"]
     by = collections.Counter(x["rule"].split()[0] for x in f)
@@ -90,6 +132,8 @@ def main(argv=None):
         r = subprocess.run([sys.executable, os.path.join(ROOT, "tools", "kk_restore.py"), "eval", "--lm", a.lm, "--test", src,
                             "--sample", str(a.sample)], capture_output=True, text=True)
         rep["восстановление букв"] = [l.strip() for l in r.stdout.split("\n") if l.strip()]
+    if a.strip:
+        rep["обратная задача"] = strip_task(sents, a)
     print(json.dumps(rep, ensure_ascii=False, indent=2))
     if a.out:
         json.dump(rep, open(a.out, "w", encoding="utf-8"), ensure_ascii=False, indent=2)

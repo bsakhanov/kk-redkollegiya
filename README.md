@@ -2,7 +2,7 @@
 
 [![Лицензия: GPL-3.0-or-later](https://img.shields.io/badge/license-GPL--3.0--or--later-blue.svg)](LICENSE)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8%2B-blue.svg)](requirements.txt)
-[![Версия 0.13.1](https://img.shields.io/badge/version-0.13.1-green.svg)](CHANGELOG.md)
+[![Версия 0.14.0](https://img.shields.io/badge/version-0.14.0-green.svg)](CHANGELOG.md)
 
 **Русский** · [English](README.en.md) · [Қазақша](README.kk.md)
 
@@ -16,6 +16,7 @@
 
 > **Статус: 0.x.** Готов первый слой — скрипты, в том числе типограф `kk_typo`. LLM-этапы (смысл и кальки, следы машинного письма, орфография)
 > ещё не написаны, см. [дорожную карту](#дорожная-карта).
+> Восстановление букв (S01) работает и без своего корпуса: на открытой модели из KazNERD, см. [docs/USAGE.md](docs/USAGE.md).
 
 Подробнее о том, зачем это нужно и что это такое, — в [лонгриде](https://webmarka.kz/research/kk-redkollegiya/) (интерактивная версия; текст в Markdown — [docs/longread.md](docs/longread.md)).
 
@@ -34,6 +35,7 @@
 | `tools/kk_typo.py` | типограф: «ёлочки», тире, неразрывные пробелы, диапазоны, разряды, инициалы (правила Y01–Y14, [docs/TYPOGRAPHY.md](docs/TYPOGRAPHY.md)) |
 | `tests/bench/kaznerd_bench.py` | стенд на открытом корпусе KazNERD: находки по правилам и точность восстановления букв ([docs/BENCH.md](docs/BENCH.md)) |
 | `tests/bench/goldset_sample.py` | выборка для gold-set: предложения с русским оригиналом, страты, таблица разметки ([docs/GOLDSET.md](docs/GOLDSET.md)) |
+| `tests/bench/train_kaznerd.py` | открытая модель букв и список форм из KazNERD: восстановление букв (S01) без своего корпуса и без Hunspell ([docs/USAGE.md](docs/USAGE.md)) |
 | `tools/fetch_hunspell_kk.sh` | скачивает словарь hunspell-kk (в репозиторий не входит) |
 | `data/` | глоссарий-пример, пары терминов, списки оборотов, пример групп корпуса |
 | `docs/longread.md` | лонгрид: зачем нужен набор, для кого он и как устроен (также [English](docs/longread.en.md) и [Қазақша](docs/longread.kk.md)) |

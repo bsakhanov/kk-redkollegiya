@@ -557,6 +557,12 @@ def _selftest():
         return sum(1 for x in lint(text + "\n", gl=g3)[0] if x["rule"].startswith("T02"))
     assert [t02("Жаңа сандықтау әдісі."), t02("Сандықтау ауылы."), t02("Проектор алдық.")] == [0, 0, 0]
     assert [t02("Сандықтың мәні."), t02("Бұл сандық формат."), t02("Проектімізді жасадық.")] == [1, 1, 1]
+    # открытый словарь: S01 работает и без Hunspell, по списку форм
+    df = Dictionary(None, (), stems=set(), attested=set(), forms={"қазақстан", "үлкен"})
+    assert df.ok and df.known("Қазақстан") and not df.known("казакстан")
+    f, _ = lint("Казакстан үлкен ел. Қазақстан үлкен ел.\n", d=df, lm=FakeLM(), gl={})
+    s2 = [x["quote"] for x in f if x["rule"].startswith("S01")]
+    assert len(s2) == 1 and "Казакстан" in s2[0], s2
     f, _ = lint("таӊ\u200bтүс\n", gl={})
     r4 = {x["rule"].split()[0] for x in f}
     assert {"H02", "H04"} <= r4, r4
@@ -571,6 +577,7 @@ def main(argv=None):
     ap.add_argument("--profile", choices=["prose", "ini"], default="prose")
     ap.add_argument("--source", help="исходный ini (en-GB/ru-RU) для сверки заполнителей")
     ap.add_argument("--dict", help="префикс словаря Hunspell")
+    ap.add_argument("--forms", help="список форм (data/kk_forms_kaznerd.txt): открытый словарь вместо Hunspell")
     ap.add_argument("--whitelist", help="слова проекта, по слову в строке")
     ap.add_argument("--glossary", help="glossary.yaml")
     ap.add_argument("--lm", help="модель kk_restore (lm.json.gz)")
@@ -596,7 +603,7 @@ def main(argv=None):
     gl = _load_glossary(a.glossary)
     for e in gl.get("entries", []):
         white += re.findall(rf"[{CYRL}]+", e.get("kk", "") or "")
-    d = Dictionary(a.dict, white) if (a.dict or white) else None
+    d = Dictionary(a.dict, white, forms=a.forms) if (a.dict or white or a.forms) else None
     lm = None
     if a.lm:
         from kk_restore import CharLM

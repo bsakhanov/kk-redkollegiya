@@ -180,3 +180,16 @@ in the glossary; the PR06 check is enabled only for entries whose consistency is
 | the text is not UTF-8 | re-encode: `iconv -f cp1251 -t utf-8 in.txt > out.txt` |
 
 Bugs and requests go to [Issues](https://github.com/bsakhanov/kk-redkollegiya/issues).
+
+## Restoring letters without your own corpus: three commands
+
+```
+python3 tests/bench/train_kaznerd.py --out-dir open-model          # or download lm-kaznerd.json.gz from the release
+python3 tools/kk_lint.py text.md --forms data/kk_forms_kaznerd.txt --lm open-model/lm-kaznerd.json.gz --only S01
+python3 tools/kk_restore.py word --lm open-model/lm-kaznerd.json.gz казакстан
+```
+
+The first command trains a model on the open KazNERD corpus (a few seconds), the second looks for words with lost Kazakh letters without Hunspell,
+the third shows the candidates for a single word. The suggestions stay suggestions (`author_choice / suggest`); do not turn on `--auto-restore` with
+the open setup. The list of forms knows news vocabulary; for industry texts add Hunspell (`--dict`) or your own whitelist (`--whitelist`).
+Measurements are in [BENCH.md](BENCH.md).
